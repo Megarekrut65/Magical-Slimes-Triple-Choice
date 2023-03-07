@@ -60,8 +60,8 @@ namespace IncrementalMode
                 >= 0.96f => Rgb(245, 80, 80),
                 >= 0.7f => Rgb(252, 115, 0),
                 >= 0.45f => Rgb(252, 226, 42),
-                > 0.05f => Rgb(191, 219, 56),
-                _ => Color.black
+                > 0.1f => Rgb(191, 219, 56),
+                _ => new Color(0,0,0,0)
             };
         }
     }

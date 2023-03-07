@@ -14,6 +14,7 @@ namespace IncrementalMode
         [SerializeField] private MoneyController moneyController;
         [SerializeField] private ShapeController shapeController;
         [SerializeField] private MessageController messaging;
+        [SerializeField] private Entity mainCharacter;
 
         private int _clickingCount = 0;
         private bool _isRunning = false;
@@ -42,10 +43,11 @@ namespace IncrementalMode
 
         public void OnPointerDown(PointerEventData eventData)
         {
+            if(mainCharacter.IsDied) return;
             long amount = moneyController.Click(speedController.Percent);
             messaging.Message(new Money(amount).ToString());
             
-            if(shapeController.Hit()) moneyController.Click(100);
+            if(shapeController.Hit()) moneyController.Click(1000);
             _clickingCount++;
             speedController.Increase();
             animator.SetBool(IsClicking, true);

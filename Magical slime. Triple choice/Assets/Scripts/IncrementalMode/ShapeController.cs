@@ -10,7 +10,6 @@ namespace IncrementalMode
         [SerializeField] private AudioSource metalAudio;
         [SerializeField] private Animator[] shapes;
         [SerializeField] private Animator animator;
-        [SerializeField] private RectTransform shapeBox;
         [SerializeField] private Entity mainCharacter;
         [SerializeField] private int damage;
 
@@ -31,8 +30,9 @@ namespace IncrementalMode
         {
             while (true)
             {
-                int time = Random.Range(10, 20);
+                int time = Random.Range(30, 60);
                 yield return new WaitForSeconds(time);
+                if(mainCharacter.IsDied) break;
                 if(IsActive) continue;
                 foreach (Animator shape in shapes)
                 {
@@ -49,12 +49,14 @@ namespace IncrementalMode
             while (true)
             {
                 yield return new WaitForSeconds(1f);
-                if(IsActive) mainCharacter.TakeDamage(damage);
+                if(mainCharacter.IsDied) break;
+                if(IsActive) mainCharacter.TakeDamage(damage * _hp/5);
             }
         }
 
         public bool Hit()
         {
+            if (mainCharacter.IsDied) return false;
             if(!IsActive) return false;
             _hp--;
 
@@ -65,14 +67,8 @@ namespace IncrementalMode
             if(_hp != 0) return false;
             IsActive = false;
             animator.SetBool(Active, false);
-            StartCoroutine(Hide());
             return true;
         }
-
-        private IEnumerator Hide()
-        {
-            yield return new WaitForSeconds(0.3f);
-            shapeBox.localScale = new Vector3(0, 0, 0);
-        }
+        
     }
 }

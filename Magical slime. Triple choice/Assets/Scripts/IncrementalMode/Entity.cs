@@ -18,6 +18,7 @@ namespace IncrementalMode
         {
             _currentHp = maxHp;
             hpSlider.maxValue = maxHp;
+            hpSlider.value = maxHp;
         }
 
         public void TakeDamage(int value)
