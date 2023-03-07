@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace IncrementalMode
 {
+    public class GameManager : MonoBehaviour
+    {
     
+    }
 }
