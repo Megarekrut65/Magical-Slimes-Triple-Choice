@@ -1,6 +1,8 @@
 using System.Collections;
+using IncrementalMode.Messaging;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 
 namespace IncrementalMode
 {
@@ -11,6 +13,7 @@ namespace IncrementalMode
         [SerializeField] private SpeedController speedController;
         [SerializeField] private MoneyController moneyController;
         [SerializeField] private ShapeController shapeController;
+        [SerializeField] private MessageController messaging;
 
         private int _clickingCount = 0;
         private bool _isRunning = false;
@@ -39,7 +42,9 @@ namespace IncrementalMode
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            moneyController.Click(speedController.Percent);
+            long amount = moneyController.Click(speedController.Percent);
+            messaging.Message(new Money(amount).ToString());
+            
             if(shapeController.Hit()) moneyController.Click(100);
             _clickingCount++;
             speedController.Increase();

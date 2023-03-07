@@ -37,8 +37,8 @@
 
         public override string ToString()
         {
-            string constant = _moneyConstant == MoneyConstants.None ? " " : _moneyConstant.ToString();
-            return $"{(double)Amount / (long)_moneyConstant:0.000}{constant}";
+            double amount = (double)Amount / (long)_moneyConstant;
+            return _moneyConstant == MoneyConstants.None ? $"{amount}" : $"{amount:0.000}{_moneyConstant}";
         }
     }
 }

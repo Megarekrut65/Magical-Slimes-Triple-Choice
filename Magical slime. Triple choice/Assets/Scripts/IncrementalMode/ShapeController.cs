@@ -10,6 +10,7 @@ namespace IncrementalMode
         [SerializeField] private AudioSource metalAudio;
         [SerializeField] private Animator[] shapes;
         [SerializeField] private Animator animator;
+        [SerializeField] private RectTransform shapeBox;
         [SerializeField] private Entity mainCharacter;
         [SerializeField] private int damage;
 
@@ -64,8 +65,14 @@ namespace IncrementalMode
             if(_hp != 0) return false;
             IsActive = false;
             animator.SetBool(Active, false);
-
+            StartCoroutine(Hide());
             return true;
+        }
+
+        private IEnumerator Hide()
+        {
+            yield return new WaitForSeconds(0.3f);
+            shapeBox.localScale = new Vector3(0, 0, 0);
         }
     }
 }

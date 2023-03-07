@@ -9,9 +9,12 @@ public class MoneyController : MonoBehaviour
     [SerializeField] private long clickAmount;
     private readonly Money _money = new Money(0);
 
-    public void Click(float percent)
+    public long Click(float percent)
     {
-        _money.Add((long)((percent + 1) * clickAmount));
+        long amount = (long)((percent + 1) * clickAmount);
+        _money.Add(amount);
         text.text = _money.ToString();
+        
+        return amount;
     }
 }
