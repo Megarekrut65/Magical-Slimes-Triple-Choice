@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private BoxCollider2D propBoxCollider;
+    private BoxCollider2D _propBoxCollider;
     public MeterScript healthMeter; //meter code
     public int currentHealth; //meter code
     public int maxHealth = 80; //meter code
-    float movementSpeed = 10f;
-    [SerializeField]
-    private float speed;
-    private Rigidbody2D rb2D;
+    float _movementSpeed = 10f;
+    [SerializeField] private float speed;
+    private Rigidbody2D _rb2D;
 
     // Start is called before the first frame update
     void Start()
     {
-        propBoxCollider = GetComponent<BoxCollider2D>();
-        rb2D = GetComponent<Rigidbody2D>();
+        _propBoxCollider = GetComponent<BoxCollider2D>();
+        _rb2D = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth; //meter code
         healthMeter.SetMaxHealth(maxHealth); //meter code
-
     }
 
     // Update is called once per frame
@@ -31,7 +29,7 @@ public class PlayerController : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-        rb2D.AddForce(movement * speed);
+        _rb2D.AddForce(movement * speed);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -40,7 +38,5 @@ public class PlayerController : MonoBehaviour
         {
             currentHealth -= 10; //meter code
         }
-
     }
-
 }

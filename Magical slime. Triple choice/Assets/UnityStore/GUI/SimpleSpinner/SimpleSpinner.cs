@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Assets.SimpleSpinner
@@ -6,42 +7,51 @@ namespace Assets.SimpleSpinner
     [RequireComponent(typeof(Image))]
     public class SimpleSpinner : MonoBehaviour
     {
-        [Header("Rotation")]
-        public bool Rotation = true;
-        [Range(-10, 10), Tooltip("Value in Hz (revolutions per second).")]
-        public float RotationSpeed = 1;
-        public AnimationCurve RotationAnimationCurve = AnimationCurve.Linear(0, 0, 1, 1);
+        [FormerlySerializedAs("Rotation")] [Header("Rotation")]
+        public bool rotation = true;
 
-        [Header("Rainbow")]
-        public bool Rainbow = true;
-        [Range(-10, 10), Tooltip("Value in Hz (revolutions per second).")]
-        public float RainbowSpeed = 0.5f;
-        [Range(0, 1)]
-        public float RainbowSaturation = 1f;
-        public AnimationCurve RainbowAnimationCurve = AnimationCurve.Linear(0, 0, 1, 1);
+        [FormerlySerializedAs("RotationSpeed")] [Range(-10, 10), Tooltip("Value in Hz (revolutions per second).")]
+        public float rotationSpeed = 1;
 
-        [Header("Options")]
-        public bool RandomPeriod = true;
-        
+        [FormerlySerializedAs("RotationAnimationCurve")]
+        public AnimationCurve rotationAnimationCurve = AnimationCurve.Linear(0, 0, 1, 1);
+
+        [FormerlySerializedAs("Rainbow")] [Header("Rainbow")]
+        public bool rainbow = true;
+
+        [FormerlySerializedAs("RainbowSpeed")] [Range(-10, 10), Tooltip("Value in Hz (revolutions per second).")]
+        public float rainbowSpeed = 0.5f;
+
+        [FormerlySerializedAs("RainbowSaturation")] [Range(0, 1)]
+        public float rainbowSaturation = 1f;
+
+        [FormerlySerializedAs("RainbowAnimationCurve")]
+        public AnimationCurve rainbowAnimationCurve = AnimationCurve.Linear(0, 0, 1, 1);
+
+        [FormerlySerializedAs("RandomPeriod")] [Header("Options")]
+        public bool randomPeriod = true;
+
         private Image _image;
         private float _period;
 
         public void Start()
         {
             _image = GetComponent<Image>();
-            _period = RandomPeriod ? Random.Range(0f, 1f) : 0;
+            _period = randomPeriod ? Random.Range(0f, 1f) : 0;
         }
 
         public void Update()
         {
-            if (Rotation)
+            if (rotation)
             {
-                transform.localEulerAngles = new Vector3(0, 0, -360 * RotationAnimationCurve.Evaluate((RotationSpeed * Time.time + _period) % 1));
+                transform.localEulerAngles = new Vector3(0, 0,
+                    -360 * rotationAnimationCurve.Evaluate((rotationSpeed * Time.time + _period) % 1));
             }
 
-            if (Rainbow)
+            if (rainbow)
             {
-                _image.color = Color.HSVToRGB(RainbowAnimationCurve.Evaluate((RainbowSpeed * Time.time + _period) % 1), RainbowSaturation, 1);
+                _image.color = Color.HSVToRGB(rainbowAnimationCurve.Evaluate((rainbowSpeed * Time.time + _period) % 1),
+                    rainbowSaturation, 1);
             }
         }
     }

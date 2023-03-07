@@ -1,45 +1,53 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class Clicking : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] 
-    private Animator _animator;
+    [SerializeField] private Animator animator;
 
-    [SerializeField] 
-    private float _addingSpeed;
+    [SerializeField] private SpeedController speedController;
+    [SerializeField] private MoneyController moneyController;
 
-    private bool _isClicking = false;
+    private int _clickingCount = 0;
+    private bool _isRunning = false;
+    private static readonly int IsClicking = Animator.StringToHash("IsClicking");
 
     private void Start()
     {
-        StartCoroutine(DecreaseSpeed());
+        StartCoroutine(NotClicking());
     }
 
-    private IEnumerator DecreaseSpeed()
+    private IEnumerator NotClicking()
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
-            if (!_isClicking)
+            yield return new WaitForSeconds(0.5f);
+            if (_clickingCount == 0)
             {
-                _animator.speed = 0;
-                _animator.StopPlayback();
+                animator.SetBool(IsClicking, false);
+                continue;
             }
-            _isClicking = false;
+
+            _clickingCount -= 10;
+            if (_clickingCount < 0) _clickingCount = 0;
         }
     }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        _animator.StartPlayback();
-        _animator.speed += _addingSpeed;
-        _isClicking = true;
+        moneyController.Click(speedController.Percent);
+        _clickingCount++;
+        speedController.Increase();
+        animator.SetBool(IsClicking, true);
+        if (_isRunning) return;
+        animator.StartPlayback();
+        _isRunning = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
+
     }
 }

@@ -14,15 +14,12 @@ public class MeterScript : MonoBehaviour
         slider.maxValue = health;
         slider.value = health;
 
-        fill.color = gradient.Evaluate (1f) ;
-
+        fill.color = gradient.Evaluate(1f);
     }
 
     public void SetHealth(float health)
     {
         slider.value = health;
         fill.color = gradient.Evaluate(slider.normalizedValue);
-
     }
-
 }
