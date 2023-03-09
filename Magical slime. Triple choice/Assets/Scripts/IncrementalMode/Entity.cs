@@ -7,9 +7,9 @@ namespace IncrementalMode
     public class Entity : MonoBehaviour
     {
         [SerializeField] private Animator animator;
-        [SerializeField] private Slider hpSlider;
-        [SerializeField] private GameObject sliderFill;
+        [SerializeField] private GameObject sliderGameObject;
         [SerializeField] private int maxHp;
+        private Slider _hpSlider;
         private int _currentHp;
         private static readonly int IsDie = Animator.StringToHash("IsDie");
         public bool IsDied => _currentHp <= 0;
@@ -17,21 +17,23 @@ namespace IncrementalMode
         private void Start()
         {
             _currentHp = maxHp;
-            hpSlider.maxValue = maxHp;
-            hpSlider.value = maxHp;
+            _hpSlider = sliderGameObject.GetComponent<Slider>();
+            _hpSlider.maxValue = maxHp;
+            _hpSlider.value = maxHp;
         }
 
         public void TakeDamage(int value)
         {
             if(IsDied) return;
             _currentHp -= value;
-            hpSlider.value = _currentHp;
+            _hpSlider.value = _currentHp;
             if(IsDied) Die();
         }
 
         private void Die()
         {
-            sliderFill.SetActive(false);
+            animator.speed = 1;
+            sliderGameObject.SetActive(false);
             animator.SetBool(IsDie, true);
         }
     }

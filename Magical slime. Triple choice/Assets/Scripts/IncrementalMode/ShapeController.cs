@@ -13,6 +13,9 @@ namespace IncrementalMode
         [SerializeField] private Entity mainCharacter;
         [SerializeField] private int damage;
 
+        [SerializeField] private int minDelay;
+        [SerializeField] private int maxDelay;
+
         private int _hp;
         private static readonly int Active = Animator.StringToHash("IsActive");
         private static readonly int Die = Animator.StringToHash("Die");
@@ -30,7 +33,7 @@ namespace IncrementalMode
         {
             while (true)
             {
-                int time = Random.Range(30, 60);
+                int time = Random.Range(minDelay, maxDelay);
                 yield return new WaitForSeconds(time);
                 if(mainCharacter.IsDied) break;
                 if(IsActive) continue;

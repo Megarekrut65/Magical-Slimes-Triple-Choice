@@ -273,6 +273,8 @@ MonoBehaviour:
   animator: {fileID: 818637527}
   mainCharacter: {fileID: 978075755}
   damage: 1
+  minDelay: 30
+  maxDelay: 60
 --- !u!82 &40300239
 AudioSource:
   m_ObjectHideFlags: 0
@@ -898,7 +900,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: b82c4605441659b49bee8ae5cf3c9723, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1181,7 +1183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 3
-  speedValue: 0.1
+  speedValue: 0.05
   minIndex: 1
   maxIndex: 5
   animator: {fileID: 434608615}
@@ -1313,7 +1315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &560756588
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2382,7 +2384,7 @@ RectTransform:
   - {fileID: 1358674641}
   - {fileID: 1130175013}
   m_Father: {fileID: 1701180362}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2403,6 +2405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 865640235332001579}
   speedSlider: {fileID: 1130175014}
+  speedText: {fileID: 1358674642}
   sliderFill: {fileID: 1738923979}
   speedValue: 0.5
   minSpeed: 1
@@ -2420,9 +2423,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 865640235332001579}
-  hpSlider: {fileID: 1683418967}
-  sliderFill: {fileID: 444992490}
-  maxHp: 1000
+  sliderGameObject: {fileID: 1683418965}
+  maxHp: 100
 --- !u!1 &1015000628
 GameObject:
   m_ObjectHideFlags: 0
@@ -2961,11 +2963,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.44317877, g: 0.9056604, b: 0.14012098, a: 1}
-    m_HighlightedColor: {r: 0.4431373, g: 0.9058824, b: 0.14117648, a: 1}
-    m_PressedColor: {r: 0.4431373, g: 0.9058824, b: 0.14117648, a: 1}
-    m_SelectedColor: {r: 0.4431373, g: 0.9058824, b: 0.14117648, a: 1}
-    m_DisabledColor: {r: 0.4431373, g: 0.9058824, b: 0.14117648, a: 0.5019608}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.8666667}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3112,7 +3114,7 @@ RectTransform:
   - {fileID: 1681465013}
   - {fileID: 756834762}
   m_Father: {fileID: 1701180362}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3319,7 +3321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Speed
+  m_Text: 
 --- !u!222 &1358674643
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3375,7 +3377,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1701180362}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.29625002, y: 0.1181602}
   m_AnchorMax: {x: 0.69000006, y: 0.8684481}
@@ -3473,7 +3475,7 @@ RectTransform:
   - {fileID: 1031729194}
   - {fileID: 718931960}
   m_Father: {fileID: 1701180362}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3972,11 +3974,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 172773818}
+  - {fileID: 1398846442}
   - {fileID: 1187776035}
+  - {fileID: 957862656}
   - {fileID: 865640235332001577}
   - {fileID: 1392080312}
-  - {fileID: 1398846442}
-  - {fileID: 957862656}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4643,13 +4645,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865640235332001580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: -75.63871, z: 71.37745}
+  m_LocalPosition: {x: -6.4, y: -98, z: 71.37745}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1683418966}
   m_Father: {fileID: 1701180362}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &865640235332001578
 SpriteRenderer:
