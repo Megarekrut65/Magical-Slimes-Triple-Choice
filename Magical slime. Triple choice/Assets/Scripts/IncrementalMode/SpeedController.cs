@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Global;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,12 +25,16 @@ namespace IncrementalMode
         {
             speedSlider.minValue = minSpeed;
             speedSlider.maxValue = maxSpeed;
+            
+            animator.speed = DataSaver.LoadSpeed();
+            Increase();
+            
             StartCoroutine(DecreaseSpeed());
         }
 
         public void Increase()
         {
-            if (!(animator.speed < maxSpeed)) return;
+            if (animator.speed >= maxSpeed) return;
             float speed = animator.speed;
             speed += speedValue / 7;
             animator.speed = speed;
@@ -55,6 +60,8 @@ namespace IncrementalMode
         }
         private void SliderValue(float value)
         {
+            DataSaver.SaveSpeed(value);
+            
             speedSlider.value = value;
             sliderFill.color = Percent switch
             {

@@ -1,20 +1,31 @@
-﻿using IncrementalMode;
+﻿using Global;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class MoneyController : MonoBehaviour
+namespace IncrementalMode
 {
-    [SerializeField] private Text text;
-    [SerializeField] private long clickAmount;
-    private readonly Money _money = new Money(0);
-
-    public long Click(float percent)
+    public class MoneyController : MonoBehaviour
     {
-        long amount = (long)((percent + 1) * clickAmount);
-        _money.Add(amount);
-        text.text = _money.ToString();
+        [SerializeField] private Text text;
+        [SerializeField] private ulong clickAmount;
+        private readonly Money _money = new Money(0);
+
+        private void Start()
+        {
+            _money.Add(DataSaver.LoadMoney());
+            text.text = _money.ToString();
+        }
+
+        public ulong Click(float percent)
+        {
+            ulong amount = (ulong)((percent + 1) * clickAmount);
+            _money.Add(amount);
         
-        return amount;
+            DataSaver.SaveMoney(_money.Amount);
+        
+            text.text = _money.ToString();
+        
+            return amount;
+        }
     }
 }

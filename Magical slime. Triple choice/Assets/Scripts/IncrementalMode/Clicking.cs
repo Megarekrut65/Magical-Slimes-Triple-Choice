@@ -49,12 +49,12 @@ namespace IncrementalMode
             
             levelController.Click();
             
-            long amount = moneyController.Click(speedController.Percent);
+            ulong amount = moneyController.Click(speedController.Percent);
             messaging.Message(new Money(amount).ToString());
             
             thunderController.Click();
             
-            if(shapeController.Hit()) moneyController.Click(1000);
+            if(shapeController.Hit()) moneyController.Click(amount * Mathf.Log(amount));
             
             _clickingCount++;
             speedController.Increase();
