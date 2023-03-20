@@ -26,7 +26,7 @@ namespace IncrementalMode
             speedSlider.minValue = minSpeed;
             speedSlider.maxValue = maxSpeed;
             
-            animator.speed = DataSaver.LoadSpeed();
+            animator.speed = DataSaver.LoadSpeed() / 2;
             Increase();
             
             StartCoroutine(DecreaseSpeed());

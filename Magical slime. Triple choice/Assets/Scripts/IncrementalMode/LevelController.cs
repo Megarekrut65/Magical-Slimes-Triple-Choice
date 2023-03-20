@@ -18,15 +18,15 @@ namespace IncrementalMode
 
         [SerializeField] private int experiencePeriod;
         [SerializeField] private int levelPeriod;
-        private int MaxExperience => levelPeriod * _level + experiencePeriod;
-        private int _level;
+        private int MaxExperience => levelPeriod * Level + experiencePeriod;
         private bool _isLevelUpping = false;
-        
+
+        public int Level { get; private set; }
 
         private void Start()
         {
             levelSlider.minValue = 0;
-            _level = DataSaver.LoadLevel();
+            Level = DataSaver.LoadLevel();
             SetData();
             levelSlider.value = DataSaver.LoadExperience();
         }
@@ -35,8 +35,8 @@ namespace IncrementalMode
         {
             levelSlider.value = 0;
             levelSlider.maxValue = MaxExperience;
-            levelText.text = _level.ToString();
-            border.sprite = borders[Math.Min(borders.Length - 1, _level / levelPeriod)];
+            levelText.text = Level.ToString();
+            border.sprite = borders[Math.Min(borders.Length - 1, Level / levelPeriod)];
             _isLevelUpping = false;
         }
         public void Click()
@@ -49,8 +49,8 @@ namespace IncrementalMode
         private void LevelUp()
         {
             _isLevelUpping = true;
-            _level++;
-            DataSaver.SaveLevel(_level);
+            Level++;
+            DataSaver.SaveLevel(Level);
             levelUpAnim.Play("LevelUp");
         }
     }

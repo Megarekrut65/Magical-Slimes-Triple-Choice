@@ -1,13 +1,15 @@
-﻿using Global;
+﻿using System;
+using Global;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace IncrementalMode
 {
     public class MoneyController : MonoBehaviour
     {
         [SerializeField] private Text text;
-        [SerializeField] private ulong clickAmount;
+        [SerializeField] private int clickAmount;
         private readonly Money _money = new Money(0);
 
         private void Start()
@@ -16,9 +18,10 @@ namespace IncrementalMode
             text.text = _money.ToString();
         }
 
-        public ulong Click(float percent)
+        public ulong Click(float percent, int level)
         {
-            ulong amount = (ulong)((percent + 1) * clickAmount);
+            ulong amount = (ulong)(Math.Log(level+5)*(percent + 1) * clickAmount 
+                                   + level + 1 + Random.Range(0, level*clickAmount));
             _money.Add(amount);
         
             DataSaver.SaveMoney(_money.Amount);
