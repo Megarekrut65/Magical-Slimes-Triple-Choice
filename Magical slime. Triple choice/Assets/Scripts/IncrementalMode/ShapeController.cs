@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using Global;
+using Global.Sound;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -7,15 +9,14 @@ namespace IncrementalMode
 {
     public class ShapeController : MonoBehaviour
     {
-        [SerializeField] private AudioSource metalAudio;
         [SerializeField] private Animator[] shapes;
         [SerializeField] private Animator animator;
         [SerializeField] private Entity mainCharacter;
         [SerializeField] private int damage;
 
-        [SerializeField] private int minDelay;
-        [SerializeField] private int maxDelay;
-
+        private const int MinDelay = 30;
+        private const int MaxDelay = 60;
+        public static int ShapeTime => Random.Range(MinDelay, MaxDelay);
         private int _hp;
         private static readonly int Active = Animator.StringToHash("IsActive");
         private static readonly int Die = Animator.StringToHash("Die");
@@ -31,10 +32,23 @@ namespace IncrementalMode
 
         private IEnumerator Waiting()
         {
+            int time = DataSaver.LoadShapeTime() + 1;
             while (true)
             {
-                int time = Random.Range(minDelay, maxDelay);
-                yield return new WaitForSeconds(time);
+                while (IsActive)
+                {
+                    yield return new WaitForSeconds(1f);
+                }
+                
+                if (time <= 0) time = ShapeTime;
+                
+                for (int i = 1; i <= time; i++)
+                {
+                    yield return new WaitForSeconds(1f);
+                    DataSaver.SaveShapeTime(time - i);
+                }
+                time = 0;
+                
                 if(mainCharacter.IsDied) break;
                 if(IsActive) continue;
                 foreach (Animator shape in shapes)
@@ -65,7 +79,7 @@ namespace IncrementalMode
 
             if (_hp % 5 != 0) return false;
             shapes[_hp / 5].SetBool(Die, true);
-            metalAudio.Play();
+            SoundManager.Instance.Play(3);
 
             if(_hp != 0) return false;
             IsActive = false;

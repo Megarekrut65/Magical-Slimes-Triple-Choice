@@ -1,14 +1,13 @@
-﻿using UnityEngine;
+﻿using Global.Sound;
+using UnityEngine;
 
 namespace IncrementalMode
 {
     public class SoundClick : MonoBehaviour
     {
-        [SerializeField] private AudioSource audioSource;
-
         public void Click()
         {
-            if(!audioSource.isPlaying) audioSource.Play();
+            if(!SoundManager.Instance.IsPlaying(2)) SoundManager.Instance.Play(2);
         }
     }
 }

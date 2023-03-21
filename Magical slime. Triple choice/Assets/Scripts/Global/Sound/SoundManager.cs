@@ -1,10 +1,10 @@
 using UnityEngine;
 
-namespace Global
+namespace Global.Sound
 {
     public class SoundManager : MonoBehaviour {
         [SerializeField]
-        private AudioSource[] sources;
+        private SoundItem[] sources;
 
         public static SoundManager Instance { get; private set; }
 
@@ -19,14 +19,23 @@ namespace Global
             DontDestroyOnLoad(gameObject);
         }
         public void Volume(float value) {
-            foreach (var source in Instance.sources) {
-                source.volume = value;
+            foreach (var source in sources) {
+                source.Volume = value;
             }
         }
         public void Play(int index) {
-            if (Instance.sources.Length > index && index >= 0) {
-                Instance.sources[index].Play();
+            if (sources.Length > index && index >= 0) {
+                sources[index].Play();
             }
+        }
+
+        public bool IsPlaying(int index)
+        {
+            if (sources.Length > index && index >= 0) {
+                return sources[index].IsPlaying;
+            }
+
+            return false;
         }
     }
 }

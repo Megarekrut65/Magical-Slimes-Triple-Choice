@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Assets.SimpleSpinner
+namespace UnityStore.GUI.SimpleSpinner
 {
     [RequireComponent(typeof(Image))]
     public class SimpleSpinner : MonoBehaviour

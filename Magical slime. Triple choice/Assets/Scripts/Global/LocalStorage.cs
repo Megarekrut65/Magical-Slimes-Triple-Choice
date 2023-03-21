@@ -5,6 +5,10 @@ namespace Global
 {
     public static class LocalStorage {
 
+        public static void Remove(string key)
+        {
+            PlayerPrefs.DeleteKey(key);
+        }
         public static T GetValue<T>(string key, T def)
         {
             if (!PlayerPrefs.HasKey(key)) SetValue(key, def);

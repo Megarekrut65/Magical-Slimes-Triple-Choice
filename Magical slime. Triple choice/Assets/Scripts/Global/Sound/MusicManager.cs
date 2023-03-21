@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Global
+namespace Global.Sound
 {
     public class MusicManager : MonoBehaviour {
         [SerializeField]
