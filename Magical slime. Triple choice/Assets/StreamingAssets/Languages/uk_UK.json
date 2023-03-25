@@ -1,0 +1,24 @@
+{
+    "items": [
+        {
+            "key": "create-own-slime",
+            "value": "Створи слайма"
+        },
+        {
+            "key": "enter-slime-name",
+            "value": "Введи ім'я слайма"
+        },
+        {
+            "key": "settings",
+            "value": "Налаштування"
+        },
+        {
+            "key": "game-over",
+            "value": "Гра закінчена"
+        },
+        {
+            "key": "slime-die",
+            "value": "Твій слайм помер. Створи нового і продовжуй гру!"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "items": [
+        {
+            "key": "create-own-slime",
+            "value": "Create own slime"
+        },
+        {
+            "key": "enter-slime-name",
+            "value": "Enter slime name"
+        },
+        {
+            "key": "settings",
+            "value": "Settings"
+        },
+        {
+            "key": "game-over",
+            "value": "Game Over"
+        },
+        {
+            "key": "slime-die",
+            "value": "Your slime died. Create new one"
+        }
+    ]
+}
