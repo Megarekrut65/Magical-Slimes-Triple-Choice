@@ -9,16 +9,13 @@ namespace IncrementalMode.Messaging
     {
         [SerializeField] private GameObject parent;
         private Transform _parentTransform;
-        private float width;
         [SerializeField] private GameObject messageObj;
-        private List<GameObject> _messagesPool = new List<GameObject>();
+        private readonly List<GameObject> _messagesPool = new List<GameObject>();
         private static readonly int Show = Animator.StringToHash("Show");
 
         private void Start()
         {
             _parentTransform = parent.transform;
-            RectTransform parentRect = parent.GetComponent<RectTransform>();
-            width = parentRect.rect.width;
         }
 
         public void Message(string message)
