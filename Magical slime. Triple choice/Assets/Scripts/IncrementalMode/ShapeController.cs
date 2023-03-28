@@ -9,6 +9,10 @@ namespace IncrementalMode
 {
     public class ShapeController : MonoBehaviour
     {
+        public delegate void Spawning();
+
+        public static event Spawning OnSpawning;
+        
         [SerializeField] private Animator[] shapes;
         [SerializeField] private Animator animator;
         [SerializeField] private Entity mainCharacter;
@@ -51,7 +55,7 @@ namespace IncrementalMode
                 
                 if(mainCharacter.IsDied) break;
                 if(IsActive) continue;
-                SoundManager.Instance.Play(3);
+
                 foreach (Animator shape in shapes)
                 {
                     shape.SetBool(Die, false);
@@ -59,6 +63,9 @@ namespace IncrementalMode
                 _hp = shapes.Length * 5;
                 IsActive = true;
                 animator.SetBool(Active, true);
+                
+                OnSpawning?.Invoke();
+                SoundManager.Instance.Play(3);
             }
         }
 

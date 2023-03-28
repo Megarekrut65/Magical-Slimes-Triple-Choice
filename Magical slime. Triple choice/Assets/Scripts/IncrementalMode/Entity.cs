@@ -11,9 +11,9 @@ namespace IncrementalMode
 {
     public class Entity : MonoBehaviour
     {
-        public delegate void GameOver();
+        public delegate void EntityDied();
 
-        public static event GameOver GameOverEvent;
+        public static event EntityDied OnEntityDied;
         
         [SerializeField] private Animator animator;
         [SerializeField] private GameObject sliderGameObject;
@@ -51,7 +51,7 @@ namespace IncrementalMode
             animator.speed = 1;
             sliderGameObject.SetActive(false);
             animator.SetBool(IsDie, true);
-            GameOverEvent?.Invoke();
+            OnEntityDied?.Invoke();
         }
     }
 }

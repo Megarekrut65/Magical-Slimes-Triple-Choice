@@ -67,6 +67,14 @@
         {
             "key": "lightning-core-description",
             "value": "The pinnacle of lightning magic. As powerful as 500 nuclear power plants, it costs as much as 5000. Allows you to get energy directly from the air."
+        },
+        {
+            "key": "energy-per",
+            "value": "Energy per second"
+        },
+        {
+            "key": "price",
+            "value": "Price"
         }
     ]
 }

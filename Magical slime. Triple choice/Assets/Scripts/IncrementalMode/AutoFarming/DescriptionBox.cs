@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace IncrementalMode.AutoFarming
@@ -14,10 +15,32 @@ namespace IncrementalMode.AutoFarming
         
         [SerializeField] private Image icon;
         [SerializeField] private StarsController stars;
-        public void ShowBox(FarmInfo farmInfo)
+        
+        private static readonly int Show = Animator.StringToHash("Show");
+
+        private void Start()
         {
-            titleText.text = farmInfo.title;
-            icon.sprite = farmInfo.icon;
+            ShapeController.OnSpawning += HideBox;
+        }
+
+        public void ShowBox(Farm farm)
+        {
+            titleText.text = farm.Info.title;
+            descriptionText.text = farm.Info.description;
+            priceText.text = farm.Price.ToString();
+            energyText.text = farm.Amount.ToString();
+            icon.sprite = farm.Info.icon;
+            
+            stars.SetStars(farm.Info.level);
+            
+            animator.SetBool(Show, true);
+        }
+
+        public void HideBox()
+        {
+            if(animator == null || !animator.GetBool(Show)) return;
+            
+            animator.SetBool(Show, false);
         }
     }
 }

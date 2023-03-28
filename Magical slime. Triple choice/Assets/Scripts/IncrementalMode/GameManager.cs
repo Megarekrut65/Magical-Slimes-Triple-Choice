@@ -28,7 +28,7 @@ namespace IncrementalMode
 
             slimeText.text = slimeName;
 
-            Entity.GameOverEvent += Die;
+            Entity.OnEntityDied += Die;
         }
 
         private void Die()

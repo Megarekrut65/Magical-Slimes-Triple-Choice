@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 23071695}
   - component: {fileID: 23071697}
   - component: {fileID: 23071696}
+  - component: {fileID: 23071698}
   m_Layer: 5
   m_Name: PriceTitle
   m_TagString: Untagged
@@ -234,8 +235,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.20689334}
   m_AnchorMax: {x: 1, y: 0.39800003}
-  m_AnchoredPosition: {x: 0.000022888184, y: -0.5999985}
-  m_SizeDelta: {x: 0.7799988, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.5999985}
+  m_SizeDelta: {x: -10.000004, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &23071696
 MonoBehaviour:
@@ -279,6 +280,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 23071694}
   m_CullTransparentMesh: 1
+--- !u!114 &23071698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23071694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319d1f9b3437fc54288d2b3fdbc05f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: price
 --- !u!1 &40300235
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,8 +455,8 @@ MonoBehaviour:
   animator: {fileID: 48007449}
   titleText: {fileID: 54934327}
   descriptionText: {fileID: 1407291403}
-  priceText: {fileID: 0}
-  energyText: {fileID: 0}
+  priceText: {fileID: 863533349}
+  energyText: {fileID: 1119958095}
   icon: {fileID: 1717041558}
   stars: {fileID: 1182347842}
 --- !u!1 &54934325
@@ -1116,7 +1130,19 @@ MonoBehaviour:
       m_Calls: []
   upEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 48007450}
+        m_TargetAssemblyTypeName: IncrementalMode.AutoFarming.DescriptionBox, Assembly-CSharp
+        m_MethodName: HideBox
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &107166416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5070,7 +5096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colors:
-  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.91213375, b: 0.14528298, a: 1}
   - {r: 0.5361694, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.4721608, b: 0, a: 1}
   - {r: 0, g: 1, b: 0.75525975, a: 1}
@@ -7771,7 +7797,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2136258, y: 0}
   m_AnchorMax: {x: 0.33681288, y: 0.18163112}
-  m_AnchoredPosition: {x: -0.69999695, y: 0.37605667}
+  m_AnchoredPosition: {x: -0.69999695, y: 0.3761177}
   m_SizeDelta: {x: -0.09000015, y: -0.55999756}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2018531642
@@ -8144,6 +8170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7698f37ec5fb45c582fac999eea0cf90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  descriptionBox: {fileID: 48007450}
+  moneyController: {fileID: 756834761}
   parent: {fileID: 2066219292}
   farmObject: {fileID: 1456895907811546421, guid: 513185dda2ffc5c41bea77d856350dc6, type: 3}
   infos:
@@ -8303,6 +8331,7 @@ GameObject:
   - component: {fileID: 2102794764}
   - component: {fileID: 2102794766}
   - component: {fileID: 2102794765}
+  - component: {fileID: 2102794767}
   m_Layer: 5
   m_Name: EnergyTitle
   m_TagString: Untagged
@@ -8326,9 +8355,9 @@ RectTransform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.20689334}
-  m_AnchorMax: {x: 1, y: 0.39800003}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -10, y: 0}
+  m_AnchorMax: {x: 0.977688, y: 0.643}
+  m_AnchoredPosition: {x: 2, y: -0.13000107}
+  m_SizeDelta: {x: -6, y: -0.26000023}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2102794765
 MonoBehaviour:
@@ -8356,8 +8385,8 @@ MonoBehaviour:
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 4
+    m_MaxSize: 20
+    m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -8372,6 +8401,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102794763}
   m_CullTransparentMesh: 1
+--- !u!114 &2102794767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102794763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319d1f9b3437fc54288d2b3fdbc05f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: energy-per
 --- !u!1 &2108167040
 GameObject:
   m_ObjectHideFlags: 0
@@ -9258,9 +9300,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0.0000076293945, y: -0.36505985}
-  m_SizeDelta: {x: 26.31, y: 0}
+  m_SizeDelta: {x: 26.31, y: -2.02429}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &633030217949732421
 MonoBehaviour:

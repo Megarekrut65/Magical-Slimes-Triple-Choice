@@ -30,7 +30,7 @@ namespace IncrementalMode
             SetData();
             levelSlider.value = DataSaver.LoadExperience();
 
-            Entity.GameOverEvent += Die;
+            Entity.OnEntityDied += Die;
         }
 
         private void Die()

@@ -14,7 +14,7 @@ namespace IncrementalMode.AutoFarming
                 _=>startAmount * (ulong)level
             };
 
-            return new Money(Math.Max(0, (ulong)value));
+            return new Money(Math.Max(0, (ulong)(value * Math.Sign(level))));
         }
     }
 

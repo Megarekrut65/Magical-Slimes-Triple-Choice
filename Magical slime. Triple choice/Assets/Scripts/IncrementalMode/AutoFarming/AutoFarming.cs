@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Global;
 using Global.Localization;
@@ -8,12 +9,15 @@ namespace IncrementalMode.AutoFarming
 {
     public class AutoFarming : MonoBehaviour
     {
+        [SerializeField] private DescriptionBox descriptionBox;
+        [SerializeField] private MoneyController moneyController;
+        
         [SerializeField] private Transform parent;
         [SerializeField] private GameObject farmObject;
 
         [SerializeField] private FarmInfo[] infos;
 
-        private List<FarmItem> _items = new List<FarmItem>();
+        private readonly List<FarmItem> _items = new List<FarmItem>();
         private void Start()
         {
             foreach (FarmInfo info in infos)
@@ -26,11 +30,27 @@ namespace IncrementalMode.AutoFarming
                 
                 GameObject obj = Instantiate(farmObject, parent, false);
                 FarmItem item = obj.GetComponent<FarmItem>();
-                item.SetInfo(new Farm(info, id));
+                item.SetInfo(new Farm(info, id), descriptionBox, moneyController);
                 _items.Add(item);
             }
 
-            Entity.GameOverEvent += ClearFarms;
+            Entity.OnEntityDied += ClearFarms;
+
+            StartCoroutine(FarmAmounting());
+        }
+
+        private IEnumerator FarmAmounting()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(1f);
+                Money money = new Money(0);
+                foreach (FarmItem item in _items)
+                {
+                    money.Add(item.GetAmount().Amount);
+                }
+                moneyController.AddMoney(money);
+            }
         }
 
         private void ClearFarms()

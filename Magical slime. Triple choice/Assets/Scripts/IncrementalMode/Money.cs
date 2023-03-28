@@ -39,6 +39,10 @@
             Converter();
         }
 
+        public void Remove(ulong value)
+        {
+            if (Amount >= value) Amount -= value;
+        }
         public override string ToString()
         {
             double amount = (double)Amount / (ulong)_moneyConstant;

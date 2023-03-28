@@ -1,5 +1,6 @@
 ﻿using System;
 using Global;
+using Global.Localization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,15 +12,56 @@ namespace IncrementalMode.AutoFarming
         [SerializeField] private Image icon;
 
         [SerializeField] private StarsController starsController;
+
+        private Color _textColor;
         
         private Farm _farm;
+        private DescriptionBox _descriptionBox;
+        private MoneyController _moneyController;
 
-        public void SetInfo(Farm farm)
+
+        private void Start()
+        {
+            _textColor = priceText.color;
+        }
+
+        public void SetInfo(Farm farm, DescriptionBox descriptionBox, MoneyController moneyController)
         {
             _farm = farm;
+            _descriptionBox = descriptionBox;
+            _moneyController = moneyController;
             LoadData();
         }
 
+        private void Awake()
+        {
+            LocalizationManager.Instance.OnLanguageChanged += Localization;
+            MoneyController.OnMoneyChanged += MoneyChanged;
+        }
+
+        private void OnDestroy()
+        {
+            LocalizationManager.Instance.OnLanguageChanged -= Localization;
+            MoneyController.OnMoneyChanged -= MoneyChanged;
+        }
+
+        private void MoneyChanged(Money money)
+        {
+            if(_farm == null) return;
+
+            priceText.color = _farm.Price.Amount <= money.Amount ? _textColor : Color.gray;
+        }
+        private void Localization()
+        {
+            if(_farm == null) return;
+            
+            _farm.Info.title = LocalizationManager.Instance.GetWord(_farm.Id);
+            _farm.Info.description = LocalizationManager.Instance.GetWord(_farm.Id + "-description");
+        }
+        public void ShowDescription()
+        {
+            _descriptionBox.ShowBox(_farm);
+        }
         private void LoadData()
         {
             starsController.SetStars(_farm.Info.level);
@@ -28,7 +70,8 @@ namespace IncrementalMode.AutoFarming
         }
         public void LevelUp()
         {
-            if(_farm == null || _farm.Info.level >= starsController.MaxLevel) return;
+            if(_farm == null || _farm.Info.level >= starsController.MaxLevel 
+                             || !_moneyController.Buy(_farm.Price)) return;
 
             _farm.Info.level++;
             LocalStorage.SetValue(_farm.Id, _farm.Info.level);
@@ -39,6 +82,11 @@ namespace IncrementalMode.AutoFarming
         {
             _farm.Info.level = 0;
             LocalStorage.SetValue(_farm.Id, 0);
+        }
+
+        public Money GetAmount()
+        {
+            return _farm == null ? new Money(0) : _farm.Amount;
         }
     }
 }
