@@ -53,6 +53,7 @@ namespace IncrementalMode
             if (price.Amount <= money.Amount)
             {
                 money.Remove(price.Amount);
+                ChangeMoney();
                 return true;
             }
 

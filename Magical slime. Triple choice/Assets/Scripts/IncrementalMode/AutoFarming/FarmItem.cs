@@ -55,8 +55,8 @@ namespace IncrementalMode.AutoFarming
         {
             if(_farm == null) return;
             
-            _farm.Info.title = LocalizationManager.Instance.GetWord(_farm.Id);
-            _farm.Info.description = LocalizationManager.Instance.GetWord(_farm.Id + "-description");
+            _farm.Info.title = LocalizationManager.TranslateWord(_farm.Id);
+            _farm.Info.description = LocalizationManager.TranslateWord(_farm.Id + "-description");
         }
         public void ShowDescription()
         {

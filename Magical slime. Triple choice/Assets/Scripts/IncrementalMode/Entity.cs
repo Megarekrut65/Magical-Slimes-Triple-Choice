@@ -36,6 +36,16 @@ namespace IncrementalMode
             _hpSlider.value = _currentHp;
         }
 
+        public void Heal(int value)
+        {
+            if(IsDied) return;
+            
+            _currentHp += value;
+            _currentHp = Math.Min(_currentHp, MaxHp);
+            
+            DataSaver.SaveHp(_currentHp);
+            _hpSlider.value = _currentHp;
+        }
         public void TakeDamage(int value)
         {
             if(IsDied) return;

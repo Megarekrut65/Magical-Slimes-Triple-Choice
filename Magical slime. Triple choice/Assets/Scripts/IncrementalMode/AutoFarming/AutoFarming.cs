@@ -25,8 +25,8 @@ namespace IncrementalMode.AutoFarming
                 string id = info.title;
                 
                 info.level = LocalStorage.GetValue(info.title, 0);
-                info.title = LocalizationManager.Instance.GetWord(info.title);
-                info.description = LocalizationManager.Instance.GetWord(info.description);
+                info.title = LocalizationManager.TranslateWord(info.title);
+                info.description = LocalizationManager.TranslateWord(info.description);
                 
                 GameObject obj = Instantiate(farmObject, parent, false);
                 FarmItem item = obj.GetComponent<FarmItem>();

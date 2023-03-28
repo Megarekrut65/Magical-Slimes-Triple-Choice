@@ -75,6 +75,10 @@
         {
             "key": "price",
             "value": "Price"
+        },
+        {
+            "key": "name-length",
+            "value": "Name length must be greater than 3"
         }
     ]
 }

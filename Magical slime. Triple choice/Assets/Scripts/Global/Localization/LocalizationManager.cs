@@ -64,5 +64,10 @@ namespace Global.Localization
         {
             return _wordMap.ContainsKey(key) ? _wordMap[key] : key;
         }
+
+        public static string TranslateWord(string key)
+        {
+            return Instance == null ? key : Instance.GetWord(key);
+        }
     }
 }

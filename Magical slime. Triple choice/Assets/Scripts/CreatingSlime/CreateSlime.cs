@@ -1,4 +1,5 @@
 ﻿using Global;
+using Global.Localization;
 using IncrementalMode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,7 +24,7 @@ namespace CreatingSlime
                 return;
             }
 
-            errorMessage.text = "Name length must be greater than 3";
+            errorMessage.text = LocalizationManager.TranslateWord("name-length");
         }
     }
 }

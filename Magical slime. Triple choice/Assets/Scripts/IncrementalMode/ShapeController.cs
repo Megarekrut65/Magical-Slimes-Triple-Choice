@@ -75,7 +75,7 @@ namespace IncrementalMode
             {
                 yield return new WaitForSeconds(1f);
                 if(mainCharacter.IsDied) break;
-                if(IsActive) mainCharacter.TakeDamage(damage * _hp/5);
+                if(IsActive) mainCharacter.TakeDamage(damage * _hp/5 + 1);
             }
         }
 
