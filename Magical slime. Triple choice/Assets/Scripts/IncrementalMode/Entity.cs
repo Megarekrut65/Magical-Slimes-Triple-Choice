@@ -13,7 +13,7 @@ namespace IncrementalMode
     {
         [SerializeField] private Animator animator;
         [SerializeField] private GameObject sliderGameObject;
-        public const int MaxHp = 100;
+        public const int MaxHp = 100000;
         private Slider _hpSlider;
         private int _currentHp;
         private static readonly int IsDie = Animator.StringToHash("IsDie");

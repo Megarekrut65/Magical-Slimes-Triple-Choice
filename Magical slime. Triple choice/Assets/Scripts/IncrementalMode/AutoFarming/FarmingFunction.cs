@@ -12,6 +12,7 @@ namespace IncrementalMode.AutoFarming
                 1=>Math.Pow(startAmount, level) - Math.Exp(level),
                 2=>startAmount * 10 + Math.Pow(level, 10) + level,
                 3=>Math.Log10(startAmount) + Math.Exp(level),
+                _=>startAmount * (ulong)level
             };
 
             return new Money(Math.Max(0, (ulong)value));
