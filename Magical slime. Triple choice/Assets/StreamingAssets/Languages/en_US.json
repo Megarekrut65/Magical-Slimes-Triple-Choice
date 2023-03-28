@@ -19,6 +19,54 @@
         {
             "key": "slime-die",
             "value": "Your slime died. Create new one"
+        },
+        {
+            "key": "simple-lightning",
+            "value": "Simple lightning"
+        },
+        {
+            "key": "simple-lightning-description",
+            "value": "Simple but effective lightning magic that allows you to get a small amount of energy."
+        },
+        {
+            "key": "lightning-storm",
+            "value": "Lightning Storm"
+        },
+        {
+            "key": "lightning-storm-description",
+            "value": "Medium-level magic that summons a large number of electrical discharges. This energy is enough to charge a simple laptop."
+        },
+        {
+            "key": "lightning-shield",
+            "value": "Lightning Shield"
+        },
+        {
+            "key": "lightning-shield-description",
+            "value": "The best defence is an offence. This magic gathers the raging lightning in one place and receives energy from it. Not a nuclear power plant, but not bad either."
+        },
+        {
+            "key": "lightning-power",
+            "value": "Lightning Power"
+        },
+        {
+            "key": "lightning-power-description",
+            "value": "Having understood the essence of this world, a magician can easily catch lightning with his bare hands and draw energy from the heavens. What sacrifices are made to charge a Tesla..."
+        },
+        {
+            "key": "lightning-rod",
+            "value": "Lightning Rod"
+        },
+        {
+            "key": "lightning-rod-description",
+            "value": "A powerful artefact that increases the total power of the mage by 100 times. No! 1000 times."
+        },
+        {
+            "key": "lightning-core",
+            "value": "Lightning Core"
+        },
+        {
+            "key": "lightning-core-description",
+            "value": "The pinnacle of lightning magic. As powerful as 500 nuclear power plants, it costs as much as 5000. Allows you to get energy directly from the air."
         }
     ]
 }

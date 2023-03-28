@@ -25,12 +25,12 @@
         private void Converter()
         {
             _moneyConstant = MoneyConstants.None;
-            if (Amount > (ulong)MoneyConstants.K) _moneyConstant = MoneyConstants.K;
-            else if (Amount > (ulong)MoneyConstants.M) _moneyConstant = MoneyConstants.M;
-            else if (Amount > (ulong)MoneyConstants.B) _moneyConstant = MoneyConstants.B;
-            else if (Amount > (ulong)MoneyConstants.T) _moneyConstant = MoneyConstants.T;
-            else if (Amount > (ulong)MoneyConstants.Qd) _moneyConstant = MoneyConstants.Qd;
-            else if (Amount > (ulong)MoneyConstants.Qr) _moneyConstant = MoneyConstants.Qr;
+            if (Amount >= (ulong)MoneyConstants.K) _moneyConstant = MoneyConstants.K;
+            if (Amount >= (ulong)MoneyConstants.M) _moneyConstant = MoneyConstants.M;
+            if (Amount >= (ulong)MoneyConstants.B) _moneyConstant = MoneyConstants.B;
+            if (Amount >= (ulong)MoneyConstants.T) _moneyConstant = MoneyConstants.T;
+            if (Amount >= (ulong)MoneyConstants.Qd) _moneyConstant = MoneyConstants.Qd;
+            if (Amount >= (ulong)MoneyConstants.Qr) _moneyConstant = MoneyConstants.Qr;
         }
 
         public void Add(ulong value)

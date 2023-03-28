@@ -17,7 +17,7 @@ namespace IncrementalMode.AutoFarming
         [SerializeField] private Sprite fullStar;
 
         private int MaxStartsLevel => stars.Length * 2;
-        public int MaxLevel => colors.Length * MaxStartsLevel;
+        public int MaxLevel => colors.Length * (MaxStartsLevel+1) - 1;
 
         
         public void SetStars(int level)

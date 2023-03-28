@@ -8,6 +8,7 @@ namespace IncrementalMode.AutoFarming
     {
         public Sprite icon;
         public string title;
+        public string description;
         public int level;
         public ulong startPrice;
         public int priceFunctionIndex;

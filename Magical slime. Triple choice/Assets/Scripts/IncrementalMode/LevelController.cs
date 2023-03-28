@@ -29,8 +29,15 @@ namespace IncrementalMode
             Level = DataSaver.LoadLevel();
             SetData();
             levelSlider.value = DataSaver.LoadExperience();
+
+            Entity.GameOverEvent += Die;
         }
 
+        private void Die()
+        {
+            Level = DataSaver.LoadLevel();
+            DataSaver.SaveLevel(Level/2);
+        }
         private void SetData()
         {
             levelSlider.value = 0;

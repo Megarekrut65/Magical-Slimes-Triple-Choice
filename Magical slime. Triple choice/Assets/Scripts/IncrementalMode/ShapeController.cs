@@ -51,6 +51,7 @@ namespace IncrementalMode
                 
                 if(mainCharacter.IsDied) break;
                 if(IsActive) continue;
+                SoundManager.Instance.Play(3);
                 foreach (Animator shape in shapes)
                 {
                     shape.SetBool(Die, false);
@@ -79,7 +80,6 @@ namespace IncrementalMode
 
             if (_hp % 5 != 0) return false;
             shapes[_hp / 5].SetBool(Die, true);
-            SoundManager.Instance.Play(3);
 
             if(_hp != 0) return false;
             IsActive = false;

@@ -11,9 +11,13 @@ namespace IncrementalMode
 {
     public class Entity : MonoBehaviour
     {
+        public delegate void GameOver();
+
+        public static event GameOver GameOverEvent;
+        
         [SerializeField] private Animator animator;
         [SerializeField] private GameObject sliderGameObject;
-        public const int MaxHp = 100000;
+        public const int MaxHp = 100;
         private Slider _hpSlider;
         private int _currentHp;
         private static readonly int IsDie = Animator.StringToHash("IsDie");
@@ -47,16 +51,7 @@ namespace IncrementalMode
             animator.speed = 1;
             sliderGameObject.SetActive(false);
             animator.SetBool(IsDie, true);
-            
-            StartCoroutine(AfterDie());
-        }
-
-        private IEnumerator AfterDie()
-        {
-            yield return new WaitForSeconds(3f);
-            
-            Action end = ()=>SceneManager.LoadScene("SlimeCreating", LoadSceneMode.Single);
-            InfoBox.Instance.ShowInfo("Game Over", "Your Slime died. Create new one",end, end);
+            GameOverEvent?.Invoke();
         }
     }
 }

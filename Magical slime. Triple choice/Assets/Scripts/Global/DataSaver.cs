@@ -72,7 +72,6 @@ namespace Global
             LocalStorage.Remove("hp");
             LocalStorage.Remove("speed");
             LocalStorage.Remove("money");
-            LocalStorage.Remove("level");
             LocalStorage.Remove("experience");
         }
     }

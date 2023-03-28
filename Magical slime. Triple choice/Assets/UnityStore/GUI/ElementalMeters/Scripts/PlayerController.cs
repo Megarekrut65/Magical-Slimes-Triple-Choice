@@ -8,7 +8,6 @@ namespace UnityStore.GUI.ElementalMeters.Scripts
         public MeterScript healthMeter; //meter code
         public int currentHealth; //meter code
         public int maxHealth = 80; //meter code
-        float _movementSpeed = 10f;
         [SerializeField] private float speed;
         private Rigidbody2D _rb2D;
 

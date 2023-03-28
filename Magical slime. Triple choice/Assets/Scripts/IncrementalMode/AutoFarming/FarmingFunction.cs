@@ -2,17 +2,32 @@
 
 namespace IncrementalMode.AutoFarming
 {
-    public static class FarmingFunction
+    public static class AmountFunction
     {
         public static Money Eval(int index, ulong startAmount, int level)
         {
             double value =  index switch
             {
-                0=> startAmount * (ulong)level - Math.Log10(startAmount),
-                1=>Math.Pow(startAmount, level) - Math.Exp(level),
-                2=>startAmount * 10 + Math.Pow(level, 10) + level,
-                3=>Math.Log10(startAmount) + Math.Exp(level),
+                0=> startAmount * (ulong)level + 1,
+                1=> startAmount * (ulong)(level+1) + 1,
+                2=> startAmount * (ulong)(level*2 + 1) + 100,
                 _=>startAmount * (ulong)level
+            };
+
+            return new Money(Math.Max(0, (ulong)value));
+        }
+    }
+
+    public static class PriceFunction
+    {
+        public static Money Eval(int index, ulong startPrice, int level)
+        {
+            double value =  index switch
+            {
+                0=> startPrice * (ulong)(level * 2 + 1) + Math.Log10(startPrice),
+                1=> startPrice * (ulong)(level * 2 + 1),
+                2=> startPrice * (ulong)(level * 3 + 1) - Math.Log10(startPrice),
+                _=>startPrice * (ulong)level
             };
 
             return new Money(Math.Max(0, (ulong)value));
