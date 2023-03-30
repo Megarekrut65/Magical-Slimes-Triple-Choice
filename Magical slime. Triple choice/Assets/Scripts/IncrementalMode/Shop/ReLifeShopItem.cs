@@ -11,7 +11,7 @@ namespace IncrementalMode.Shop
         protected override void OnStart()
         {
             base.OnStart();
-            _life = LocalStorage.GetValue("life", 0);
+            _life = LocalStorage.GetValue("life", 1);
             NewLife();
         }
 

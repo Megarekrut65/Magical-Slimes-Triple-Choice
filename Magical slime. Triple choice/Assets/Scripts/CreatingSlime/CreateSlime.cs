@@ -19,6 +19,7 @@ namespace CreatingSlime
             {
                 DataSaver.RemoveSlimeData();
                 DataSaver.SaveSlimeName(slimeName);
+                LocalStorage.SetValue("life", 1);
 
                 SceneManager.LoadScene("IncrementalMode", LoadSceneMode.Single);
                 return;

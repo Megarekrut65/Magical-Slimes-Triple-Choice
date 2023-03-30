@@ -1650,6 +1650,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213067678}
   m_CullTransparentMesh: 1
+--- !u!1 &217781967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 217781968}
+  m_Layer: 5
+  m_Name: LevelUpStars
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &217781968
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217781967}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1187776035}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.086883545, y: 20.020996}
+  m_SizeDelta: {x: 392.89, y: 312.04}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &222011996
 GameObject:
   m_ObjectHideFlags: 0
@@ -4664,7 +4700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1757426938}
-  clickAmount: 2
+  clickAmount: 3
 --- !u!224 &756834762
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7727,7 +7763,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c522dfe25a7896468abb57f4bf0f186, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b2039f4613bbfad4ab760c71f8140388, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8112,6 +8148,7 @@ RectTransform:
   - {fileID: 1698135338}
   - {fileID: 1681465013}
   - {fileID: 756834762}
+  - {fileID: 217781968}
   m_Father: {fileID: 1701180362}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8828,6 +8865,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 348d7dc158fc3ed43aeb16541fc6c587, type: 3}
   experiencePeriod: 200
   levelPeriod: 10
+  entity: {fileID: 0}
 --- !u!114 &1398846447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9027,6 +9065,7 @@ GameObject:
   - component: {fileID: 1494620696}
   - component: {fileID: 1494620695}
   - component: {fileID: 1494620694}
+  - component: {fileID: 1494620697}
   m_Layer: 5
   m_Name: ShopButton
   m_TagString: Untagged
@@ -9051,10 +9090,10 @@ RectTransform:
   m_Father: {fileID: 758184929}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.8298493}
-  m_AnchorMax: {x: 0.1698377, y: 1}
-  m_AnchoredPosition: {x: -0.16101074, y: -0.020004272}
-  m_SizeDelta: {x: -0.32, y: 0.029999971}
+  m_AnchorMin: {x: 0, y: 0.82100004}
+  m_AnchorMax: {x: 0.16625655, y: 1}
+  m_AnchoredPosition: {x: 0.33898926, y: 0.05999756}
+  m_SizeDelta: {x: 0.68, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1494620694
 MonoBehaviour:
@@ -9126,6 +9165,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494620692}
   m_CullTransparentMesh: 1
+--- !u!114 &1494620697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494620692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 1.0317143
 --- !u!1 &1525950405
 GameObject:
   m_ObjectHideFlags: 0
@@ -10016,7 +10069,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c522dfe25a7896468abb57f4bf0f186, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b2039f4613bbfad4ab760c71f8140388, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

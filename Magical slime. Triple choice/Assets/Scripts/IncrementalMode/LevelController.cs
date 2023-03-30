@@ -18,6 +18,8 @@ namespace IncrementalMode
 
         [SerializeField] private int experiencePeriod;
         [SerializeField] private int levelPeriod;
+
+        [SerializeField] private Entity entity;
         private int MaxExperience => levelPeriod * Level + experiencePeriod;
         private bool _isLevelUpping = false;
 
@@ -65,6 +67,9 @@ namespace IncrementalMode
         {
             _isLevelUpping = true;
             Level++;
+            
+            entity.Heal(Level % levelPeriod == 0?25:5);
+            
             DataSaver.SaveLevel(Level);
             levelUpAnim.Play("LevelUp");
         }

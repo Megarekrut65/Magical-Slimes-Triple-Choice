@@ -89,7 +89,6 @@ namespace IncrementalMode
                 animator.SetBool(Active, true);
                 
                 OnSpawning?.Invoke();
-                SoundManager.Instance.Play(3);
             }
         }
 
@@ -99,6 +98,7 @@ namespace IncrementalMode
             {
                 yield return new WaitForSeconds(1f);
                 if(mainCharacter.IsDied) break;
+                SoundManager.Instance.Play(3);
                 if(IsActive && !IsShield) mainCharacter.TakeDamage(damage * _hp/5 + 1);
             }
         }
