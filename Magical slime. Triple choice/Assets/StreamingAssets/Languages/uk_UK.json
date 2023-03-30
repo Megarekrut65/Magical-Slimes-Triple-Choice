@@ -74,11 +74,59 @@
         },
         {
             "key": "price",
-            "value": "Ціна покращення"
+            "value": "Ціна"
         },
         {
             "key": "name-length",
             "value": "Ім'я слайма повинне складатися з більшої кількості літер"
+        },
+        {
+            "key": "shop-heal",
+            "value": "Відновлення"
+        },
+        {
+            "key": "shop-heal-description",
+            "value": "Відновлює слайму невелику кількість здоров'я."
+        },
+        {
+            "key": "shop-heal-other",
+            "value": "Кількість здоров'я"
+        },
+        {
+            "key": "shop-amount",
+            "value": "Пришвидшення"
+        },
+        {
+            "key": "shop-amount-description",
+            "value": "Збільшує кількість енергії, яка отримується через кліки на деякий час."
+        },
+        {
+            "key": "shop-amount-other",
+            "value": "Збільшує у наступну кількість разів"
+        },
+        {
+            "key": "shop-shield",
+            "value": "Щит"
+        },
+        {
+            "key": "shop-shield-description",
+            "value": "Активує щит, який блокує шкоду від шипів."
+        },
+        {
+            "key": "shop-shield-other",
+            "value": "Поточний час блокування"
+        },
+        {
+            "key": "shop-re-life",
+            "value": "Переродження"
+        },
+        {
+            "key": "shop-re-life-description",
+            "value": "Воскрешає слайма після смерті."
+        },
+        {
+            "key": "shop-re-life-other",
+            "value": "Поточна кількість перероджень"
         }
     ]
 }

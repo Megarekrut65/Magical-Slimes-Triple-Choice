@@ -50,5 +50,11 @@ namespace IncrementalMode.Shop
             _life++;
             NewLife();
         }
+
+        public override void OpenInfo()
+        {
+            item.otherText = _life.ToString();
+            base.OpenInfo();
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Globalization;
 using Global;
 using Global.Sound;
 using UnityEngine;
@@ -26,6 +27,12 @@ namespace IncrementalMode.Shop
         protected override void OnTimeEnd()
         {
             speedController.IncreasePercent /= increaseAmount;
+        }
+
+        public override void OpenInfo()
+        {
+            item.otherText = $"{increaseAmount:0.0}";
+            base.OpenInfo();
         }
     }
 }

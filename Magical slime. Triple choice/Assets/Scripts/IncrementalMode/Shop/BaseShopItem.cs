@@ -1,4 +1,5 @@
 ﻿using System;
+using Global.DescriptionBox;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,9 @@ namespace IncrementalMode.Shop
         [Header("Base Item")]
         [SerializeField] protected Text priceText;
         [SerializeField] protected MoneyController moneyController;
-        [SerializeField] protected ulong price;
+
+        [SerializeField] private DescriptionBox descriptionBox;
+        [SerializeField] protected DescriptionItem item;
 
         private Color _textColor;
 
@@ -34,7 +37,7 @@ namespace IncrementalMode.Shop
         
         private void MoneyChanged(Money money)
         {
-            priceText.color = price <= money.Amount ? _textColor : Color.gray;
+            priceText.color = item.price <= money.Amount ? _textColor : Color.gray;
         }
 
         protected virtual void OnStart()
@@ -45,14 +48,19 @@ namespace IncrementalMode.Shop
         {
             _textColor = priceText.color;
             
-            priceText.text = new Money(price).ToString();
+            priceText.text = new Money(item.price).ToString();
             OnStart();
         }
 
         protected bool CanBuy()
         {
-            return moneyController.Buy(new Money(price));
+            return moneyController.Buy(new Money(item.price));
         }
         public abstract void Click();
+
+        public virtual void OpenInfo()
+        {
+            descriptionBox.ShowBox(item);
+        }
     }
 }

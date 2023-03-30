@@ -1,20 +1,24 @@
-﻿using System;
+﻿using Global.Localization;
+using IncrementalMode;
+using IncrementalMode.AutoFarming;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace IncrementalMode.AutoFarming
+namespace Global.DescriptionBox
 {
     public class DescriptionBox : MonoBehaviour
     {
+        [Header("Description Box")]
         [SerializeField] private Animator animator;
         
         [SerializeField] private Text titleText;
         [SerializeField] private Text descriptionText;
         [SerializeField] private Text priceText;
-        [SerializeField] private Text energyText;
+        
+        [SerializeField] private Text otherText;
+        [SerializeField] private Text otherTitle;
         
         [SerializeField] private Image icon;
-        [SerializeField] private StarsController stars;
         
         private static readonly int Show = Animator.StringToHash("Show");
         
@@ -28,16 +32,15 @@ namespace IncrementalMode.AutoFarming
             ShapeController.OnSpawning -= HideBox;
         }
 
-        public void ShowBox(Farm farm)
+        public void ShowBox(DescriptionItem item)
         {
-            titleText.text = farm.Info.title;
-            descriptionText.text = farm.Info.description;
-            priceText.text = farm.Price.ToString();
-            energyText.text = farm.Amount.ToString();
-            icon.sprite = farm.Info.icon;
-            
-            stars.SetStars(farm.Info.level);
-            
+            titleText.text = LocalizationManager.TranslateWord(item.key);
+            descriptionText.text = LocalizationManager.TranslateWord(item.key+"-description");
+            priceText.text = new Money(item.price).ToString();
+            otherText.text = item.otherText;
+            otherTitle.text = LocalizationManager.TranslateWord(item.otherTitleKey);
+            icon.sprite = item.icon;
+
             animator.SetBool(Show, true);
         }
 

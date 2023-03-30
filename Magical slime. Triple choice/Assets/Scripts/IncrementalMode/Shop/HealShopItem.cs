@@ -14,5 +14,11 @@ namespace IncrementalMode.Shop
             
             entity.Heal(healValue);
         }
+
+        public override void OpenInfo()
+        {
+            item.otherText = healValue.ToString();
+            base.OpenInfo();
+        }
     }
 }

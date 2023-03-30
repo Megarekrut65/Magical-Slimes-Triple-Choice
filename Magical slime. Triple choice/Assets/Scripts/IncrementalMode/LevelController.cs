@@ -29,8 +29,16 @@ namespace IncrementalMode
             Level = DataSaver.LoadLevel();
             SetData();
             levelSlider.value = DataSaver.LoadExperience();
+        }
 
+        private void Awake()
+        {
             Entity.OnEntityDied += Die;
+        }
+
+        private void OnDestroy()
+        {
+            Entity.OnEntityDied -= Die;
         }
 
         private void Die()

@@ -1,4 +1,5 @@
 ﻿using System;
+using Global.DescriptionBox;
 using UnityEngine;
 
 namespace IncrementalMode.AutoFarming
@@ -7,8 +8,7 @@ namespace IncrementalMode.AutoFarming
     public class FarmInfo
     {
         public Sprite icon;
-        public string title;
-        public string description;
+        public string key;
         public int level;
         public ulong startPrice;
         public int priceFunctionIndex;

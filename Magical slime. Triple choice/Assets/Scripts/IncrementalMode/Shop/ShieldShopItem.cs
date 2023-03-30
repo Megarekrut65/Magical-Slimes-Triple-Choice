@@ -35,5 +35,11 @@ namespace IncrementalMode.Shop
             hpFill.color = _hpColor;
             shapeController.IsShield = false;
         }
+
+        protected override void TimeTick(int time)
+        {
+            base.TimeTick(time);
+            item.otherText = (time+1).ToString();
+        }
     }
 }

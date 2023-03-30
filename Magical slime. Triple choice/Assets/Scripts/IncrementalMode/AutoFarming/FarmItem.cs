@@ -1,6 +1,5 @@
 ﻿using System;
 using Global;
-using Global.Localization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +15,7 @@ namespace IncrementalMode.AutoFarming
         private Color _textColor;
         
         private Farm _farm;
-        private DescriptionBox _descriptionBox;
+        private AutoFarmDescriptionBox _descriptionBox;
         private MoneyController _moneyController;
 
 
@@ -25,7 +24,7 @@ namespace IncrementalMode.AutoFarming
             _textColor = priceText.color;
         }
 
-        public void SetInfo(Farm farm, DescriptionBox descriptionBox, MoneyController moneyController)
+        public void SetInfo(Farm farm, AutoFarmDescriptionBox descriptionBox, MoneyController moneyController)
         {
             _farm = farm;
             _descriptionBox = descriptionBox;
@@ -35,13 +34,11 @@ namespace IncrementalMode.AutoFarming
 
         private void Awake()
         {
-            LocalizationManager.Instance.OnLanguageChanged += Localization;
             MoneyController.OnMoneyChanged += MoneyChanged;
         }
 
         private void OnDestroy()
         {
-            LocalizationManager.Instance.OnLanguageChanged -= Localization;
             MoneyController.OnMoneyChanged -= MoneyChanged;
         }
 
@@ -50,13 +47,6 @@ namespace IncrementalMode.AutoFarming
             if(_farm == null) return;
 
             priceText.color = _farm.Price.Amount <= money.Amount ? _textColor : Color.gray;
-        }
-        private void Localization()
-        {
-            if(_farm == null) return;
-            
-            _farm.Info.title = LocalizationManager.TranslateWord(_farm.Id);
-            _farm.Info.description = LocalizationManager.TranslateWord(_farm.Id + "-description");
         }
         public void ShowDescription()
         {
@@ -74,14 +64,14 @@ namespace IncrementalMode.AutoFarming
                              || !_moneyController.Buy(_farm.Price)) return;
 
             _farm.Info.level++;
-            LocalStorage.SetValue(_farm.Id, _farm.Info.level);
+            LocalStorage.SetValue(_farm.Info.key, _farm.Info.level);
             LoadData();
         }
 
         public void ClearLevel()
         {
             _farm.Info.level = 0;
-            LocalStorage.SetValue(_farm.Id, 0);
+            LocalStorage.SetValue(_farm.Info.key, 0);
         }
 
         public Money GetAmount()

@@ -47,6 +47,11 @@ namespace IncrementalMode.Shop
             
             StartCoroutine(TimeGo());
         }
+
+        protected virtual void TimeTick(int time)
+        {
+            
+        }
         private IEnumerator TimeGo()
         {
             _isActive = true;
@@ -60,6 +65,7 @@ namespace IncrementalMode.Shop
                 yield return new WaitForSeconds(1f);
                 time = LocalStorage.GetValue(key, 0);
                 LocalStorage.SetValue(key, time - 1);
+                TimeTick(time - 1);
             }
             
             OnTimeEnd();

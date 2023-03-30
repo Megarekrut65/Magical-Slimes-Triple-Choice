@@ -14,11 +14,11 @@
         },
         {
             "key": "game-over",
-            "value": "Game Over1"
+            "value": "Game Over"
         },
         {
             "key": "slime-die",
-            "value": "Your slime died. Create new one1"
+            "value": "Your slime died. Create new one"
         },
         {
             "key": "simple-lightning",
@@ -79,6 +79,54 @@
         {
             "key": "name-length",
             "value": "Name length must be greater than 3"
+        },
+        {
+            "key": "shop-heal",
+            "value": "Heal"
+        },
+        {
+            "key": "shop-heal-description",
+            "value": "Restores a small amount of health to the slime."
+        },
+        {
+            "key": "shop-heal-other",
+            "value": "Amount of health"
+        },
+        {
+            "key": "shop-amount",
+            "value": "Increase amount"
+        },
+        {
+            "key": "shop-amount-description",
+            "value": "Increases the amount of energy received through clicks for some time."
+        },
+        {
+            "key": "shop-amount-other",
+            "value": "Increases by the following number of times"
+        },
+        {
+            "key": "shop-shield",
+            "value": "Shield"
+        },
+        {
+            "key": "shop-shield-description",
+            "value": "Activates a shield that blocks damage from spikes for some time."
+        },
+        {
+            "key": "shop-shield-other",
+            "value": "Current block time"
+        },
+        {
+            "key": "shop-re-life",
+            "value": "Re Life"
+        },
+        {
+            "key": "shop-re-life-description",
+            "value": "Resurrects slime after death."
+        },
+        {
+            "key": "shop-re-life-other",
+            "value": "Current re life count"
         }
     ]
 }

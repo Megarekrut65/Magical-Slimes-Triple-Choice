@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Global;
+using Global.DescriptionBox;
 using Global.Localization;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace IncrementalMode.AutoFarming
 {
     public class AutoFarming : MonoBehaviour
     {
-        [SerializeField] private DescriptionBox descriptionBox;
+        [SerializeField] private AutoFarmDescriptionBox descriptionBox;
         [SerializeField] private MoneyController moneyController;
         
         [SerializeField] private Transform parent;
@@ -22,15 +23,12 @@ namespace IncrementalMode.AutoFarming
         {
             foreach (FarmInfo info in infos)
             {
-                string id = info.title;
-                
-                info.level = LocalStorage.GetValue(info.title, 0);
-                info.title = LocalizationManager.TranslateWord(info.title);
-                info.description = LocalizationManager.TranslateWord(info.description);
-                
+
+                info.level = LocalStorage.GetValue(info.key, 0);
+
                 GameObject obj = Instantiate(farmObject, parent, false);
                 FarmItem item = obj.GetComponent<FarmItem>();
-                item.SetInfo(new Farm(info, id), descriptionBox, moneyController);
+                item.SetInfo(new Farm(info), descriptionBox, moneyController);
                 _items.Add(item);
             }
 
