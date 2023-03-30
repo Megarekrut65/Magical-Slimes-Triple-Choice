@@ -28,7 +28,7 @@ namespace IncrementalMode
             _currentHp = DataSaver.LoadHp();
             if (IsDied)
             {
-                Die();
+                StartCoroutine(Die());
             }
             
             _hpSlider = sliderGameObject.GetComponent<Slider>();
@@ -53,11 +53,13 @@ namespace IncrementalMode
             DataSaver.SaveHp(_currentHp);
             
             _hpSlider.value = _currentHp;
-            if(IsDied) Die();
+            if (IsDied) StartCoroutine(Die());
         }
 
-        private void Die()
+        private IEnumerator Die()
         {
+            yield return new WaitForSeconds(0.5f);
+            
             animator.speed = 1;
             sliderGameObject.SetActive(false);
             animator.SetBool(IsDie, true);

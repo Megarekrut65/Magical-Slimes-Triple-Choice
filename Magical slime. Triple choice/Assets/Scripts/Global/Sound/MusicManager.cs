@@ -22,7 +22,7 @@ namespace Global.Sound
             DontDestroyOnLoad(gameObject);
         }
         private void LoadManager() {
-            Instance.Volume(LocalStorage.GetValue("music", 0.5f));
+            Instance.Volume(LocalStorage.GetValue("music", 0.2f));
             if (_playNext) {
                 Instance.audioSource.Stop();
             } else if (!Instance.audioSource.isPlaying) {

@@ -4,6 +4,7 @@ namespace IncrementalMode.Shop
 {
     public class HealShopItem : BaseShopItem
     {
+        [Header("Heal item")]
         [SerializeField] private int healValue;
         [SerializeField] private Entity entity;
         

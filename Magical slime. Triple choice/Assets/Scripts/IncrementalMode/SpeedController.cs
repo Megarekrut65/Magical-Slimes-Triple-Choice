@@ -18,9 +18,22 @@ namespace IncrementalMode
 
         [SerializeField] private float minSpeed;
         [SerializeField] private float maxSpeed;
-    
-        public float Percent => (speedSlider.value-1) / (speedSlider.maxValue-1);
 
+        private float _increasePercent = 1f;
+        public float IncreasePercent
+        {
+            get => _increasePercent;
+            set
+            {
+                if (value > 0f)
+                {
+                    _increasePercent = value;
+                }
+            }
+        }
+        public float Percent => IncreasePercent * (speedSlider.value-1) / (speedSlider.maxValue-1);
+        
+        
         private void Start()
         {
             speedSlider.minValue = minSpeed;
@@ -65,6 +78,9 @@ namespace IncrementalMode
             speedSlider.value = value;
             sliderFill.color = Percent switch
             {
+                >= 1.95f => Rgb(178,34,34),
+                >= 1.75f => Rgb(220,20,60),
+                >= 1.35f => Rgb(255,0,0),
                 >= 0.96f => Rgb(245, 80, 80),
                 >= 0.7f => Rgb(252, 115, 0),
                 >= 0.45f => Rgb(252, 226, 42),
@@ -72,7 +88,7 @@ namespace IncrementalMode
                 _ => new Color(0,0,0,255)
             };
             speedText.color = sliderFill.color;
-            speedText.text = $"X{1 + Percent:0.0}";
+            speedText.text = $"X{2 * Percent:0.0}";
         }
     }
 }

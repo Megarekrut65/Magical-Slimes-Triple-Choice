@@ -39,7 +39,7 @@ namespace IncrementalMode
         }
         public ulong Click(float percent, int level)
         {
-            ulong amount = (ulong)(Math.Log(level+5)*(percent + 1) * clickAmount 
+            ulong amount = (ulong)(Math.Log(level*5 + 1)*(percent * 2) * clickAmount 
                                    + level + 1 + Random.Range(0, level*clickAmount));
             money.Add(amount);
 
@@ -58,6 +58,12 @@ namespace IncrementalMode
             }
 
             return false;
+        }
+
+        //TODO:Remove. Only for debugging
+        public void AddMoney()
+        {
+            Click(10f, 1000);
         }
     }
 }

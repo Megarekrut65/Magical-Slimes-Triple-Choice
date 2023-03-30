@@ -1,5 +1,6 @@
 ﻿using System;
 using IncrementalMode;
+using IncrementalMode.Shop;
 
 namespace Global
 {
@@ -65,7 +66,6 @@ namespace Global
         {
             return LocalStorage.GetValue("slimeName", "");
         }
-
         public static void RemoveSlimeData()
         {
             LocalStorage.Remove("shapeTime");
@@ -73,6 +73,7 @@ namespace Global
             LocalStorage.Remove("speed");
             LocalStorage.Remove("money");
             LocalStorage.Remove("experience");
+            LocalStorage.Remove("slimeName");
         }
     }
 }
