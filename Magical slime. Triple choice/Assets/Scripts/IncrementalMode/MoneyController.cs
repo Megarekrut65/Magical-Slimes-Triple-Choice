@@ -63,7 +63,7 @@ namespace IncrementalMode
         //TODO:Remove. Only for debugging
         public void AddMoney()
         {
-            Click(10f, 1000);
+            Click(10000f, 1000000);
         }
     }
 }

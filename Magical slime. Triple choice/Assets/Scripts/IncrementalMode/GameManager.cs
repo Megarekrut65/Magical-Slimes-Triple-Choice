@@ -27,8 +27,15 @@ namespace IncrementalMode
             }
 
             slimeText.text = slimeName;
-
+        }
+        private void Awake()
+        {
             Entity.OnEntityDied += Die;
+        }
+
+        private void OnDestroy()
+        {
+            Entity.OnEntityDied -= Die;
         }
 
         private void Die()
@@ -40,7 +47,9 @@ namespace IncrementalMode
             yield return new WaitForSeconds(3f);
             
             Action end = ()=>SceneManager.LoadScene("SlimeCreating", LoadSceneMode.Single);
-            InfoBox.Instance.ShowInfo("Game Over", "Your Slime died. Create new one",end, end);
+            
+            InfoBox.Instance.ShowInfo(LocalizationManager.TranslateWord("game-over"), 
+                LocalizationManager.TranslateWord("slime-die"),end, end);
         }
     }
 }

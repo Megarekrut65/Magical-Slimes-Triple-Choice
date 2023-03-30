@@ -14,6 +14,7 @@ namespace IncrementalMode
         public delegate void EntityDied();
 
         public static event EntityDied OnEntityDied;
+        public static event EntityDied OnEntityReLife;
         
         [SerializeField] private Animator animator;
         [SerializeField] private GameObject sliderGameObject;
@@ -22,6 +23,9 @@ namespace IncrementalMode
         private int _currentHp;
         private static readonly int IsDie = Animator.StringToHash("IsDie");
         public bool IsDied => _currentHp <= 0;
+        
+        public int AdditionalLife { get; set; }
+        private bool imunity = false;
 
         private void Start()
         {
@@ -48,7 +52,7 @@ namespace IncrementalMode
         }
         public void TakeDamage(int value)
         {
-            if(IsDied) return;
+            if(IsDied || imunity) return;
             _currentHp -= value;
             DataSaver.SaveHp(_currentHp);
             
@@ -56,14 +60,41 @@ namespace IncrementalMode
             if (IsDied) StartCoroutine(Die());
         }
 
+        private void ReLife()
+        {
+            imunity = true;
+            DataSaver.SaveHp(MaxHp);
+            StartCoroutine(NewLife());
+            
+            OnEntityReLife?.Invoke();
+        }
+
+        private IEnumerator NewLife()
+        {
+            float delta = _hpSlider.maxValue - _hpSlider.value;
+            for (float i = 0f; i < delta; i++)
+            {
+                _hpSlider.value++;
+                _currentHp++;
+                yield return new WaitForSeconds(0.05f);
+            }
+
+            imunity = false;
+        }
         private IEnumerator Die()
         {
             yield return new WaitForSeconds(0.5f);
-            
-            animator.speed = 1;
-            sliderGameObject.SetActive(false);
-            animator.SetBool(IsDie, true);
-            OnEntityDied?.Invoke();
+            if (AdditionalLife > 0)
+            {
+                ReLife();
+            }
+            else
+            {
+                animator.speed = 1;
+                sliderGameObject.SetActive(false);
+                animator.SetBool(IsDie, true);
+                OnEntityDied?.Invoke();
+            }
         }
     }
 }

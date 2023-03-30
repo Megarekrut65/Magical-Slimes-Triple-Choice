@@ -88,7 +88,7 @@ namespace IncrementalMode
                 _ => new Color(0,0,0,255)
             };
             speedText.color = sliderFill.color;
-            speedText.text = $"X{2 * Percent:0.0}";
+            speedText.text = $"X{2 * Percent:0.0}".Replace(',', '.');
         }
     }
 }

@@ -34,11 +34,17 @@ namespace IncrementalMode.AutoFarming
                 _items.Add(item);
             }
 
-            Entity.OnEntityDied += ClearFarms;
-
             StartCoroutine(FarmAmounting());
         }
+        private void Awake()
+        {
+            Entity.OnEntityDied += ClearFarms;
+        }
 
+        private void OnDestroy()
+        {
+            Entity.OnEntityDied -= ClearFarms;
+        }
         private IEnumerator FarmAmounting()
         {
             while (true)

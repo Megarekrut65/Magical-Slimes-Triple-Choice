@@ -17,11 +17,13 @@ namespace IncrementalMode.Shop
 
         protected void ActiveOn()
         {
+            if(border == null) return;
             border.effectColor = _activeColor;
         }
 
         protected void ActiveOff()
         {
+            if(border == null) return;
             border.effectColor = _passiveColor;
         }
     }

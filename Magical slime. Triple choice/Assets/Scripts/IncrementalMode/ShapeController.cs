@@ -24,6 +24,8 @@ namespace IncrementalMode
         private int _hp;
         private static readonly int Active = Animator.StringToHash("IsActive");
         private static readonly int Die = Animator.StringToHash("Die");
+        
+        public bool IsShield { get; set; }
 
         public bool IsActive { get; private set; }
         private void Start()
@@ -34,6 +36,28 @@ namespace IncrementalMode
             StartCoroutine(Damaging());
         }
 
+        private void Awake()
+        {
+            Entity.OnEntityReLife += ReLife;
+        }
+
+        private void OnDestroy()
+        {
+            Entity.OnEntityReLife -= ReLife;
+        }
+
+        private void ReLife()
+        {
+            StartCoroutine(DestroyShapes());
+        }
+
+        private IEnumerator DestroyShapes()
+        {
+            while (!Hit())
+            {
+                yield return new WaitForSeconds(0.05f);
+            }
+        }
         private IEnumerator Waiting()
         {
             int time = DataSaver.LoadShapeTime() + 1;
@@ -75,10 +99,14 @@ namespace IncrementalMode
             {
                 yield return new WaitForSeconds(1f);
                 if(mainCharacter.IsDied) break;
-                if(IsActive) mainCharacter.TakeDamage(damage * _hp/5 + 1);
+                if(IsActive && !IsShield) mainCharacter.TakeDamage(damage * _hp/5 + 1);
             }
         }
 
+        /// <summary>
+        /// Gives damage to shapes
+        /// </summary>
+        /// <returns>True - if shapes were destroyed. False else</returns>
         public bool Hit()
         {
             if (mainCharacter.IsDied) return false;

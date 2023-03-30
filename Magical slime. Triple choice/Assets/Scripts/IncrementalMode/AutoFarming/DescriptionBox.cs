@@ -17,10 +17,15 @@ namespace IncrementalMode.AutoFarming
         [SerializeField] private StarsController stars;
         
         private static readonly int Show = Animator.StringToHash("Show");
-
-        private void Start()
+        
+        private void Awake()
         {
             ShapeController.OnSpawning += HideBox;
+        }
+
+        private void OnDestroy()
+        {
+            ShapeController.OnSpawning -= HideBox;
         }
 
         public void ShowBox(Farm farm)

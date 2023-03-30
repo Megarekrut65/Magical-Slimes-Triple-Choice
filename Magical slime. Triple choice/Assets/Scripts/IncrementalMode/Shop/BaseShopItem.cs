@@ -12,14 +12,24 @@ namespace IncrementalMode.Shop
         [SerializeField] protected ulong price;
 
         private Color _textColor;
-        private void Awake()
+
+        protected virtual void AwakeCall()
         {
             MoneyController.OnMoneyChanged += MoneyChanged;
+        }
+        protected virtual void OnDestroyCall()
+        {
+            MoneyController.OnMoneyChanged -= MoneyChanged;
+        }
+        
+        private void Awake()
+        {
+            AwakeCall();
         }
 
         private void OnDestroy()
         {
-            MoneyController.OnMoneyChanged -= MoneyChanged;
+            OnDestroyCall();
         }
         
         private void MoneyChanged(Money money)

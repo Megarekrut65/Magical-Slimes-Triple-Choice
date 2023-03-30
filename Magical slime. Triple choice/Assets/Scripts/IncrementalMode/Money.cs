@@ -46,7 +46,9 @@
         public override string ToString()
         {
             double amount = (double)Amount / (ulong)_moneyConstant;
-            return _moneyConstant == MoneyConstants.None ? $"{amount}" : $"{amount:0.000}{_moneyConstant}";
+            return _moneyConstant == MoneyConstants.None 
+                ? $"{amount}" 
+                : $"{amount:0.000}{_moneyConstant}".Replace(',','.');
         }
     }
 }

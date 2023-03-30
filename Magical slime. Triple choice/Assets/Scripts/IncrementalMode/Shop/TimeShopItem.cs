@@ -20,10 +20,19 @@ namespace IncrementalMode.Shop
         {
             base.OnStart();
             StartCoroutine(TimeGo());
+        }
 
+        protected override void AwakeCall()
+        {
+            base.AwakeCall();
             Entity.OnEntityDied += Die;
         }
 
+        protected override void OnDestroyCall()
+        {
+            base.OnDestroyCall();
+            Entity.OnEntityDied -= Die;
+        }
         private void Die()
         {
             LocalStorage.Remove(key);
