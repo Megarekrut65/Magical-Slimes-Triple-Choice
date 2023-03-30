@@ -9,6 +9,10 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+/Assets/ExternalDependencyManager/
+/Assets/Plugins/
+/Magical slime. Triple choice_BurstDebugInformation_DoNotShip/
+/Magical slime. Triple choice-Beta_BurstDebugInformation_DoNotShip/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
