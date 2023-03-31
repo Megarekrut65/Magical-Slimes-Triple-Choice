@@ -17,11 +17,11 @@ namespace Global.Sound
         private void Change(float value) {
             PlayerPrefs.SetFloat(volumeType, value);
             if (volumeType == "music") {
-                MusicManager.Instance.Volume(value);
+                MusicManager.VolumeSound(value);
                 return;
             }
 
-            SoundManager.Instance.Volume(value);
+            SoundManager.VolumeSound(value);
         }
     }
 }

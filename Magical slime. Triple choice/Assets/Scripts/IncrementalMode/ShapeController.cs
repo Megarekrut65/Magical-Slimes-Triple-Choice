@@ -98,8 +98,15 @@ namespace IncrementalMode
             {
                 yield return new WaitForSeconds(1f);
                 if(mainCharacter.IsDied) break;
-                SoundManager.Instance.Play(3);
-                if(IsActive && !IsShield) mainCharacter.TakeDamage(damage * _hp/5 + 1);
+                if (IsActive && IsShield)
+                {
+                    SoundManager.PlaySound(4);
+                } 
+                else if (IsActive && !IsShield)
+                {
+                    SoundManager.PlaySound(3);
+                    mainCharacter.TakeDamage(damage * _hp/5 + 1);
+                }
             }
         }
 

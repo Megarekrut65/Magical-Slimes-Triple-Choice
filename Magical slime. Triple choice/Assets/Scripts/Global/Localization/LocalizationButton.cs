@@ -17,7 +17,7 @@ namespace Global.Localization
         
         public void OnPointerDown(PointerEventData eventData) {
             languageLoader.SetActive(true);
-            SoundManager.Instance.Play(1);
+            SoundManager.PlaySound(1);
             LocalizationManager.Instance.ChangeLanguage(language);
         }
         public void OnPointerUp(PointerEventData eventData) {

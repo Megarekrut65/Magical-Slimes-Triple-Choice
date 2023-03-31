@@ -5,7 +5,7 @@ namespace Global.Sound
     public class SoundItem : MonoBehaviour
     {
         [SerializeField] private AudioSource source;
-        [SerializeField] private float volumeDelta;
+        [SerializeField] private float volumePercent = 1f;
 
         private float _volume;
         public float Volume
@@ -13,7 +13,7 @@ namespace Global.Sound
             get => _volume;
             set
             {
-                _volume = value + volumeDelta;
+                _volume = value * volumePercent;
                 source.volume = _volume;
             }
         }

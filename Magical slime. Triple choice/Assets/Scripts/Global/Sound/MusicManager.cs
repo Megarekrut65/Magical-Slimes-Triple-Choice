@@ -35,5 +35,10 @@ namespace Global.Sound
         public void Volume(float value) {
             Instance.audioSource.volume = value;
         }
+        public static void VolumeSound(float value) {
+            if(Instance == null) return;
+            
+            Instance.Volume(value);
+        }
     }
 }

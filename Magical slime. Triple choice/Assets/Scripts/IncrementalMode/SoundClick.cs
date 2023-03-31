@@ -7,7 +7,7 @@ namespace IncrementalMode
     {
         public void Click()
         {
-            if(!SoundManager.Instance.IsPlaying(2)) SoundManager.Instance.Play(2);
+            if(!SoundManager.IsSoundPlaying(2)) SoundManager.PlaySound(2);
         }
     }
 }

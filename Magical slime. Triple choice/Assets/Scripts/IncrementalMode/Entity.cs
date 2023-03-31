@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using Global;
-using Global.InfoBox;
+using Global.Sound;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace IncrementalMode
@@ -16,8 +15,10 @@ namespace IncrementalMode
         public static event EntityDied OnEntityDied;
         public static event EntityDied OnEntityReLife;
         
-        [SerializeField] private Animator animator;
+        [SerializeField] private Animator slimeAnimator;
+        [SerializeField] private Animator hpAnimator;
         [SerializeField] private GameObject sliderGameObject;
+        
         public const int MaxHp = 100;
         private Slider _hpSlider;
         private int _currentHp;
@@ -25,7 +26,9 @@ namespace IncrementalMode
         public bool IsDied => _currentHp <= 0;
         
         public int AdditionalLife { get; set; }
-        private bool imunity = false;
+        private bool _immunity = false;
+        private static readonly int Heal1 = Animator.StringToHash("Heal");
+        private static readonly int Damage = Animator.StringToHash("Damage");
 
         private void Start()
         {
@@ -43,6 +46,7 @@ namespace IncrementalMode
         public void Heal(int value)
         {
             if(IsDied) return;
+            hpAnimator.SetTrigger(Heal1);
             
             _currentHp += value;
             _currentHp = Math.Min(_currentHp, MaxHp);
@@ -52,7 +56,8 @@ namespace IncrementalMode
         }
         public void TakeDamage(int value)
         {
-            if(IsDied || imunity) return;
+            if(IsDied || _immunity) return;
+            hpAnimator.SetTrigger(Damage);
             _currentHp -= value;
             DataSaver.SaveHp(_currentHp);
             
@@ -62,7 +67,7 @@ namespace IncrementalMode
 
         private void ReLife()
         {
-            imunity = true;
+            _immunity = true;
             DataSaver.SaveHp(MaxHp);
             StartCoroutine(NewLife());
             
@@ -76,10 +81,11 @@ namespace IncrementalMode
             {
                 _hpSlider.value++;
                 _currentHp++;
+                hpAnimator.SetTrigger(Heal1);
                 yield return new WaitForSeconds(0.05f);
             }
 
-            imunity = false;
+            _immunity = false;
         }
         private IEnumerator Die()
         {
@@ -90,11 +96,16 @@ namespace IncrementalMode
             }
             else
             {
-                animator.speed = 1;
+                slimeAnimator.speed = 1;
                 sliderGameObject.SetActive(false);
-                animator.SetBool(IsDie, true);
+                slimeAnimator.SetBool(IsDie, true);
                 OnEntityDied?.Invoke();
             }
+        }
+
+        private void DieSound()
+        {
+            SoundManager.PlaySound(5);
         }
     }
 }

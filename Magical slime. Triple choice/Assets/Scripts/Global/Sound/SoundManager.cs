@@ -28,7 +28,22 @@ namespace Global.Sound
                 sources[index].Play();
             }
         }
+        public static void VolumeSound(float value) {
+            if(Instance == null) return;
+            
+            Instance.Volume(value);
+        }
+        public static void PlaySound(int index)
+        {
+            if(Instance == null) return;
+            
+            Instance.Play(index);
+        }
 
+        public static bool IsSoundPlaying(int index)
+        {
+            return Instance != null && Instance.IsPlaying(index);
+        }
         public bool IsPlaying(int index)
         {
             if (sources.Length > index && index >= 0) {
