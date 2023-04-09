@@ -5,13 +5,14 @@ using Global;
 using Global.DescriptionBox;
 using Global.Localization;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace IncrementalMode.AutoFarming
 {
     public class AutoFarming : MonoBehaviour
     {
         [SerializeField] private AutoFarmDescriptionBox descriptionBox;
-        [SerializeField] private MoneyController moneyController;
+        [FormerlySerializedAs("moneyController")] [SerializeField] private EnergyController energyController;
         
         [SerializeField] private Transform parent;
         [SerializeField] private GameObject farmObject;
@@ -28,7 +29,7 @@ namespace IncrementalMode.AutoFarming
 
                 GameObject obj = Instantiate(farmObject, parent, false);
                 FarmItem item = obj.GetComponent<FarmItem>();
-                item.SetInfo(new Farm(info), descriptionBox, moneyController);
+                item.SetInfo(new Farm(info), descriptionBox, energyController);
                 _items.Add(item);
             }
 
@@ -48,12 +49,12 @@ namespace IncrementalMode.AutoFarming
             while (true)
             {
                 yield return new WaitForSeconds(1f);
-                Money money = new Money(0);
+                Energy energy = new Energy(0);
                 foreach (FarmItem item in _items)
                 {
-                    money.Add(item.GetAmount().Amount);
+                    energy.Add(item.GetAmount().Amount);
                 }
-                moneyController.AddMoney(money);
+                energyController.AddMoney(energy);
             }
         }
 

@@ -6,34 +6,34 @@ using Random = UnityEngine.Random;
 
 namespace IncrementalMode
 {
-    public class MoneyController : MonoBehaviour
+    public class EnergyController : MonoBehaviour
     {
-        public delegate void MoneyChanged(Money money);
+        public delegate void EnergyChanged(Energy energy);
 
-        public static event MoneyChanged OnMoneyChanged;
+        public static event EnergyChanged OnMoneyChanged;
         
         [SerializeField] private Text text;
         [SerializeField] private int clickAmount;
         
-        public readonly Money money = new Money(0);
+        public readonly Energy energy = new Energy(0);
 
         private void Start()
         {
-            money.Add(DataSaver.LoadMoney());
-            text.text = money.ToString();
+            energy.Add(DataSaver.LoadMoney());
+            text.text = energy.ToString();
         }
 
         private void ChangeMoney()
         {
-            DataSaver.SaveMoney(money.Amount);
+            DataSaver.SaveMoney(energy.Amount);
             
-            OnMoneyChanged?.Invoke(money);
+            OnMoneyChanged?.Invoke(energy);
         
-            text.text = money.ToString();
+            text.text = energy.ToString();
         }
-        public void AddMoney(Money amount)
+        public void AddMoney(Energy amount)
         {
-            money.Add(amount.Amount);
+            energy.Add(amount.Amount);
 
             ChangeMoney();
         }
@@ -41,18 +41,18 @@ namespace IncrementalMode
         {
             ulong amount = (ulong)(Math.Log(level*5 + 1)*(percent * 2) * clickAmount 
                                    + level + 1 + Random.Range(0, level*clickAmount));
-            money.Add(amount);
+            energy.Add(amount);
 
             ChangeMoney();
         
             return amount;
         }
 
-        public bool Buy(Money price)
+        public bool Buy(Energy price)
         {
-            if (price.Amount <= money.Amount)
+            if (price.Amount <= energy.Amount)
             {
-                money.Remove(price.Amount);
+                energy.Remove(price.Amount);
                 ChangeMoney();
                 return true;
             }

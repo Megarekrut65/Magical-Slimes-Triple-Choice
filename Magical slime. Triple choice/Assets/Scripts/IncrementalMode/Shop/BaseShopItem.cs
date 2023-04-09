@@ -1,6 +1,7 @@
 ﻿using System;
 using Global.DescriptionBox;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace IncrementalMode.Shop
@@ -9,7 +10,7 @@ namespace IncrementalMode.Shop
     {
         [Header("Base Item")]
         [SerializeField] protected Text priceText;
-        [SerializeField] protected MoneyController moneyController;
+        [FormerlySerializedAs("moneyController")] [SerializeField] protected EnergyController energyController;
 
         [SerializeField] private DescriptionBox descriptionBox;
         [SerializeField] protected DescriptionItem item;
@@ -18,11 +19,11 @@ namespace IncrementalMode.Shop
 
         protected virtual void AwakeCall()
         {
-            MoneyController.OnMoneyChanged += MoneyChanged;
+            EnergyController.OnMoneyChanged += MoneyChanged;
         }
         protected virtual void OnDestroyCall()
         {
-            MoneyController.OnMoneyChanged -= MoneyChanged;
+            EnergyController.OnMoneyChanged -= MoneyChanged;
         }
         
         private void Awake()
@@ -35,9 +36,9 @@ namespace IncrementalMode.Shop
             OnDestroyCall();
         }
         
-        private void MoneyChanged(Money money)
+        private void MoneyChanged(Energy energy)
         {
-            priceText.color = item.price <= money.Amount ? _textColor : Color.gray;
+            priceText.color = item.price <= energy.Amount ? _textColor : Color.gray;
         }
 
         protected virtual void OnStart()
@@ -48,13 +49,13 @@ namespace IncrementalMode.Shop
         {
             _textColor = priceText.color;
             
-            priceText.text = new Money(item.price).ToString();
+            priceText.text = new Energy(item.price).ToString();
             OnStart();
         }
 
         protected bool CanBuy()
         {
-            return moneyController.Buy(new Money(item.price));
+            return energyController.Buy(new Energy(item.price));
         }
         public abstract void Click();
 

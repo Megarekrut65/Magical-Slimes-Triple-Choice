@@ -9,26 +9,18 @@ namespace Global.Hats
     {
         [SerializeField] private GameObject hatObject;
         [SerializeField] private Transform hatsPlace;
-        [SerializeField] private Hat[] hats;
 
         [SerializeField] private SpriteRenderer currentHat;
 
         [SerializeField] private DiamondsManager diamondsManager;
         
+        private Hat[] _hats;
+        
         private void Start()
         {
-            string current = DataSaver.LoadCurrentHat();
-            if (current != "")
-            {
-                foreach (Hat hat in hats)
-                {
-                    if (hat.key != current) continue;
-                    currentHat.sprite = hat.icon;
-                    break;
-                }
-            }
+            _hats = HatsList.Hats;
 
-            foreach (Hat hat in hats)
+            foreach (Hat hat in _hats)
             {
                 hat.isBought = hat.key == "none" || DataSaver.LoadHatIsBought(hat.key);
                 GameObject obj = Instantiate(hatObject, hatsPlace, false);

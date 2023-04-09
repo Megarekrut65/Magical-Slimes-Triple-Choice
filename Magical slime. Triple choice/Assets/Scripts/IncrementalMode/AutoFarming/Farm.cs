@@ -6,8 +6,8 @@ namespace IncrementalMode.AutoFarming
     {
         public FarmInfo Info { get; }
 
-        public Money Amount => AmountFunction.Eval(Info.amountFunctionIndex, Info.startAmount, Info.level);
-        public Money Price => PriceFunction.Eval(Info.priceFunctionIndex, Info.startPrice, Info.level);
+        public Energy Amount => AmountFunction.Eval(Info.amountFunctionIndex, Info.startAmount, Info.level);
+        public Energy Price => PriceFunction.Eval(Info.priceFunctionIndex, Info.startPrice, Info.level);
         public Farm(FarmInfo farmInfo)
         {
             Info = farmInfo;

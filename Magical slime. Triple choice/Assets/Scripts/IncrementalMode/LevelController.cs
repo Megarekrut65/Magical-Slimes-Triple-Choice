@@ -67,8 +67,9 @@ namespace IncrementalMode
         {
             _isLevelUpping = true;
             Level++;
-            
+
             entity.Heal(Level % levelPeriod == 0?25:5);
+            if (Level % levelPeriod == 0) DataSaver.SaveDiamonds(DataSaver.LoadDiamonds()+1);
             
             DataSaver.SaveLevel(Level);
             levelUpAnim.Play("LevelUp");

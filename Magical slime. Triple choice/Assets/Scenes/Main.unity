@@ -2642,6 +2642,103 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1697850979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1697850981}
+  - component: {fileID: 1697850980}
+  m_Layer: 0
+  m_Name: Hats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1697850980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697850979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c49aafd26949a38d2ea903ecc61e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hats:
+  - icon: {fileID: 21300000, guid: cfdec80f4fd929d4ba4bb44f300886d7, type: 3}
+    price: 0
+    key: none
+    isBought: 1
+  - icon: {fileID: 21300000, guid: 23b555d4598b6044a9a8982c872a51a7, type: 3}
+    price: 10
+    key: bicorn-hat
+    isBought: 0
+  - icon: {fileID: 21300000, guid: 35eba54ea0c6b85419a86be3d894ce13, type: 3}
+    price: 15
+    key: bunny-hat
+    isBought: 0
+  - icon: {fileID: 21300000, guid: c32a8bbdc18e0ad4781deb6470f0a0f3, type: 3}
+    price: 10
+    key: cowboy-hat
+    isBought: 0
+  - icon: {fileID: 21300000, guid: 93fed5dc14bc8954cb7d1ab5c12c4d2e, type: 3}
+    price: 20
+    key: crown-hat
+    isBought: 0
+  - icon: {fileID: 21300000, guid: 9f60238162395b34a86fad3ca525987e, type: 3}
+    price: 10
+    key: hard-hat
+    isBought: 0
+  - icon: {fileID: 21300000, guid: 5c24ee3dabab1db4e865110919d449dc, type: 3}
+    price: 20
+    key: princess-hat
+    isBought: 0
+  - icon: {fileID: 21300000, guid: 15f9caa1111e26d4792c5fa8cb6884ae, type: 3}
+    price: 25
+    key: robin-hat
+    isBought: 0
+  - icon: {fileID: 21300000, guid: f761c8b52acb5aa478b3329f6c84dba8, type: 3}
+    price: 10
+    key: sun-hat
+    isBought: 0
+  - icon: {fileID: 21300000, guid: 978ea7d803203d24aa777fb8d95fec43, type: 3}
+    price: 20
+    key: takuhatsugasa-hat
+    isBought: 0
+  - icon: {fileID: 21300000, guid: 22416e19bf7c9124b9b0595b4c9ae5ae, type: 3}
+    price: 15
+    key: top-hat
+    isBought: 0
+  - icon: {fileID: 21300000, guid: 40134c3b235e6ed4a9439ce9075b6ec3, type: 3}
+    price: 15
+    key: viking-hat
+    isBought: 0
+  - icon: {fileID: 21300000, guid: 7792be87c4f7a0f42ac743f35802a3af, type: 3}
+    price: 10
+    key: german-hat
+    isBought: 0
+--- !u!4 &1697850981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697850979}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.4847946, y: 1.2563608, z: 244.85423}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1777500687
 GameObject:
   m_ObjectHideFlags: 0

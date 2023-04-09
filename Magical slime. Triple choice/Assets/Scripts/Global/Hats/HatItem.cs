@@ -49,6 +49,7 @@ namespace Global.Hats
         {
             if (_entityHat == null || _hat == null) return;
             _entityHat.sprite = _hat.icon;
+            if(_hat.isBought) DataSaver.SaveCurrentHat(_hat.key);
         }
     }
 }

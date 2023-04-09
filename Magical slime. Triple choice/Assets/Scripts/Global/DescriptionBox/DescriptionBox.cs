@@ -36,7 +36,7 @@ namespace Global.DescriptionBox
         {
             titleText.text = LocalizationManager.TranslateWord(item.key);
             descriptionText.text = LocalizationManager.TranslateWord(item.key+"-description");
-            priceText.text = new Money(item.price).ToString();
+            priceText.text = new Energy(item.price).ToString();
             otherText.text = item.otherText;
             otherTitle.text = LocalizationManager.TranslateWord(item.otherTitleKey);
             icon.sprite = item.icon;

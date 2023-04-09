@@ -1,5 +1,5 @@
 ﻿using System;
-using IncrementalMode;
+using System.Numerics;
 using UnityEngine;
 
 namespace Global.DescriptionBox
@@ -8,7 +8,7 @@ namespace Global.DescriptionBox
     public class DescriptionItem
     {
         public string key;
-        public ulong price;
+        public BigInteger price;
         public Sprite icon;
 
         public string otherTitleKey;

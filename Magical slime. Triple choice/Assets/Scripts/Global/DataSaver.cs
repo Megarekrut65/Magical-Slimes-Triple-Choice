@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using IncrementalMode;
 using IncrementalMode.Shop;
 
@@ -6,7 +7,7 @@ namespace Global
 {
     public static class DataSaver
     {
-        public static void SaveMoney(ulong amount)
+        public static void SaveMoney(BigInteger amount)
         {
             LocalStorage.SetValue("money", amount.ToString());
         }
@@ -24,9 +25,9 @@ namespace Global
         {
             LocalStorage.SetValue("speed", speed);
         }
-        public static ulong LoadMoney()
+        public static BigInteger LoadMoney()
         {
-            return Convert.ToUInt64(LocalStorage.GetValue("money", "0"));
+            return BigInteger.Parse(LocalStorage.GetValue("money", "0"));
         }
 
         public static int LoadLevel()
@@ -118,7 +119,7 @@ namespace Global
         }
         public static int LoadDiamonds()
         {
-            return LocalStorage.GetValue("diamonds", 1000);
+            return LocalStorage.GetValue("diamonds", 15);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace IncrementalMode.AutoFarming
 {
     public static class AmountFunction
     {
-        public static Money Eval(int index, ulong startAmount, int level)
+        public static Energy Eval(int index, ulong startAmount, int level)
         {
             double value =  index switch
             {
@@ -14,13 +14,13 @@ namespace IncrementalMode.AutoFarming
                 _=>startAmount * (ulong)level
             };
 
-            return new Money(Math.Max(0, (ulong)(value * Math.Sign(level))));
+            return new Energy(Math.Max(0, (ulong)(value * Math.Sign(level))));
         }
     }
 
     public static class PriceFunction
     {
-        public static Money Eval(int index, ulong startPrice, int level)
+        public static Energy Eval(int index, ulong startPrice, int level)
         {
             double value =  index switch
             {
@@ -30,7 +30,7 @@ namespace IncrementalMode.AutoFarming
                 _=>startPrice * (ulong)level
             };
 
-            return new Money(Math.Max(0, (ulong)value));
+            return new Energy(Math.Max(0, (ulong)value));
         }
     }
 }

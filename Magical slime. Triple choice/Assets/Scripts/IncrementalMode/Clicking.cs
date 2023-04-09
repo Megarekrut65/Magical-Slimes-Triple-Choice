@@ -2,6 +2,7 @@ using System.Collections;
 using IncrementalMode.Messaging;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 
 namespace IncrementalMode
@@ -11,7 +12,7 @@ namespace IncrementalMode
         [SerializeField] private Animator animator;
 
         [SerializeField] private SpeedController speedController;
-        [SerializeField] private MoneyController moneyController;
+        [FormerlySerializedAs("moneyController")] [SerializeField] private EnergyController energyController;
         [SerializeField] private ShapeController shapeController;
         [SerializeField] private MessageController messaging;
         [SerializeField] private ThunderController thunderController;
@@ -51,12 +52,12 @@ namespace IncrementalMode
             soundClick.Click();
             levelController.Click();
             
-            ulong amount = moneyController.Click(speedController.Percent, levelController.Level);
-            messaging.Message(new Money(amount).ToString());
+            ulong amount = energyController.Click(speedController.Percent, levelController.Level);
+            messaging.Message(new Energy(amount).ToString());
             
             thunderController.Click();
             
-            if(shapeController.Hit()) moneyController.Click(amount * Mathf.Log(amount), levelController.Level);
+            if(shapeController.Hit()) energyController.Click(amount * Mathf.Log(amount), levelController.Level);
             
             _clickingCount++;
             speedController.Increase();

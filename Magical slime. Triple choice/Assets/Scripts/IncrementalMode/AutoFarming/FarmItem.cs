@@ -16,7 +16,7 @@ namespace IncrementalMode.AutoFarming
         
         private Farm _farm;
         private AutoFarmDescriptionBox _descriptionBox;
-        private MoneyController _moneyController;
+        private EnergyController _energyController;
 
 
         private void Start()
@@ -24,29 +24,29 @@ namespace IncrementalMode.AutoFarming
             _textColor = priceText.color;
         }
 
-        public void SetInfo(Farm farm, AutoFarmDescriptionBox descriptionBox, MoneyController moneyController)
+        public void SetInfo(Farm farm, AutoFarmDescriptionBox descriptionBox, EnergyController energyController)
         {
             _farm = farm;
             _descriptionBox = descriptionBox;
-            _moneyController = moneyController;
+            _energyController = energyController;
             LoadData();
         }
 
         private void Awake()
         {
-            MoneyController.OnMoneyChanged += MoneyChanged;
+            EnergyController.OnMoneyChanged += MoneyChanged;
         }
 
         private void OnDestroy()
         {
-            MoneyController.OnMoneyChanged -= MoneyChanged;
+            EnergyController.OnMoneyChanged -= MoneyChanged;
         }
 
-        private void MoneyChanged(Money money)
+        private void MoneyChanged(Energy energy)
         {
             if(_farm == null) return;
 
-            priceText.color = _farm.Price.Amount <= money.Amount ? _textColor : Color.gray;
+            priceText.color = _farm.Price.Amount <= energy.Amount ? _textColor : Color.gray;
         }
         public void ShowDescription()
         {
@@ -61,7 +61,7 @@ namespace IncrementalMode.AutoFarming
         public void LevelUp()
         {
             if(_farm == null || _farm.Info.level >= starsController.MaxLevel 
-                             || !_moneyController.Buy(_farm.Price)) return;
+                             || !_energyController.Buy(_farm.Price)) return;
 
             _farm.Info.level++;
             DataSaver.SaveAutoFarm(_farm.Info.key, _farm.Info.level);
@@ -74,9 +74,9 @@ namespace IncrementalMode.AutoFarming
             DataSaver.SaveAutoFarm(_farm.Info.key, 0);
         }
 
-        public Money GetAmount()
+        public Energy GetAmount()
         {
-            return _farm == null ? new Money(0) : _farm.Amount;
+            return _farm == null ? new Energy(0) : _farm.Amount;
         }
     }
 }

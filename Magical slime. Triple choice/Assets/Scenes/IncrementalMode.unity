@@ -8115,6 +8115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1219887283}
   - component: {fileID: 1219887284}
+  - component: {fileID: 1219887285}
   m_Layer: 0
   m_Name: Hat
   m_TagString: Untagged
@@ -8129,14 +8130,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1219887282}
-  m_LocalRotation: {x: -0, y: -0, z: 0.02714506, w: 0.9996316}
-  m_LocalPosition: {x: -0.067, y: 0.2, z: 0.000022888184}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.023, y: 0.375, z: -1}
+  m_LocalScale: {x: 1.2634, y: 1.2634, z: 1.26}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 865640235332001577}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.111}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1219887284
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8178,7 +8179,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: cfdec80f4fd929d4ba4bb44f300886d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8186,9 +8187,22 @@ SpriteRenderer:
   m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1219887285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219887282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae1f73bf2b24461e9f27c1bcc401ec76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHat: {fileID: 1219887284}
 --- !u!1 &1273707685
 GameObject:
   m_ObjectHideFlags: 0
@@ -11535,6 +11549,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1741650667}
+  - component: {fileID: 1741650668}
   m_Layer: 5
   m_Name: Diamonds
   m_TagString: Untagged
@@ -11561,9 +11576,22 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 47.6, y: -30.075}
+  m_AnchoredPosition: {x: 51.799995, y: -30.075}
   m_SizeDelta: {x: 92.65, y: 30.28}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1741650668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741650666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eff8d2acd434e45835617b0473fd438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1936393074}
 --- !u!1 &1750789311
 GameObject:
   m_ObjectHideFlags: 0
@@ -12244,7 +12272,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.31641343, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.3, y: -0.13996983}
+  m_AnchoredPosition: {x: 2.2999992, y: -0.13996983}
   m_SizeDelta: {x: -3.95, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1936393074
@@ -12794,7 +12822,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -160.73686}
+  m_AnchoredPosition: {x: 0, y: -160.7369}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2066219293
