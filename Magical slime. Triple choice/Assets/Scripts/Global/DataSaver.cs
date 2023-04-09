@@ -75,5 +75,50 @@ namespace Global
             LocalStorage.Remove("experience");
             LocalStorage.Remove("slimeName");
         }
+
+        public static void SaveCurrentHat(string key)
+        {
+            LocalStorage.SetValue("currentHat", key);
+        }
+        public static string LoadCurrentHat()
+        {
+            return LocalStorage.GetValue("currentHat", "");
+        }
+
+        public static void SaveHatIsBought(string key)
+        {
+            LocalStorage.SetValue(key + "IsBought", "true");
+        }
+        public static bool LoadHatIsBought(string key)
+        {
+            return Convert.ToBoolean(LocalStorage.GetValue(key + "IsBought", "false"));
+        }
+
+        public static void SaveAutoFarm(string key, int level)
+        {
+            LocalStorage.SetValue(key + "AutoFarm", level);
+        }
+
+        public static int LoadAutoFarm(string key)
+        {
+            return LocalStorage.GetValue(key + "AutoFarm", 0);
+        }
+        public static void SaveShop(string key, int value)
+        {
+            LocalStorage.SetValue(key + "Shop", value);
+        }
+
+        public static int LoadShop(string key, int def)
+        {
+            return LocalStorage.GetValue(key + "Shop", def);
+        }
+        public static void SaveDiamonds(int diamonds)
+        {
+            LocalStorage.SetValue("diamonds", diamonds);
+        }
+        public static int LoadDiamonds()
+        {
+            return LocalStorage.GetValue("diamonds", 1000);
+        }
     }
 }

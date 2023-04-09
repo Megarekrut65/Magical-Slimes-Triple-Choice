@@ -24,7 +24,7 @@ namespace IncrementalMode.AutoFarming
             foreach (FarmInfo info in infos)
             {
 
-                info.level = LocalStorage.GetValue(info.key, 0);
+                info.level = DataSaver.LoadAutoFarm(info.key);
 
                 GameObject obj = Instantiate(farmObject, parent, false);
                 FarmItem item = obj.GetComponent<FarmItem>();

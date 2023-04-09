@@ -40,7 +40,7 @@ namespace IncrementalMode.Shop
         
         protected void StartTime()
         {
-            int time = LocalStorage.GetValue(key, 0);
+            int time = DataSaver.LoadShop(key, 0);
             LocalStorage.SetValue(key, time + increaseTime);
             
             if(_isActive) return;
@@ -57,14 +57,14 @@ namespace IncrementalMode.Shop
             _isActive = true;
             ActiveOn();
 
-            int time = LocalStorage.GetValue(key, 0);
+            int time = DataSaver.LoadShop(key, 0);
             OnTimeBegin();
             
             while (time > 0)
             {
                 yield return new WaitForSeconds(1f);
-                time = LocalStorage.GetValue(key, 0);
-                LocalStorage.SetValue(key, time - 1);
+                time = DataSaver.LoadShop(key, 0);
+                DataSaver.SaveShop(key, time - 1);
                 TimeTick(time - 1);
             }
             

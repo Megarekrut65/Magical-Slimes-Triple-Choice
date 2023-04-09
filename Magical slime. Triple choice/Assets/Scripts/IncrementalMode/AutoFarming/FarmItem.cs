@@ -64,14 +64,14 @@ namespace IncrementalMode.AutoFarming
                              || !_moneyController.Buy(_farm.Price)) return;
 
             _farm.Info.level++;
-            LocalStorage.SetValue(_farm.Info.key, _farm.Info.level);
+            DataSaver.SaveAutoFarm(_farm.Info.key, _farm.Info.level);
             LoadData();
         }
 
         public void ClearLevel()
         {
             _farm.Info.level = 0;
-            LocalStorage.SetValue(_farm.Info.key, 0);
+            DataSaver.SaveAutoFarm(_farm.Info.key, 0);
         }
 
         public Money GetAmount()

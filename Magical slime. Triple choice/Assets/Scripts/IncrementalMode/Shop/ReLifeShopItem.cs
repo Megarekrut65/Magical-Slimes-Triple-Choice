@@ -11,7 +11,7 @@ namespace IncrementalMode.Shop
         protected override void OnStart()
         {
             base.OnStart();
-            _life = LocalStorage.GetValue("life", 1);
+            _life = DataSaver.LoadShop("life", 1);
             NewLife();
         }
 
@@ -30,7 +30,7 @@ namespace IncrementalMode.Shop
         private void NewLife()
         {
             entity.AdditionalLife = _life;
-            LocalStorage.SetValue("life", _life);
+            DataSaver.SaveShop("life", _life);
             
             if (_life == 0)
             {

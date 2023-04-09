@@ -62,7 +62,7 @@ namespace Global.Button
         {
             _transform.localScale = 1.1f * _scale;
             _downEvent?.Invoke();
-            if (_needSound) SoundManager.Instance.Play(_soundIndex);
+            if (_needSound) SoundManager.PlaySound(_soundIndex);
         }
 
         /// <summary>
