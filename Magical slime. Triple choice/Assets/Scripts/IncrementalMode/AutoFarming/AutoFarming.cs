@@ -12,7 +12,7 @@ namespace IncrementalMode.AutoFarming
     public class AutoFarming : MonoBehaviour
     {
         [SerializeField] private AutoFarmDescriptionBox descriptionBox;
-        [FormerlySerializedAs("moneyController")] [SerializeField] private EnergyController energyController;
+        [SerializeField] private EnergyController energyController;
         
         [SerializeField] private Transform parent;
         [SerializeField] private GameObject farmObject;

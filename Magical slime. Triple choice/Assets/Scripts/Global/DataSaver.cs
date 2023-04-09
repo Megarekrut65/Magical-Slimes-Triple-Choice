@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Numerics;
+using Account.SlimesList;
+using Global.Json;
 using IncrementalMode;
 using IncrementalMode.Shop;
+using UnityEditorInternal.VersionControl;
+using UnityEngine;
 
 namespace Global
 {
     public static class DataSaver
     {
-        public static void SaveMoney(BigInteger amount)
-        {
-            LocalStorage.SetValue("money", amount.ToString());
-        }
-
         public static void SaveLevel(int level)
         {
             LocalStorage.SetValue("level", level);
@@ -25,9 +24,23 @@ namespace Global
         {
             LocalStorage.SetValue("speed", speed);
         }
-        public static BigInteger LoadMoney()
+        public static void SaveEnergy(BigInteger amount)
         {
-            return BigInteger.Parse(LocalStorage.GetValue("money", "0"));
+            LocalStorage.SetValue("energy", amount.ToString());
+            SaveMaxEnergy(amount);
+        }
+        public static BigInteger LoadEnergy()
+        {
+            return BigInteger.Parse(LocalStorage.GetValue("energy", "0"));
+        }
+        public static void SaveMaxEnergy(BigInteger amount)
+        {
+            BigInteger max = LoadMaxEnergy();
+            if (amount > max) LocalStorage.SetValue("maxEnergy", amount.ToString());
+        }
+        public static BigInteger LoadMaxEnergy()
+        {
+            return BigInteger.Parse(LocalStorage.GetValue("maxEnergy", "0"));
         }
 
         public static int LoadLevel()
@@ -48,7 +61,7 @@ namespace Global
         }
         public static int LoadHp()
         {
-            return LocalStorage.GetValue("hp", Entity.MaxHp);
+            return LocalStorage.GetValue("hp", IncrementalMode.Entity.MaxHp);
         }
         public static void SaveShapeTime(int shapeTime)
         {
@@ -72,7 +85,8 @@ namespace Global
             LocalStorage.Remove("shapeTime");
             LocalStorage.Remove("hp");
             LocalStorage.Remove("speed");
-            LocalStorage.Remove("money");
+            LocalStorage.Remove("energy");
+            LocalStorage.Remove("maxEnergy");
             LocalStorage.Remove("experience");
             LocalStorage.Remove("slimeName");
         }
@@ -120,6 +134,30 @@ namespace Global
         public static int LoadDiamonds()
         {
             return LocalStorage.GetValue("diamonds", 15);
+        }
+
+        public static SlimeData[] LoadSlimeData()
+        {
+            ItemData<SlimeData[]> list = JsonUtility.FromJson<ItemData<SlimeData[]>>(
+                LocalStorage.GetValue("slimeData", "{\"list\":[]}"));
+
+            return list.value;
+        }
+
+        public static void SaveSlimeData(SlimeData[] data)
+        {
+            ItemData<SlimeData[]> list = new ItemData<SlimeData[]>{key="list", value = data};
+            LocalStorage.SetValue("slimeData", JsonUtility.ToJson(list));
+        }
+
+        public static string LoadSlimeType()
+        {
+            return LocalStorage.GetValue("slimeType", "blue-slime");
+        }
+
+        public static void SaveSlimeType(string type)
+        {
+            LocalStorage.SetValue("slimeType", type);
         }
     }
 }

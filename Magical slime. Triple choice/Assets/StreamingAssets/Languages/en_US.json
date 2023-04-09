@@ -127,6 +127,26 @@
         {
             "key": "shop-re-life-other",
             "value": "Current re life count"
+        },
+        {
+            "key": "slime",
+            "value": "Slime"
+        },
+        {
+            "key": "level",
+            "value": "Level"
+        },
+        {
+            "key": "energy",
+            "value": "Energy"
+        },
+        {
+            "key": "name",
+            "value": "Name"
+        },
+        {
+            "key": "your-slimes",
+            "value": "Your Slimes"
         }
     ]
 }

@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Numerics;
 using Global.DescriptionBox;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace IncrementalMode.Shop
@@ -10,7 +10,7 @@ namespace IncrementalMode.Shop
     {
         [Header("Base Item")]
         [SerializeField] protected Text priceText;
-        [FormerlySerializedAs("moneyController")] [SerializeField] protected EnergyController energyController;
+        [SerializeField] protected EnergyController energyController;
 
         [SerializeField] private DescriptionBox descriptionBox;
         [SerializeField] protected DescriptionItem item;
@@ -38,7 +38,7 @@ namespace IncrementalMode.Shop
         
         private void MoneyChanged(Energy energy)
         {
-            priceText.color = item.price <= energy.Amount ? _textColor : Color.gray;
+            priceText.color = BigInteger.Parse(item.price) <= energy.Amount ? _textColor : Color.gray;
         }
 
         protected virtual void OnStart()

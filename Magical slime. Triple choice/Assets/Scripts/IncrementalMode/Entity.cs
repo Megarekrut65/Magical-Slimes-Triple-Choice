@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Account.SlimesList;
 using Global;
 using Global.Sound;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace IncrementalMode
         [SerializeField] private Animator slimeAnimator;
         [SerializeField] private Animator hpAnimator;
         [SerializeField] private GameObject sliderGameObject;
+        [SerializeField] private GameObject hat;
         
         public const int MaxHp = 100;
         private Slider _hpSlider;
@@ -32,6 +34,8 @@ namespace IncrementalMode
 
         private void Start()
         {
+            slimeAnimator.runtimeAnimatorController = EntityList.GetEntity(DataSaver.LoadSlimeType()).clickController;
+            
             _currentHp = DataSaver.LoadHp();
             if (IsDied)
             {
@@ -62,9 +66,29 @@ namespace IncrementalMode
             DataSaver.SaveHp(_currentHp);
             
             _hpSlider.value = _currentHp;
-            if (IsDied) StartCoroutine(Die());
+            if (IsDied)
+            {
+                SaveCurrentSlimeResult();
+                StartCoroutine(Die());
+            }
         }
+        private void SaveCurrentSlimeResult()
+        {
+            SlimeData slimeData = new SlimeData
+            {
+                energy = new Energy(DataSaver.LoadMaxEnergy()).ToString(),
+                level = DataSaver.LoadLevel(),
+                name = DataSaver.LoadSlimeName(),
+                key = DataSaver.LoadSlimeType()
+            };
 
+            SlimeData[] data = DataSaver.LoadSlimeData() ?? new SlimeData[] { };
+            SlimeData[] newData = new SlimeData[data.Length + 1];
+            data.CopyTo(newData, 0);
+            newData[data.Length] = slimeData;
+            
+            DataSaver.SaveSlimeData(newData);
+        }
         private void ReLife()
         {
             _immunity = true;
@@ -98,6 +122,7 @@ namespace IncrementalMode
             {
                 slimeAnimator.speed = 1;
                 sliderGameObject.SetActive(false);
+                hat.SetActive(false);
                 slimeAnimator.SetBool(IsDie, true);
                 OnEntityDied?.Invoke();
             }

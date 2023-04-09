@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Global.Localization
+namespace Global.Json
 {
     public static class JsonParser<TValueType> {
         public static SortedDictionary<string, TValueType> Parse(string valuePath) {
             string path = Application.streamingAssetsPath + "/" + valuePath + ".json";
             string jsonData = AllFileReader.Read(path);
-            LocalizationList<TValueType> list = JsonUtility.FromJson<LocalizationList<TValueType>>(jsonData);
+            JsonList<TValueType> list = JsonUtility.FromJson<JsonList<TValueType>>(jsonData);
             var map = new SortedDictionary<string, TValueType>();
             if (list.items != null) {
                 foreach (var item in list.items) {

@@ -1,9 +1,9 @@
 using System;
 
-namespace Global.Localization
+namespace Global.Json
 {
     [Serializable]
-    public class LocalizationList<TValueType> {
+    public class JsonList<TValueType> {
         public ItemData<TValueType>[] items;
     }
 

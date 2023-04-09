@@ -25,6 +25,12 @@ namespace IncrementalMode
             Converter();
         }
 
+        public Energy(string amount)
+        {
+            Amount = BigInteger.Parse(amount);
+            Converter();
+        }
+
         private void Converter()
         {
             _energyConstant = EnergyConstants.None;

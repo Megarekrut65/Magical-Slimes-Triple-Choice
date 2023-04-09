@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Account.SlimesList;
 using Global;
 using Global.InfoBox;
 using Global.Localization;
@@ -42,10 +43,11 @@ namespace IncrementalMode
         {
             StartCoroutine(AfterDie());
         }
+
+        
         private IEnumerator AfterDie()
         {
             yield return new WaitForSeconds(3f);
-            
             Action end = ()=>SceneManager.LoadScene("SlimeCreating", LoadSceneMode.Single);
             
             InfoBox.Instance.ShowInfo(LocalizationManager.TranslateWord("game-over"), 

@@ -1,9 +1,8 @@
-﻿using System;
-using Account;
+﻿using Global;
+using Global.Hats;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Global.Hats
+namespace Account
 {
     public class HatsManager : MonoBehaviour
     {

@@ -12,7 +12,7 @@ namespace IncrementalMode
         [SerializeField] private Animator animator;
 
         [SerializeField] private SpeedController speedController;
-        [FormerlySerializedAs("moneyController")] [SerializeField] private EnergyController energyController;
+        [SerializeField] private EnergyController energyController;
         [SerializeField] private ShapeController shapeController;
         [SerializeField] private MessageController messaging;
         [SerializeField] private ThunderController thunderController;

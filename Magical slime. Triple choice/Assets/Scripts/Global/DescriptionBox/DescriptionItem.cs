@@ -8,7 +8,7 @@ namespace Global.DescriptionBox
     public class DescriptionItem
     {
         public string key;
-        public BigInteger price;
+        public string price;
         public Sprite icon;
 
         public string otherTitleKey;

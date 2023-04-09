@@ -127,6 +127,26 @@
         {
             "key": "shop-re-life-other",
             "value": "Поточна кількість перероджень"
+        },
+        {
+            "key": "slime",
+            "value": "Слайм"
+        },
+        {
+            "key": "level",
+            "value": "Рівень"
+        },
+        {
+            "key": "energy",
+            "value": "Енергія"
+        },
+        {
+            "key": "name",
+            "value": "Ім'я"
+        },
+        {
+            "key": "your-slimes",
+            "value": "Твої слайми"
         }
     ]
 }

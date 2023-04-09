@@ -3,11 +3,12 @@ using System.Numerics;
 
 namespace Account.SlimesList
 {
+    [Serializable]
     public class SlimeData
     {
         public string name;
-        public BigInteger energy;
+        public string energy;
         public int level;
-        public string type;
+        public string key;
     }
 }

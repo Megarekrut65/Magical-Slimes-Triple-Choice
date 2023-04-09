@@ -19,13 +19,13 @@ namespace IncrementalMode
 
         private void Start()
         {
-            energy.Add(DataSaver.LoadMoney());
+            energy.Add(DataSaver.LoadEnergy());
             text.text = energy.ToString();
         }
 
         private void ChangeMoney()
         {
-            DataSaver.SaveMoney(energy.Amount);
+            DataSaver.SaveEnergy(energy.Amount);
             
             OnMoneyChanged?.Invoke(energy);
         

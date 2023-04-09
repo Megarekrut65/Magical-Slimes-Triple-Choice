@@ -16,7 +16,7 @@ namespace IncrementalMode.AutoFarming
             base.ShowBox(new DescriptionItem
             {
                 key = farm.Info.key,
-                price = farm.Price.Amount,
+                price = farm.Price.Amount.ToString(),
                 otherTitleKey = "energy-per",
                 otherText = farm.Amount.ToString(),
                 icon = farm.Info.icon
