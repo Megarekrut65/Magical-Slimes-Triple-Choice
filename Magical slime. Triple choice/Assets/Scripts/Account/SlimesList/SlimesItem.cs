@@ -1,5 +1,4 @@
 ﻿using IncrementalMode;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +12,7 @@ namespace Account.SlimesList
         [SerializeField] private Text energyText;
         [SerializeField] private Image background;
 
-        public void SetData(SlimeData slimeData, AnimatorController controller, Color backgroundColor)
+        public void SetData(SlimeData slimeData, RuntimeAnimatorController controller, Color backgroundColor)
         {
             animator.runtimeAnimatorController = controller;
             nameText.text = slimeData.name;

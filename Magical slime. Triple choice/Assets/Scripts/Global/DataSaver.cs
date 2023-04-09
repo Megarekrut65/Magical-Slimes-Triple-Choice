@@ -3,8 +3,6 @@ using System.Numerics;
 using Account.SlimesList;
 using Global.Json;
 using IncrementalMode;
-using IncrementalMode.Shop;
-using UnityEditorInternal.VersionControl;
 using UnityEngine;
 
 namespace Global

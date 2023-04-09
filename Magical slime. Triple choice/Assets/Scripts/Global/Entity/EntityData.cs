@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,7 +8,7 @@ namespace Global.Entity
     public class EntityData
     {
         public string key;
-        public AnimatorController idleController;
-        public AnimatorController clickController;
+        public RuntimeAnimatorController idleController;
+        public RuntimeAnimatorController clickController;
     }
 }
