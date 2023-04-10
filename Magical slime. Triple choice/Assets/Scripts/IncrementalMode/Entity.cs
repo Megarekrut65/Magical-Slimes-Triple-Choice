@@ -29,6 +29,7 @@ namespace IncrementalMode
         
         public int AdditionalLife { get; set; }
         private bool _immunity = false;
+        private bool _died = false;
         private static readonly int Heal1 = Animator.StringToHash("Heal");
         private static readonly int Damage = Animator.StringToHash("Damage");
 
@@ -66,9 +67,9 @@ namespace IncrementalMode
             DataSaver.SaveHp(_currentHp);
             
             _hpSlider.value = _currentHp;
-            if (IsDied)
+            if (IsDied && !_died)
             {
-                SaveCurrentSlimeResult();
+                _died = true;
                 StartCoroutine(Die());
             }
         }
@@ -83,6 +84,10 @@ namespace IncrementalMode
             };
 
             SlimeData[] data = DataSaver.LoadSlimeData() ?? new SlimeData[] { };
+            SlimeData find = Array.Find(data, item =>item.Equals(slimeData));
+            Debug.Log(find?.name);
+            if(find != null) return;
+            
             SlimeData[] newData = new SlimeData[data.Length + 1];
             data.CopyTo(newData, 0);
             newData[data.Length] = slimeData;
@@ -117,9 +122,11 @@ namespace IncrementalMode
             if (AdditionalLife > 0)
             {
                 ReLife();
+                _died = false;
             }
             else
             {
+                SaveCurrentSlimeResult();
                 slimeAnimator.speed = 1;
                 sliderGameObject.SetActive(false);
                 hat.SetActive(false);

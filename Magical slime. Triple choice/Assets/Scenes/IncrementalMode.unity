@@ -3781,6 +3781,7 @@ GameObject:
   - component: {fileID: 681667608}
   - component: {fileID: 681667607}
   - component: {fileID: 681667606}
+  - component: {fileID: 681667609}
   m_Layer: 5
   m_Name: AutoFarmingButton
   m_TagString: Untagged
@@ -3808,7 +3809,7 @@ RectTransform:
   m_AnchorMin: {x: 0.76821, y: 0.86600006}
   m_AnchorMax: {x: 0.93200004, y: 1}
   m_AnchoredPosition: {x: 0.27000427, y: -0.5099945}
-  m_SizeDelta: {x: -1.7400017, y: 0.2599945}
+  m_SizeDelta: {x: -1.7400017, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &681667606
 MonoBehaviour:
@@ -3880,6 +3881,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 681667604}
   m_CullTransparentMesh: 1
+--- !u!114 &681667609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681667604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 1.0718157
 --- !u!1 &703013309
 GameObject:
   m_ObjectHideFlags: 0

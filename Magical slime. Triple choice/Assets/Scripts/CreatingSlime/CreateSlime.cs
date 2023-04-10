@@ -17,6 +17,7 @@ namespace CreatingSlime
             string slimeName = nameInput.text;
             if (slimeName.Length > 3)
             {
+                DataSaver.SaveLevel(DataSaver.LoadLevel()/2);
                 DataSaver.RemoveSlimeData();
                 DataSaver.SaveSlimeName(slimeName);
                 DataSaver.SaveShop("life", 1);

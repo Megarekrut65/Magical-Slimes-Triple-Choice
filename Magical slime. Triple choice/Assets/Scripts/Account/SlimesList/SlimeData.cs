@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Numerics;
 
 namespace Account.SlimesList
 {
@@ -10,5 +9,15 @@ namespace Account.SlimesList
         public string energy;
         public int level;
         public string key;
+
+        public bool Equals(SlimeData other)
+        {
+            return name == other.name && level == other.level && key == other.key;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(name, level, key);
+        }
     }
 }

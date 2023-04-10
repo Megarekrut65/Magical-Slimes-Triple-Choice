@@ -43,7 +43,6 @@ namespace IncrementalMode
         {
             StartCoroutine(AfterDie());
         }
-
         
         private IEnumerator AfterDie()
         {
