@@ -2777,7 +2777,7 @@ MonoBehaviour:
     clickController: {fileID: 9100000, guid: 313c43c3229e7684796a75995c4b5494, type: 2}
   - key: green-slime
     idleController: {fileID: 9100000, guid: 89aaebe355d346b40af738d224f2010f, type: 2}
-    clickController: {fileID: 9100000, guid: 873ed18d803fe8948be763bf50d1a2e4, type: 2}
+    clickController: {fileID: 9100000, guid: 85bd361a0bf30544b850a9e0d2fd57f5, type: 2}
 --- !u!4 &1757267549
 Transform:
   m_ObjectHideFlags: 0

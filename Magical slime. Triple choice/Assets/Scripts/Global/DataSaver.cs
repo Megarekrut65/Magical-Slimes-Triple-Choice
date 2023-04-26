@@ -134,7 +134,7 @@ namespace Global
         /// <returns>Saved or new amount of diamonds</returns>
         public static int LoadDiamonds()
         {
-            return LocalStorage.GetValue("diamonds", 25);
+            return LocalStorage.GetValue("diamonds", 250);//TODO:make 25 diamonds
         }
 
         public static SlimeData[] LoadSlimeData()

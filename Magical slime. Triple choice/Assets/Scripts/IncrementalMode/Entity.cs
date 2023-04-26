@@ -19,8 +19,7 @@ namespace IncrementalMode
         [SerializeField] private Animator slimeAnimator;
         [SerializeField] private Animator hpAnimator;
         [SerializeField] private GameObject sliderGameObject;
-        [SerializeField] private GameObject hat;
-        
+
         public const int MaxHp = 100;
         private Slider _hpSlider;
         private int _currentHp;
@@ -85,7 +84,7 @@ namespace IncrementalMode
 
             SlimeData[] data = DataSaver.LoadSlimeData() ?? new SlimeData[] { };
             SlimeData find = Array.Find(data, item =>item.Equals(slimeData));
-            Debug.Log(find?.name);
+
             if(find != null) return;
             
             SlimeData[] newData = new SlimeData[data.Length + 1];
@@ -129,7 +128,6 @@ namespace IncrementalMode
                 SaveCurrentSlimeResult();
                 slimeAnimator.speed = 1;
                 sliderGameObject.SetActive(false);
-                hat.SetActive(false);
                 slimeAnimator.SetBool(IsDie, true);
                 OnEntityDied?.Invoke();
             }
