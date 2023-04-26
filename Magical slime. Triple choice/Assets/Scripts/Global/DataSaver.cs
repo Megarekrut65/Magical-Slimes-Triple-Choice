@@ -128,9 +128,13 @@ namespace Global
         {
             LocalStorage.SetValue("diamonds", diamonds);
         }
+        /// <summary>
+        /// Give 25 diamonds once for new user
+        /// </summary>
+        /// <returns>Saved or new amount of diamonds</returns>
         public static int LoadDiamonds()
         {
-            return LocalStorage.GetValue("diamonds", 15);
+            return LocalStorage.GetValue("diamonds", 25);
         }
 
         public static SlimeData[] LoadSlimeData()

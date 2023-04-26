@@ -13,6 +13,7 @@ namespace IncrementalMode
         [SerializeField] private Slider levelSlider;
         [SerializeField] private Image border;
         [SerializeField] private Text levelText;
+        [SerializeField] private Text diamondsText;
 
         [SerializeField] private Sprite[] borders;
 
@@ -53,7 +54,12 @@ namespace IncrementalMode
             Level++;
 
             entity.Heal(Level % levelPeriod == 0?25:5);
-            if (Level % levelPeriod == 0) DataSaver.SaveDiamonds(DataSaver.LoadDiamonds()+1);
+            if (Level % levelPeriod == 0)
+            {
+                int diamonds = DataSaver.LoadDiamonds() + 1;
+                DataSaver.SaveDiamonds(diamonds);
+                diamondsText.text = diamonds.ToString();
+            }
             
             DataSaver.SaveLevel(Level);
             levelUpAnim.Play("LevelUp");
