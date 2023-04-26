@@ -56,12 +56,12 @@ namespace IncrementalMode
         {
             BigInteger amount = Amount / (ulong)_energyConstant;
             string part = (Amount % (ulong)_energyConstant).ToString();
-            while (part.Length < 3) part += "0";
+            while (part.Length < 3) part = "0" + part;
             
             return _energyConstant == EnergyConstants.None 
                 ? $"{amount}" 
-                : $"{amount}.{part.Substring(0,3)}" +
-                  $"{_energyConstant}".Replace(',','.');
+                : ($"{amount}.{part[..3]}" +
+                  $"{_energyConstant}").Replace(',','.');
         }
     }
 }

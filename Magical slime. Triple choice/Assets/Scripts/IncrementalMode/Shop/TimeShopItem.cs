@@ -35,13 +35,13 @@ namespace IncrementalMode.Shop
         }
         private void Die()
         {
-            LocalStorage.Remove(key);
+            DataSaver.SaveShop(key, 0);
         }
         
         protected void StartTime()
         {
             int time = DataSaver.LoadShop(key, 0);
-            LocalStorage.SetValue(key, time + increaseTime);
+            DataSaver.SaveShop(key, time + increaseTime);
             
             if(_isActive) return;
             

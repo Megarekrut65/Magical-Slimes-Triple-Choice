@@ -120,7 +120,6 @@ namespace Global
         {
             LocalStorage.SetValue(key + "Shop", value);
         }
-
         public static int LoadShop(string key, int def)
         {
             return LocalStorage.GetValue(key + "Shop", def);
