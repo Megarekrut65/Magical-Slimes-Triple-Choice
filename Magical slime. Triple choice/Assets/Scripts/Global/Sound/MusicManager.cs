@@ -5,10 +5,6 @@ namespace Global.Sound
     public class MusicManager : MonoBehaviour {
         [SerializeField]
         private AudioSource audioSource;
-        private bool _playNext = false;
-        public bool PlayNext {
-            set => _playNext = value;
-        }
         public static MusicManager Instance { get; private set; }
 
         private void Awake() {
@@ -21,11 +17,25 @@ namespace Global.Sound
             LoadManager();
             DontDestroyOnLoad(gameObject);
         }
-        private void LoadManager() {
-            Instance.Volume(LocalStorage.GetValue("music", 0.2f));
-            if (_playNext) {
+        private void LoadManager() 
+        {
+            Instance.Volume(LocalStorage.GetValue("music", 0.1f));
+            if (!Instance.audioSource.isPlaying) {
+                Instance.audioSource.Play();
+            }
+        }
+
+        public static void Stop()
+        {
+            if (Instance != null)
+            {
                 Instance.audioSource.Stop();
-            } else if (!Instance.audioSource.isPlaying) {
+            }
+        }
+        public static void Play()
+        {
+            if (Instance != null && !Instance.audioSource.isPlaying)
+            {
                 Instance.audioSource.Play();
             }
         }

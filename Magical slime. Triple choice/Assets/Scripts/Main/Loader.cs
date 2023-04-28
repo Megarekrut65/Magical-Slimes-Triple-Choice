@@ -28,7 +28,7 @@ namespace Main
             {
                 yield return new WaitForSeconds(0.05f);
             }
-            SceneManager.LoadScene("IncrementalMode", LoadSceneMode.Single);
+            SceneManager.LoadScene("Story", LoadSceneMode.Single);
         }
     }
 }

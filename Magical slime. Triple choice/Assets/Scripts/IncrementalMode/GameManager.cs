@@ -4,6 +4,7 @@ using Account.SlimesList;
 using Global;
 using Global.InfoBox;
 using Global.Localization;
+using Global.Sound;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,6 +29,8 @@ namespace IncrementalMode
             }
 
             slimeText.text = slimeName;
+            
+            MusicManager.Play();
         }
         private void Awake()
         {

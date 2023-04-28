@@ -18,8 +18,8 @@ namespace IncrementalMode
         [SerializeField] private Entity mainCharacter;
         [SerializeField] private int damage;
 
-        private const int MinDelay = 10;//30
-        private const int MaxDelay = 15;//60
+        private const int MinDelay = 30;
+        private const int MaxDelay = 60;
         public static int ShapeTime => Random.Range(MinDelay, MaxDelay);
         private int _hp;
         private static readonly int Active = Animator.StringToHash("IsActive");
