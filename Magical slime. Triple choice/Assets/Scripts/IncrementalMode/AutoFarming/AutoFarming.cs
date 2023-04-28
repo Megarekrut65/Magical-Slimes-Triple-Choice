@@ -24,7 +24,7 @@ namespace IncrementalMode.AutoFarming
         {
             foreach (FarmInfo info in infos)
             {
-
+                AutoFarmRegister.Register(info.key);
                 info.level = DataSaver.LoadAutoFarm(info.key);
 
                 GameObject obj = Instantiate(farmObject, parent, false);

@@ -56,7 +56,9 @@ namespace IncrementalMode.Shop
         {
             _isActive = true;
             ActiveOn();
-
+            
+            ShopRegister.Register(key, 0);
+            
             int time = DataSaver.LoadShop(key, 0);
             OnTimeBegin();
             

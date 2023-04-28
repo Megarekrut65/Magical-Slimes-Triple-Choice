@@ -11,6 +11,8 @@ namespace IncrementalMode.Shop
         protected override void OnStart()
         {
             base.OnStart();
+            ShopRegister.Register("life", 1);
+            
             _life = DataSaver.LoadShop("life", 1);
             NewLife();
         }

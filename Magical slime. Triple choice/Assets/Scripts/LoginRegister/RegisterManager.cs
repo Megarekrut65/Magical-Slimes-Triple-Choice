@@ -11,6 +11,7 @@ namespace LoginRegister
 
         public void Register()
         {
+            Error("");
             string username = usernameField.text;
             string email = emailField.text;
             string password = passwordField.text;
