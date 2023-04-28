@@ -43,7 +43,7 @@ namespace Story
         {
             yield return new WaitForSeconds(2f);
             _storyItems[0].PlayFrame();
-            subtitlesController.SetSubtitles(LocalizationManager.TranslateWord(items[0].key));
+            subtitlesController.SetSubtitles(LocalizationManager.GetWordByKey(items[0].key));
         } 
         private IEnumerator End()
         {
@@ -59,7 +59,7 @@ namespace Story
             }
             
             _storyItems[index].PlayFrame();
-            subtitlesController.SetSubtitles(LocalizationManager.TranslateWord(items[index].key));
+            subtitlesController.SetSubtitles(LocalizationManager.GetWordByKey(items[index].key));
         }
     }
 }

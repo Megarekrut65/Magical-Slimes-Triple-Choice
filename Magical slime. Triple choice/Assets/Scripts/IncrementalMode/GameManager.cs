@@ -52,8 +52,8 @@ namespace IncrementalMode
             yield return new WaitForSeconds(3f);
             Action end = ()=>SceneManager.LoadScene("SlimeCreating", LoadSceneMode.Single);
             
-            InfoBox.Instance.ShowInfo(LocalizationManager.TranslateWord("game-over"), 
-                LocalizationManager.TranslateWord("slime-die"),end, end);
+            InfoBox.Instance.ShowInfo(LocalizationManager.GetWordByKey("game-over"), 
+                LocalizationManager.GetWordByKey("slime-die"),end, end);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace CreatingSlime
                 return;
             }
 
-            errorMessage.text = LocalizationManager.TranslateWord("name-length");
+            errorMessage.text = LocalizationManager.GetWordByKey("name-length");
         }
     }
 }

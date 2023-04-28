@@ -140,9 +140,13 @@ namespace Global
         public static SlimeData[] LoadSlimeData()
         {
             ItemData<SlimeData[]> list = JsonUtility.FromJson<ItemData<SlimeData[]>>(
-                LocalStorage.GetValue("slimeData", "{\"list\":[]}"));
+                LoadSlimeDataJson());
 
             return list.value;
+        }
+        public static string LoadSlimeDataJson()
+        {
+            return LocalStorage.GetValue("slimeData", "{\"list\":[]}");
         }
 
         public static void SaveSlimeData(SlimeData[] data)
@@ -160,5 +164,26 @@ namespace Global
         {
             LocalStorage.SetValue("slimeType", type);
         }
+
+        public static void SaveMaxLevelForAccount(int level)
+        {
+            int maxLevel = LoadMaxLevelForAccount();
+            if(level > maxLevel) LocalStorage.SetValue("maxLevelAccount", level);
+        }
+
+        public static int LoadMaxLevelForAccount()
+        {
+            return LocalStorage.GetValue("maxLevelAccount", 0);
+        } 
+        public static void SaveMaxEnergyForAccount(int level)
+        {
+            int maxLevel = LoadMaxEnergyForAccount();
+            if(level > maxLevel) LocalStorage.SetValue("maxEnergyAccount", level);
+        }
+
+        public static int LoadMaxEnergyForAccount()
+        {
+            return LocalStorage.GetValue("maxEnergyAccount", 0);
+        } 
     }
 }

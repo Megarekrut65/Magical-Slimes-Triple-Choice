@@ -34,11 +34,11 @@ namespace Global.DescriptionBox
 
         public void ShowBox(DescriptionItem item)
         {
-            titleText.text = LocalizationManager.TranslateWord(item.key);
-            descriptionText.text = LocalizationManager.TranslateWord(item.key+"-description");
+            titleText.text = LocalizationManager.GetWordByKey(item.key);
+            descriptionText.text = LocalizationManager.GetWordByKey(item.key+"-description");
             priceText.text = new Energy(item.price).ToString();
             otherText.text = item.otherText;
-            otherTitle.text = LocalizationManager.TranslateWord(item.otherTitleKey);
+            otherTitle.text = LocalizationManager.GetWordByKey(item.otherTitleKey);
             icon.sprite = item.icon;
 
             animator.SetBool(Show, true);

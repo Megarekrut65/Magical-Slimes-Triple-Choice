@@ -29,7 +29,7 @@ namespace Global.Localization
                 _text = GetComponent<Text>();
             }
 
-            _text.text = LocalizationManager.TranslateWord(key);
+            _text.text = LocalizationManager.GetWordByKey(key);
         }
     }
 }
