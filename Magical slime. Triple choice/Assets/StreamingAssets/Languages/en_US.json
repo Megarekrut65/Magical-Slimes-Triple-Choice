@@ -302,7 +302,19 @@
         },
         {
             "key": "skip-next",
-            "value": "Skip next time"
+            "value": "Skip the backstory next time"
+        },
+        {
+            "key": "sound-volume",
+            "value": "Sound volume"
+        },
+        {
+            "key": "music-volume",
+            "value": "Music volume"
+        },
+        {
+            "key": "language",
+            "value": "Language"
         }
     ]
 }
