@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Firebase.Auth;
-using DataBase;
+﻿
+using System.Collections;
 using Global;
 using LoginRegister;
-using Main;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,6 +10,8 @@ namespace Account.UserInfo
 {
     public class InfoManager : MonoBehaviour
     {
+        [SerializeField] private ScreenLoader loader;
+        
         [Header("Places")]
         [SerializeField] private GameObject infoBox;
         [SerializeField] private GameObject loginBox;
@@ -25,6 +24,12 @@ namespace Account.UserInfo
 
         private void Start()
         {
+            if (DataSaver.LoadSlimeName() == "")
+            {
+                SceneManager.LoadScene("SlimeCreating", LoadSceneMode.Single);
+                return;
+            }
+            
             bool active = LoginController.UserSignIn();
             loginBox.SetActive(!active);
             infoBox.SetActive(active);
@@ -38,9 +43,17 @@ namespace Account.UserInfo
         
         public void LogOut()
         {
+            loader.Show();
             LoginController.SignOutUser();
-            SceneManager.LoadScene("LoginRegister", LoadSceneMode.Single);
             DataSaver.RemoveAccountData();
+            StartCoroutine(Open());
+        }
+
+        private IEnumerator Open()
+        {
+            yield return new WaitForSeconds(0.1f);
+            loader.Hide();
+            SceneManager.LoadScene("LoginRegister", LoadSceneMode.Single);
         }
     }
 }

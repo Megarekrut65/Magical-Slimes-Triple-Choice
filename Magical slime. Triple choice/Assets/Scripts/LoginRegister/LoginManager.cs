@@ -1,5 +1,6 @@
 ﻿using DataBase;
 using Firebase.Auth;
+using Global;
 using Global.Localization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,6 +10,8 @@ namespace LoginRegister
 {
     public class LoginManager : MonoBehaviour
     {
+        [SerializeField] private ScreenLoader loader;
+        
         [SerializeField] private Text errorText;
         
         [SerializeField] protected InputField emailField;
@@ -16,6 +19,7 @@ namespace LoginRegister
         
         public void Login()
         {
+            loader.Show();
             Error("");
             string email = emailField.text;
             string password = passwordField.text;
@@ -41,8 +45,10 @@ namespace LoginRegister
         }
         protected void Answer(bool success, string message)
         {
+            loader.Hide();
             if (success)
             {
+                LocalStorage.SetValue("needSave", "true");
                 SceneManager.LoadScene("Account", LoadSceneMode.Single);
                 return;
             }

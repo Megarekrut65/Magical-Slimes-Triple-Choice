@@ -4,8 +4,6 @@ using System.Globalization;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using DataBase;
-using Google.MiniJSON;
-using UnityEngine;
 
 namespace LoginRegister
 {
@@ -19,7 +17,7 @@ namespace LoginRegister
             DocumentReference docRef = db.Collection("users").Document(id);
 
             Dictionary<string, object> data = saver.GetAllData();
-            data.Add("lastSave", DateTime.Now.ToString(CultureInfo.InvariantCulture));
+
             data.Add("username", username);
             data.Add("registrationDate", DateTime.Now.ToString(CultureInfo.InvariantCulture));
 
@@ -37,11 +35,12 @@ namespace LoginRegister
             {
                 if (!ans || data == null)
                 {
-                    answer(false, "");
+                    answer(false, "some-error-login");
                     return;
                 }
                 DatabaseLoader loader = new DatabaseLoader();
                 loader.LoadData(data);
+                answer(true, "");
             });
         }
     }

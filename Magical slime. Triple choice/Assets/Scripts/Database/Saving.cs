@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Firebase.Auth;
+using Global;
 using UnityEngine;
 
 namespace DataBase
@@ -28,13 +29,12 @@ namespace DataBase
             DatabaseSaver saver = new DatabaseSaver();
             while (true)
             {
-                Debug.Log("Saved...");
-                
                 yield return new WaitForSeconds(30f);
+                if(LocalStorage.GetValue("needSave", "false") == "false") continue;
                 
                 FirebaseUser user = FirebaseAuth.DefaultInstance?.CurrentUser;
                 if(user == null) continue;
-                saver.SaveUserData(user.UserId, (_,_)=>{});
+                saver.SaveUserData(user.UserId, (_,_)=>Debug.Log("Saved..."));
             }
         }
     }

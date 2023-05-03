@@ -137,6 +137,7 @@ namespace Global
 
         public static void RemoveAccountData()
         {
+            LocalStorage.Remove("needSave");
             RemoveSlimeData();
             LocalStorage.Remove("username");
             LocalStorage.Remove("registrationDate");
@@ -146,6 +147,8 @@ namespace Global
             LocalStorage.Remove("maxEnergyAccount");
             LocalStorage.Remove("diamonds");
             LocalStorage.Remove("lastSave");
+            LocalStorage.Remove("slimeType");
+            LocalStorage.Remove("level");
 
             Hat[] hats = HatsList.Hats;
             foreach (Hat hat in hats)
