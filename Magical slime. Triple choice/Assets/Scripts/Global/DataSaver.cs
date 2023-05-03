@@ -1,21 +1,52 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Numerics;
 using Account.SlimesList;
+using Global.Hats;
 using Global.Json;
 using IncrementalMode;
+using IncrementalMode.AutoFarming;
+using IncrementalMode.Shop;
 using UnityEngine;
 
 namespace Global
 {
     public static class DataSaver
     {
+        public static DateTime LoadLastSave()
+        {
+            return Convert.ToDateTime(LocalStorage.GetValue("lastSave", 
+            DateTime.MinValue.ToString(CultureInfo.InvariantCulture)));
+        }
+
+        public static void LastSave()
+        {
+            LocalStorage.SetValue("lastSave", DateTime.Now.ToString(CultureInfo.InvariantCulture));
+        }
+        public static void SaveRegistrationDate(string date){
+            LocalStorage.SetValue("registrationDate", date);
+        }
+        public static string LoadRegistrationDate(){
+            return LocalStorage.GetValue("registrationDate", "");
+        }
+        public static void SaveUsername(string username)
+        {
+            LocalStorage.SetValue("username", username);
+        }
+        public static string LoadUsername(){
+            return LocalStorage.GetValue("username", "");
+        }
         public static void SaveLevel(int level)
         {
             LocalStorage.SetValue("level", level);
+            SaveMaxLevelForAccount(level);
+            LastSave();
         }
         public static void SaveExperience(int experience)
         {
             LocalStorage.SetValue("experience", experience);
+            LastSave();
         }
 
         public static void SaveSpeed(float speed)
@@ -26,6 +57,8 @@ namespace Global
         {
             LocalStorage.SetValue("energy", amount.ToString());
             SaveMaxEnergy(amount);
+            SaveMaxEnergyForAccount(amount);
+            LastSave();
         }
         public static BigInteger LoadEnergy()
         {
@@ -56,6 +89,7 @@ namespace Global
         public static void SaveHp(int hp)
         {
             LocalStorage.SetValue("hp", hp);
+            LastSave();
         }
         public static int LoadHp()
         {
@@ -87,11 +121,44 @@ namespace Global
             LocalStorage.Remove("maxEnergy");
             LocalStorage.Remove("experience");
             LocalStorage.Remove("slimeName");
+
+            List<string> farmsKey = AutoFarmRegister.AutoFarmingKeys;
+            foreach (string key in farmsKey)
+            {
+                LocalStorage.Remove(key + "AutoFarm");
+            }
+            List<Tuple<string,int>> shopsKey = ShopRegister.ShopKeys;
+
+            foreach (Tuple<string,int> item in shopsKey)
+            {
+                LocalStorage.Remove(item.Item1 + "Shop");
+            }
         }
+
+        public static void RemoveAccountData()
+        {
+            RemoveSlimeData();
+            LocalStorage.Remove("username");
+            LocalStorage.Remove("registrationDate");
+            LocalStorage.Remove("currentHat");
+            LocalStorage.Remove("lastSave");
+            LocalStorage.Remove("maxLevelAccount");
+            LocalStorage.Remove("maxEnergyAccount");
+            LocalStorage.Remove("diamonds");
+            LocalStorage.Remove("lastSave");
+
+            Hat[] hats = HatsList.Hats;
+            foreach (Hat hat in hats)
+            {
+                LocalStorage.Remove(hat.key + "IsBought");
+            }
+        }
+      
 
         public static void SaveCurrentHat(string key)
         {
             LocalStorage.SetValue("currentHat", key);
+            LastSave();
         }
         public static string LoadCurrentHat()
         {
@@ -101,6 +168,7 @@ namespace Global
         public static void SaveHatIsBought(string key)
         {
             LocalStorage.SetValue(key + "IsBought", "true");
+            LastSave();
         }
         public static bool LoadHatIsBought(string key)
         {
@@ -110,6 +178,7 @@ namespace Global
         public static void SaveAutoFarm(string key, int level)
         {
             LocalStorage.SetValue(key + "AutoFarm", level);
+            LastSave();
         }
 
         public static int LoadAutoFarm(string key)
@@ -119,6 +188,7 @@ namespace Global
         public static void SaveShop(string key, int value)
         {
             LocalStorage.SetValue(key + "Shop", value);
+            LastSave();
         }
         public static int LoadShop(string key, int def)
         {
@@ -127,6 +197,7 @@ namespace Global
         public static void SaveDiamonds(int diamonds)
         {
             LocalStorage.SetValue("diamonds", diamonds);
+            LastSave();
         }
         /// <summary>
         /// Give 25 diamonds once for new user
@@ -153,6 +224,7 @@ namespace Global
         {
             ItemData<SlimeData[]> list = new ItemData<SlimeData[]>{key="list", value = data};
             LocalStorage.SetValue("slimeData", JsonUtility.ToJson(list));
+            LastSave();
         }
 
         public static string LoadSlimeType()
@@ -175,15 +247,15 @@ namespace Global
         {
             return LocalStorage.GetValue("maxLevelAccount", 0);
         } 
-        public static void SaveMaxEnergyForAccount(int level)
+        public static void SaveMaxEnergyForAccount(BigInteger level)
         {
-            int maxLevel = LoadMaxEnergyForAccount();
-            if(level > maxLevel) LocalStorage.SetValue("maxEnergyAccount", level);
+            BigInteger maxLevel = LoadMaxEnergyForAccount();
+            if(level > maxLevel) LocalStorage.SetValue("maxEnergyAccount", level.ToString());
         }
 
-        public static int LoadMaxEnergyForAccount()
+        public static BigInteger LoadMaxEnergyForAccount()
         {
-            return LocalStorage.GetValue("maxEnergyAccount", 0);
+            return BigInteger.Parse(LocalStorage.GetValue("maxEnergyAccount", "0"));
         } 
     }
 }

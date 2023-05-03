@@ -35,15 +35,6 @@ namespace IncrementalMode.AutoFarming
 
             StartCoroutine(FarmAmounting());
         }
-        private void Awake()
-        {
-            Entity.OnEntityDied += ClearFarms;
-        }
-
-        private void OnDestroy()
-        {
-            Entity.OnEntityDied -= ClearFarms;
-        }
         private IEnumerator FarmAmounting()
         {
             while (true)
@@ -55,14 +46,6 @@ namespace IncrementalMode.AutoFarming
                     energy.Add(item.GetAmount().Amount);
                 }
                 energyController.AddMoney(energy);
-            }
-        }
-
-        private void ClearFarms()
-        {
-            foreach (FarmItem item in _items)
-            {
-                item.ClearLevel();
             }
         }
     }

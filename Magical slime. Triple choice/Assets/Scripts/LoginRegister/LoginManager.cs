@@ -1,4 +1,6 @@
-﻿using Global.Localization;
+﻿using DataBase;
+using Firebase.Auth;
+using Global.Localization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,9 +20,25 @@ namespace LoginRegister
             string email = emailField.text;
             string password = passwordField.text;
             
-            LoginController.Login(email, password, Answer);
+            LoginController.Login(email, password, LoginAnswer);
         }
 
+        private void LoginAnswer(bool success, string message)
+        {
+            if (success)
+            {
+                FirebaseAuth auth = FirebaseAuth.DefaultInstance;
+                if (auth.CurrentUser == null)
+                {
+                    Answer(false, "some-error-login");
+                    return;
+                }
+                
+                UserController.AuthorizeUser(auth.CurrentUser.UserId, Answer);
+                return;
+            }
+            Answer(false, message);
+        }
         protected void Answer(bool success, string message)
         {
             if (success)
@@ -34,5 +52,6 @@ namespace LoginRegister
         {
             errorText.text = LocalizationManager.GetWordByKey(message);
         }
+        
     }
 }

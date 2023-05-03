@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using Firebase.Auth;
+using DataBase;
+using Global;
 using LoginRegister;
 using Main;
 using UnityEngine;
@@ -18,7 +22,6 @@ namespace Account.UserInfo
         [SerializeField] private Text registrationDateText;
         [SerializeField] private Text maxEnergyText;
         [SerializeField] private Text maxLevelText;
-        [SerializeField] private Text slimesCountText;
 
         private void Start()
         {
@@ -27,14 +30,17 @@ namespace Account.UserInfo
             infoBox.SetActive(active);
 
             if (!active) return;
-
-            //get data from database
+            usernameText.text = DataSaver.LoadUsername();
+            registrationDateText.text = DataSaver.LoadRegistrationDate();
+            maxEnergyText.text = DataSaver.LoadMaxEnergyForAccount().ToString();
+            maxLevelText.text = DataSaver.LoadMaxLevelForAccount().ToString();
         }
-
+        
         public void LogOut()
         {
             LoginController.SignOutUser();
             SceneManager.LoadScene("LoginRegister", LoadSceneMode.Single);
+            DataSaver.RemoveAccountData();
         }
     }
 }

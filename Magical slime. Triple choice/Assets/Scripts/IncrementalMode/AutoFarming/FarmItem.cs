@@ -68,12 +68,6 @@ namespace IncrementalMode.AutoFarming
             LoadData();
         }
 
-        public void ClearLevel()
-        {
-            _farm.Info.level = 0;
-            DataSaver.SaveAutoFarm(_farm.Info.key, 0);
-        }
-
         public Energy GetAmount()
         {
             return _farm == null ? new Energy(0) : _farm.Amount;

@@ -41,7 +41,7 @@ namespace LoginRegister
                     Answer(false, "some-error-register");
                     return;
                 }
-                UserDataBase.AddNewUser(auth.CurrentUser.UserId, auth.CurrentUser.DisplayName, Answer);
+                UserController.AddNewUser(auth.CurrentUser.UserId, auth.CurrentUser.DisplayName, Answer);
                 return;
             }
             Answer(false, message);
