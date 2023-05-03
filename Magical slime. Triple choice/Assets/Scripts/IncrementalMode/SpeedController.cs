@@ -59,7 +59,7 @@ namespace IncrementalMode
             while (true)
             {
                 yield return new WaitForSeconds(0.1f);
-                if (!(animator.speed > minSpeed)) continue;
+                if (animator.speed <= minSpeed) continue;
                 float speed = animator.speed;
                 speed -= speedValue / 20;
                 animator.speed = speed;

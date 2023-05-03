@@ -6213,7 +6213,7 @@ MonoBehaviour:
   sliderFill: {fileID: 1738923979}
   speedValue: 0.5
   minSpeed: 1
-  maxSpeed: 6
+  maxSpeed: 4
 --- !u!114 &978075755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8037,7 +8037,7 @@ GameObject:
   - component: {fileID: 1187776036}
   - component: {fileID: 1187776038}
   m_Layer: 5
-  m_Name: ShapePanel
+  m_Name: Controllers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

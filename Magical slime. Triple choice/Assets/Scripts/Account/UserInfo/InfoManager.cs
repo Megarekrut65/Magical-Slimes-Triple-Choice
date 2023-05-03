@@ -1,6 +1,7 @@
 ﻿
 using System.Collections;
 using Global;
+using IncrementalMode;
 using LoginRegister;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -37,7 +38,7 @@ namespace Account.UserInfo
             if (!active) return;
             usernameText.text = DataSaver.LoadUsername();
             registrationDateText.text = DataSaver.LoadRegistrationDate();
-            maxEnergyText.text = DataSaver.LoadMaxEnergyForAccount().ToString();
+            maxEnergyText.text = new Energy(DataSaver.LoadMaxEnergyForAccount()).ToString();
             maxLevelText.text = DataSaver.LoadMaxLevelForAccount().ToString();
         }
         
