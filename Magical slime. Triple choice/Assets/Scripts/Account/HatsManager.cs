@@ -12,20 +12,28 @@ namespace Account
         [SerializeField] private SpriteRenderer currentHat;
 
         [SerializeField] private DiamondsManager diamondsManager;
+
+        [SerializeField] private BuyManager buyManager;
         
         private Hat[] _hats;
         
         private void Start()
         {
             _hats = HatsList.Hats;
-
-            foreach (Hat hat in _hats)
+            HatItem[] items = new HatItem[_hats.Length]; 
+            for(int i = 0; i < _hats.Length; i++)
             {
+                Hat hat = _hats[i];
+                
                 hat.isBought = hat.key == "none" || DataSaver.LoadHatIsBought(hat.key);
                 GameObject obj = Instantiate(hatObject, hatsPlace, false);
                 HatItem item = obj.GetComponent<HatItem>();
-                item.SetHat(hat, currentHat, diamondsManager);
+                items[i] = item;
+                
+                item.SetHat(i, hat, currentHat, diamondsManager, buyManager);
             }
+            buyManager.SetHats(items);
+            buyManager.Click(-1);
         }
     }
 }

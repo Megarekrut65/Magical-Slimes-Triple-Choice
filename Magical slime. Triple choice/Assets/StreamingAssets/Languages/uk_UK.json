@@ -315,6 +315,10 @@
         {
             "key": "language",
             "value": "Мова"
+        },
+        {
+            "key": "buy",
+            "value": "Купити"
         }
     ]
 }

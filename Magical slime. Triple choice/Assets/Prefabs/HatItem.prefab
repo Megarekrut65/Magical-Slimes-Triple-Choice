@@ -440,7 +440,6 @@ GameObject:
   - component: {fileID: 4113009552518392575}
   - component: {fileID: 4113009552518392572}
   - component: {fileID: 4113009552518392573}
-  - component: {fileID: 4113009552518392574}
   m_Layer: 5
   m_Name: Diamonds
   m_TagString: Untagged
@@ -508,35 +507,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4113009552518392574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4113009552518392560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4bcf9e9e95708b4fb1533411152f5ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  needSound: 1
-  soundIndex: 0
-  downEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  upEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4113009552495803625}
-        m_TargetAssemblyTypeName: Global.Hats.HatItem, Assembly-CSharp
-        m_MethodName: Buy
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2

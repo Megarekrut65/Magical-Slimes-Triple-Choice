@@ -315,6 +315,10 @@
         {
             "key": "language",
             "value": "Language"
+        },
+        {
+            "key": "buy",
+            "value": "Buy"
         }
     ]
 }
