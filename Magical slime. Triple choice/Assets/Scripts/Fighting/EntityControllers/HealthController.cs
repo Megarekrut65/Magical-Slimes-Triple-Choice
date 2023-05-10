@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Fighting.EntityControllers
@@ -9,7 +11,8 @@ namespace Fighting.EntityControllers
      */
     public class HealthController : MonoBehaviour
     {
-        [SerializeField] private Animator animator;
+        [SerializeField] private Animator entityAnimator;
+        [SerializeField] private Animator healthAnimator;
         
         [SerializeField] private Slider slider;
         [SerializeField] private Text hpText;
@@ -17,7 +20,8 @@ namespace Fighting.EntityControllers
         private int _maxHp;
         private int _hp;
         
-        private static readonly int Hurt = Animator.StringToHash("Hurt");
+        private static readonly int HurtTrigger = Animator.StringToHash("Hurt");
+        private static readonly int HealTrigger = Animator.StringToHash("Heal");
 
         public bool IsDied => _hp <= 0;
 
@@ -27,23 +31,37 @@ namespace Fighting.EntityControllers
             
             slider.minValue = 0;
             slider.maxValue = _maxHp;
-            slider.value = _maxHp;
+            slider.value = 0;
             slider.wholeNumbers = true;
             _hp = _maxHp;
             hpText.text = _hp.ToString();
+
+            StartCoroutine(AddHealth());
         }
 
+        private IEnumerator AddHealth()
+        {
+            for (int i = 0; i < _maxHp; i++)
+            {
+                slider.value = i + 1;
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
         public void TakeDamage(int damage)
         {
+            healthAnimator.SetTrigger(HurtTrigger);
+            
             _hp -= damage;
             _hp = Math.Max(_hp, 0);
             slider.value = _hp;
             hpText.text = _hp.ToString();
-            animator.SetTrigger(Hurt);
+            entityAnimator.SetTrigger(HurtTrigger);
         }
 
         public void Heal(int amount)
         {
+            healthAnimator.SetTrigger(HealTrigger);
+            
             _hp += amount;
             _hp = Math.Min(_hp, _maxHp);
             slider.value = _hp;

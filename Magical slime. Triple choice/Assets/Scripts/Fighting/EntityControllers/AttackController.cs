@@ -30,7 +30,7 @@ namespace Fighting.EntityControllers
 
         private void ChooseAttack(int attackType, int blockType, ChoiceType choiceType)
         {
-            if (_type == attackType)//TOP
+            if (_type == attackType)
             {
                 if (enemyChoiceController.Block == choiceType)
                 {
