@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using Global;
 using Global.Localization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using DataBase;
-using Firebase.Extensions;
-using Firebase.Firestore;
 
 namespace Main
 {
     public class Loader : MonoBehaviour
     {
         [SerializeField] private FirebaseLoader firebaseLoader;
-        [SerializeField] private Slider slider;
 
         private void Start()
         {
@@ -27,11 +20,7 @@ namespace Main
             
             Screen.sleepTimeout = 0;//don't make screen dark during game
             
-            for (float i = slider.maxValue; i >= slider.minValue; i-=0.1f)
-            {
-                slider.value = i;
-                yield return new WaitForSeconds(0.1f);
-            }
+            yield return new WaitForSeconds(3.1f);
 
             while (!LocalizationManager.Instance.Ready || !firebaseLoader.Ready)
             {
