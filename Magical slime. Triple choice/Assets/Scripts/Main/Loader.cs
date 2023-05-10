@@ -27,8 +27,18 @@ namespace Main
                 yield return new WaitForSeconds(0.05f);
             }
 
+            Load();
+        }
+
+        private void Load()
+        {
+            if (firebaseLoader.CurrentVersion != Version.Current)
+            {
+                SceneManager.LoadScene("Update", LoadSceneMode.Single);
+                return;
+            }
             bool skip = bool.Parse(LocalStorage.GetValue("skip-story", "false"));
-            SceneManager.LoadScene(skip?"IncrementalMode":"Story", LoadSceneMode.Single);
+            SceneManager.LoadScene(skip?"IncrementalMode":"Story", LoadSceneMode.Single);  
         }
     }
 }

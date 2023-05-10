@@ -16,6 +16,7 @@ namespace Main
     public class FirebaseLoader : MonoBehaviour
     {
         public bool Ready { get; private set; } = false;
+        public string CurrentVersion { get; private set; } = "";
 
         private void Start()
         {
@@ -28,18 +29,40 @@ namespace Main
                 }
                 FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
                 db.Settings.PersistenceEnabled = false;
-
-                FirebaseUser user = FirebaseAuth.DefaultInstance.CurrentUser;
-                if (user != null)
-                {
-                    DataSync dataSync = new DataSync();
-                    dataSync.SyncAllData((_,_)=>Ready = true);
-                    return;
-                }
-                Ready = true;
+                
+                LoadVersion(db);
             });
         }
 
+        private void LoadVersion(FirebaseFirestore db)
+        {
+            db.Collection("system")
+                .Document("version")
+                .GetSnapshotAsync()
+                .ContinueWithOnMainThread(task =>
+            {
+                if (task.IsCompletedSuccessfully)
+                {
+                    CurrentVersion = task.Result.GetValue<string>("current");
+
+                    LoadUser();
+                    return;
+                }
+
+                CurrentVersion = Version.Current;
+                LoadUser();
+            });
+        }
+        private void LoadUser()
+        {
+            FirebaseUser user = FirebaseAuth.DefaultInstance.CurrentUser;
+            if (user != null)
+            {
+                DataSync dataSync = new DataSync();
+                dataSync.SyncAllData((_,_)=>Ready = true);
+            }
+            Ready = true;
+        }
         private IEnumerator Waiter()
         {
             yield return new WaitForSeconds(10f);

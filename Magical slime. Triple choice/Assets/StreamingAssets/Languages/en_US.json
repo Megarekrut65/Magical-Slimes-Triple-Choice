@@ -319,6 +319,10 @@
         {
             "key": "buy",
             "value": "Buy"
+        },
+        {
+            "key": "update",
+            "value": "You are downloading an outdated version, please update the game"
         }
     ]
 }
