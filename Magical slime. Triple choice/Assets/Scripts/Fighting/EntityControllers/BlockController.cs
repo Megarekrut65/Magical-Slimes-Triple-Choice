@@ -1,24 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Fighting.EntityControllers
 {
-    public static class BlockTypes
-    {
-        public static readonly int Top = Animator.StringToHash("BlockTop");
-        public static readonly int Center = Animator.StringToHash("BlockCenter");
-        public static readonly int Bottom = Animator.StringToHash("BlockBottom");
-    }
     /**
      * Controls animations and events related to blocking damage
      */
     public class BlockController : MonoBehaviour
     {
+        public static readonly Dictionary<ChoiceType, int> Converter = new Dictionary<ChoiceType, int>()
+        {
+            { ChoiceType.Top , Animator.StringToHash("BlockTop")},
+            { ChoiceType.Center , Animator.StringToHash("BlockCenter")},
+            { ChoiceType.Bottom , Animator.StringToHash("BlockBottom")}
+        };
+    
         [SerializeField] private Animator animator;
         
-        public void Block(int type)
+        public void Block(ChoiceType type)
         {
-            animator.SetTrigger(type);
+            animator.SetTrigger(Converter[type]);
         }
     }
 }

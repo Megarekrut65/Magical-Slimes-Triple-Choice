@@ -9,13 +9,7 @@ namespace Fighting.EntityControllers
 
         public void Attack()
         {
-            int type = choiceController.Attack switch
-            {
-                ChoiceType.Top => AttackTypes.Top,
-                ChoiceType.Center => AttackTypes.Center,
-                _ => AttackTypes.Bottom
-            };
-            attackController.Attack(type);
+            attackController.Attack(choiceController.Attack);
         }
     }
 }

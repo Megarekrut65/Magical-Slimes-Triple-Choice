@@ -6,7 +6,8 @@ namespace Fighting.EntityControllers
     {
         Top = 0,
         Center = 1,
-        Bottom = 2
+        Bottom = 2,
+        None = -1
     }
     public class ChoiceController : MonoBehaviour
     {
