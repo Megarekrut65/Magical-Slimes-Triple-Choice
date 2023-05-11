@@ -22,12 +22,13 @@ namespace Fighting.EntityControllers
         
         private static readonly int HurtTrigger = Animator.StringToHash("Hurt");
         private static readonly int HealTrigger = Animator.StringToHash("Heal");
+        private static readonly int DieAnimation = Animator.StringToHash("Die");
 
         public bool IsDied => _hp <= 0;
 
         private void Start()
         {
-            _maxHp = FightingSaver.LoadMaxHp();
+            _maxHp = 10;//FightingSaver.LoadMaxHp();
             
             slider.minValue = 0;
             slider.maxValue = _maxHp;
@@ -55,6 +56,7 @@ namespace Fighting.EntityControllers
             _hp = Math.Max(_hp, 0);
             slider.value = _hp;
             hpText.text = _hp.ToString();
+            
             entityAnimator.SetTrigger(HurtTrigger);
         }
 
@@ -66,6 +68,11 @@ namespace Fighting.EntityControllers
             _hp = Math.Min(_hp, _maxHp);
             slider.value = _hp;
             hpText.text = _hp.ToString();
+        }
+
+        public void Die()
+        {
+            entityAnimator.SetTrigger(DieAnimation);
         }
         
     }

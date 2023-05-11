@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Fighting.EntityControllers
@@ -8,13 +9,18 @@ namespace Fighting.EntityControllers
      */
     public class AttackController : MonoBehaviour
     {
+        public delegate void AttackAnimationFinish();
+
+        public event AttackAnimationFinish AttackFinish;
+        
+        
         public static readonly Dictionary<ChoiceType, int> Converter = new Dictionary<ChoiceType, int>()
         {
             { ChoiceType.Top , Animator.StringToHash("AttackTop")},
             { ChoiceType.Center , Animator.StringToHash("AttackCenter")},
             { ChoiceType.Bottom , Animator.StringToHash("AttackBottom")}
         };
-        
+
         [SerializeField] private BlockController enemyBlockController;
         [SerializeField] private HealthController enemyHealthController;
         [SerializeField] private ChoiceController enemyChoiceController;
@@ -23,11 +29,11 @@ namespace Fighting.EntityControllers
 
         private ChoiceType _type = ChoiceType.None;
         private int _damageAmount = 10;
-        
+
         public void Attack(ChoiceType type)
         {
             _type = type;
-            animator.SetTrigger((int)type);
+            animator.SetTrigger(Converter[_type]);
         }
         public void AttackEvent()
         {
@@ -37,6 +43,11 @@ namespace Fighting.EntityControllers
                 return;
             }
             enemyHealthController.TakeDamage(_damageAmount);
+        }
+
+        public void AttackEnd()
+        {
+            AttackFinish?.Invoke();
         }
     }
 }
