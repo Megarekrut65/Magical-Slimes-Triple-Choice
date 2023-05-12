@@ -2,6 +2,7 @@
 using System.Collections;
 using Fighting.EntityControllers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Fighting
 {
@@ -16,6 +17,8 @@ namespace Fighting
 
         [SerializeField] private HealthController mainHealthController;
         [SerializeField] private HealthController enemyHealthController;
+
+        [SerializeField] private CountController countController;
         
         private void Start()
         {
@@ -24,7 +27,10 @@ namespace Fighting
 
         private IEnumerator ShowChoice()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
+            countController.ShowCount();
+            
+            yield return new WaitForSeconds(1.5f);
             main.StartChoice();
         }
         private int _count = 0;
@@ -68,7 +74,7 @@ namespace Fighting
 
         private IEnumerator FinishFirstWait()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1.0f);
             
             enemyAttackController.Attack(enemy.Attack);
         }
@@ -89,6 +95,8 @@ namespace Fighting
                 if(mainHealthController.IsDied) mainHealthController.Die();
                 if(enemyHealthController.IsDied) enemyHealthController.Die();
                 Debug.Log("GameOver!");
+                yield return new WaitForSeconds(4f);
+                SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
             }
         }
     }

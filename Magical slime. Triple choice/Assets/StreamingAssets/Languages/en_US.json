@@ -323,6 +323,46 @@
         {
             "key": "update",
             "value": "You are downloading an outdated version, please update the game"
+        },
+        {
+            "key": "global-mode",
+            "value": "Global Mode"
+        },
+        {
+            "key": "global-describe",
+            "value": "Play with all players and get cups and diamonds"
+        },
+        {
+            "key": "private-mode",
+            "value": "Private Mode"
+        },
+        {
+            "key": "private-describe",
+            "value": "Play with your friends and have fun"
+        },
+        {
+            "key": "login-required",
+            "value": "Login required"
+        },
+        {
+            "key": "result",
+            "value": "Result"
+        },
+        {
+            "key": "winner",
+            "value": "Winner!"
+        },
+        {
+            "key": "loser",
+            "value": "Loser!"
+        },
+        {
+            "key": "choose-attack",
+            "value": "Choose attack side"
+        },
+        {
+            "key": "choose-block",
+            "value": "Choose block side"
         }
     ]
 }

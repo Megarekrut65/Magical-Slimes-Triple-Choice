@@ -13,18 +13,14 @@ namespace Fighting
         public ChoiceType Attack { get; protected set; }
         private int _clicks = 0;
 
-        [SerializeField] private GameObject attackBorder;
-        [SerializeField] private GameObject blockBorder;
-
-        private void Start()
-        {
-            attackBorder.SetActive(false);
-            blockBorder.SetActive(false);
-        }
+        [SerializeField] private Animator animator;
+        private static readonly int AttackTrigger = Animator.StringToHash("Attack");
+        private static readonly int BlockTrigger = Animator.StringToHash("Block");
+        private static readonly int EndTrigger = Animator.StringToHash("End");
 
         public void StartChoice()
         {
-            attackBorder.SetActive(true);
+            animator.SetTrigger(AttackTrigger);
         }
 
         private void Click()
@@ -38,15 +34,14 @@ namespace Fighting
         {
             Attack = (ChoiceType)(type%3);
             Click();
-            attackBorder.SetActive(false);
-            blockBorder.SetActive(true);
+            animator.SetTrigger(BlockTrigger);
         }
 
         public void SelectBlock(int type)
         {
             Block = (ChoiceType)(type%3);
             Click();
-            blockBorder.SetActive(false);
+            animator.SetTrigger(EndTrigger);
         }
     }
 }

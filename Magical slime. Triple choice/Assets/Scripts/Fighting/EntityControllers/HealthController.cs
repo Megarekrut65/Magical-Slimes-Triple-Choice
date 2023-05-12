@@ -28,7 +28,7 @@ namespace Fighting.EntityControllers
 
         private void Start()
         {
-            _maxHp = 10;//FightingSaver.LoadMaxHp();
+            _maxHp = 50;//FightingSaver.LoadMaxHp();
             
             slider.minValue = 0;
             slider.maxValue = _maxHp;

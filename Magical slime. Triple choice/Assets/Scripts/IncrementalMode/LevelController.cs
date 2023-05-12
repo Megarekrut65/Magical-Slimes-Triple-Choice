@@ -60,6 +60,8 @@ namespace IncrementalMode
                 DataSaver.SaveDiamonds(diamonds);
                 diamondsText.text = diamonds.ToString();
             }
+            levelSlider.value = 0;
+            DataSaver.SaveExperience((int)levelSlider.value);
             
             DataSaver.SaveLevel(Level);
             levelUpAnim.Play("LevelUp");
