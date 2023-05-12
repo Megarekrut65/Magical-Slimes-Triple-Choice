@@ -1,4 +1,5 @@
 ﻿using Global;
+using Global.Entity;
 using UnityEngine;
 
 namespace Account.SlimesList

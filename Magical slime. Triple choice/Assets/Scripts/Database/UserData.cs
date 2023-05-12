@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using Global;
-using UnityEngine;
 
-namespace DataBase
+namespace Database
 {
     public static class UserData
     {

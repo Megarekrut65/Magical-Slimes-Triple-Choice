@@ -1,5 +1,4 @@
-﻿using DataBase;
-using Firebase.Auth;
+﻿using Firebase.Auth;
 using Global;
 using Global.Localization;
 using UnityEngine;

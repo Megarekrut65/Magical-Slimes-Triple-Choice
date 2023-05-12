@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Numerics;
 using Account.SlimesList;
-using Global.Json;
+using Fighting;
 using Global;
+using Global.Json;
 using UnityEngine;
 
-namespace DataBase
+namespace Database
 {
     public class DatabaseLoader
     {
@@ -84,6 +85,7 @@ namespace DataBase
             string maxEnergy = data["maxEnergy"] as string;
             int maxLevel = Convert.ToInt32(data["maxLevel"]);
             int diamonds = Convert.ToInt32(data["diamonds"]);
+            int cups = Convert.ToInt32(data["cups"]);
             string currentHat = data["currentHat"] as string;
 
             DataSaver.SaveUsername(username);
@@ -91,6 +93,7 @@ namespace DataBase
             DataSaver.SaveMaxEnergyForAccount(BigInteger.Parse(maxEnergy??"0"));
             DataSaver.SaveMaxLevelForAccount(maxLevel);
             DataSaver.SaveDiamonds(diamonds);
+            FightingSaver.SaveCups(cups);
             DataSaver.SaveCurrentHat(currentHat);
         }
     }

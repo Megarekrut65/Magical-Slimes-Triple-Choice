@@ -2,6 +2,7 @@
 using System.Collections;
 using Account.SlimesList;
 using Global;
+using Global.Entity;
 using Global.Sound;
 using UnityEngine;
 using UnityEngine.Serialization;

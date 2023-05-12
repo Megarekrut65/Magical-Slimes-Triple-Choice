@@ -363,6 +363,22 @@
         {
             "key": "choose-block",
             "value": "Choose block side"
+        },
+        {
+            "key": "play",
+            "value": "Play"
+        },
+        {
+            "key": "code-description",
+            "value": "Send this code to friend to connect to you. \nCode was copied to your clipboard"
+        },
+        {
+            "key": "code-not-found",
+            "value": "Code not found! Try again"
+        },
+        {
+            "key": "fail-create-room",
+            "value": "Fail to create room! Try again"
         }
     ]
 }

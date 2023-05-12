@@ -1,7 +1,6 @@
-﻿using Global.Entity;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Global
+namespace Global.Entity
 {
     public class EntityList:MonoBehaviour
     {

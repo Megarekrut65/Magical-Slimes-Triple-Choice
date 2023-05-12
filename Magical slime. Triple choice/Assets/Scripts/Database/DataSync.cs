@@ -1,11 +1,11 @@
 ﻿using System;
-using Firebase.Auth;
 using System.Collections.Generic;
+using Firebase.Auth;
 using Global;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace DataBase
+namespace Database
 {
     public class DataSync
     {

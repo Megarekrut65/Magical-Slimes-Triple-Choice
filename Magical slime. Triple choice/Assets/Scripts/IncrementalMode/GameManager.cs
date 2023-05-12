@@ -22,6 +22,7 @@ namespace IncrementalMode
                 SceneManager.LoadScene("Main", LoadSceneMode.Single);
                 return;
             }
+            LocalStorage.SetValue("needSave", "true");
             string slimeName = DataSaver.LoadSlimeName();
             if (slimeName.Length == 0)
             {

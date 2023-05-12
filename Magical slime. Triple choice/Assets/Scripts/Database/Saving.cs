@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using Firebase.Auth;
 using Global;
 using UnityEngine;
 
-namespace DataBase
+namespace Database
 {
     public class Saving : MonoBehaviour
     {

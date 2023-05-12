@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using Fighting;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using Global;
@@ -8,7 +9,7 @@ using Global.Hats;
 using IncrementalMode.AutoFarming;
 using IncrementalMode.Shop;
 
-namespace DataBase
+namespace Database
 {
     public class DatabaseSaver
     {
@@ -41,6 +42,7 @@ namespace DataBase
                 { "maxEnergy", DataSaver.LoadMaxEnergyForAccount().ToString()},
                 { "slimes", DataSaver.LoadSlimeDataJson()  },
                 { "diamonds", DataSaver.LoadDiamonds()  },
+                { "cups", FightingSaver.LoadCups() },
                 { "hats", GetHats()},
                 { "currentHat", DataSaver.LoadCurrentHat()}
             };
