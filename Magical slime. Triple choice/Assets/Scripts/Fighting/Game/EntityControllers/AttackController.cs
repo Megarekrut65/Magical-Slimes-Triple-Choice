@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Fighting.EntityControllers
+namespace Fighting.Game.EntityControllers
 {
     /**
      * Controls attacking to enemy using enemy blocking and health controllers

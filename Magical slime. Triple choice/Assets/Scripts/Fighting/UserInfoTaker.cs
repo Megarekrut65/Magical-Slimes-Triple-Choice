@@ -1,4 +1,5 @@
-﻿using Global;
+﻿using Fighting.Game;
+using Global;
 
 namespace Fighting
 {

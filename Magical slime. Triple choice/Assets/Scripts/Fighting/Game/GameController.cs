@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
-using Fighting.EntityControllers;
+﻿using System.Collections;
+using Fighting.Game.EntityControllers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Fighting
+namespace Fighting.Game
 {
     public class GameController : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-﻿namespace Fighting
+﻿namespace Fighting.Game
 {
     public enum ChoiceType
     {

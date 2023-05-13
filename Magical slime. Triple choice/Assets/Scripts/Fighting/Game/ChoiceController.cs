@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Fighting
+namespace Fighting.Game
 {
     public class ChoiceController : MonoBehaviour
     {

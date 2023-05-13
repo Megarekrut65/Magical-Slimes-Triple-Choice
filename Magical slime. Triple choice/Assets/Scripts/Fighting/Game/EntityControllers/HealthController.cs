@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Fighting.EntityControllers
+namespace Fighting.Game.EntityControllers
 {
     /**
      * Controls hp of entity (taking damage or healing)

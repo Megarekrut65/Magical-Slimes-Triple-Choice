@@ -403,6 +403,14 @@
         {
             "key": "room-not-found",
             "value": "Room wasn't found!"
+        },
+        {
+            "key": "room-error",
+            "value": "There was an error. Please try again later!"
+        },
+        {
+            "key": "back",
+            "value": "Back"
         }
     ]
 }

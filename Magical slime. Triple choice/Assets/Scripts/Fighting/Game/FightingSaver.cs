@@ -2,7 +2,7 @@
 using Global.Json;
 using UnityEngine;
 
-namespace Fighting
+namespace Fighting.Game
 {
     public static class FightingSaver
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Fighting.EntityControllers
+namespace Fighting.Game.EntityControllers
 {
     public class EntityController : MonoBehaviour
     {

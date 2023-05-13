@@ -3,8 +3,10 @@ using System.Collections.Generic;
 
 namespace Fighting
 {
+    [Serializable]
     public class UserInfo
     {
+        
         public string name;
         public int cups;
         public int maxLevel;
@@ -52,5 +54,6 @@ namespace Fighting
                 hat = data["hat"] as string
             };
         }
+        
     }
 }

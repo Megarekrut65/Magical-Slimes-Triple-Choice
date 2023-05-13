@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Fighting.Game;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Fighting.Lobby

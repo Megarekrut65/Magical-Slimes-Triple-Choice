@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Fighting;
+using Fighting.Game;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using Global;

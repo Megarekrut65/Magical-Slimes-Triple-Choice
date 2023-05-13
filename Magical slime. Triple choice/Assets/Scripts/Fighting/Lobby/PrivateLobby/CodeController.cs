@@ -1,4 +1,5 @@
-﻿using Global;
+﻿using Fighting.Game;
+using Global;
 using Global.Localization;
 using UnityEngine;
 using UnityEngine.UI;

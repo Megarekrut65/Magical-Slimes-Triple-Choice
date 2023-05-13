@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Fighting.Game;
 using Firebase.Database;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Fighting.Lobby.PrivateLobby
 {
     public class PrivateLobbyController : MonoBehaviour
     {
+        [SerializeField] private CountController countController;
+        
         [SerializeField] private EnemyController enemyController;
 
         private DatabaseReference _client;
@@ -34,6 +39,7 @@ namespace Fighting.Lobby.PrivateLobby
             if (FightingSaver.LoadMainType() == "host") return;
             
             enemyController.Come(FightingSaver.LoadUserInfo("enemyInfo"));
+            StartCoroutine(StartCount());
         }
         private void EnemyCome(object sender, ValueChangedEventArgs args)
         {
@@ -44,6 +50,20 @@ namespace Fighting.Lobby.PrivateLobby
                 return;
             }
             enemyController.Come(enemyInfo);
+            StartCoroutine(StartCount());
+        }
+
+        private IEnumerator StartCount()
+        {
+            yield return new WaitForSeconds(1f);
+            countController.Invert(3);
+            for (int i = 0; i < 3; i++)
+            {
+                countController.ShowCount();
+                yield return new WaitForSeconds(1.5f);
+            }
+
+            SceneManager.LoadScene("Fighting", LoadSceneMode.Single);
         }
     }
 }
