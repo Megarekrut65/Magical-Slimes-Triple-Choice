@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Global.Entity
 {
@@ -8,7 +9,13 @@ namespace Global.Entity
     public class EntityData
     {
         public string key;
+
+        public Sprite idleIcon;
+        
         public RuntimeAnimatorController idleController;
         public RuntimeAnimatorController clickController;
+        
+        public RuntimeAnimatorController comeController;
+        public RuntimeAnimatorController fightController;
     }
 }

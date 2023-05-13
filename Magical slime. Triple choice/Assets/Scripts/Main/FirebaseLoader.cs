@@ -4,6 +4,7 @@ using System.Linq;
 using Database;
 using Firebase;
 using Firebase.Auth;
+using Firebase.Database;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using UnityEngine;
@@ -29,6 +30,9 @@ namespace Main
                 }
                 FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
                 db.Settings.PersistenceEnabled = false;
+                
+                FirebaseDatabase fb = FirebaseDatabase.DefaultInstance;
+                fb.SetPersistenceEnabled(false);
                 
                 LoadVersion(db);
             });

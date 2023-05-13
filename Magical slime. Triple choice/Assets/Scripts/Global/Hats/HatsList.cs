@@ -25,11 +25,17 @@ namespace Global.Hats
         {
             if (Instance == null) return null;
             string current = DataSaver.LoadCurrentHat();
-            if (current == "") return null;
+            
+            return GetHat(current);
+        }
+
+        public static Hat GetHat(string hatName)
+        {
+            if (Instance == null) return null;
             
             foreach (Hat hat in Hats)
             {
-                if (hat.key == current) return hat;
+                if (hat.key == hatName) return hat;
             }
 
             return null;

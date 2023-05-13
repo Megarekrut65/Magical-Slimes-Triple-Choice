@@ -10,23 +10,32 @@ namespace Fighting.Lobby
     {
         [SerializeField] private InputField maxHp;
         
+        [SerializeField] private InputField codeInput;
+        
         
         public void CreateRoom()
         {
             Click();
             
-            RoomController.AddPrivateRoom(UserInfoTaker.Take(), 
-                Convert.ToInt32(maxHp.text),
-                (success, message) =>
-                {
-                    if (success)
-                    {
-                        SceneManager.LoadScene("PrivateLobby", LoadSceneMode.Single);
-                        return;
-                    }
+            RoomController.AddPrivateRoom(UserInfoTaker.Take(), Convert.ToInt32(maxHp.text),Answer);
+        }
 
-                    Error(message);
-                });
+        public void ConnectToRoom()
+        {
+            Click();
+            
+            RoomController.ConnectToPrivateRoom(UserInfoTaker.Take(), codeInput.text, Answer);
+        }
+
+        private void Answer(bool success, string message)
+        {
+            if (success)
+            {
+                SceneManager.LoadScene("PrivateLobby", LoadSceneMode.Single);
+                return;
+            }
+
+            Error(message);
         }
     }
 }

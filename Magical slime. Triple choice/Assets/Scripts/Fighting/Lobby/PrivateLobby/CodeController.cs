@@ -18,7 +18,7 @@ namespace Fighting.Lobby.PrivateLobby
                 return;
             }
             codeText.text = code;
-            CopyToClipboard.Copy(code);
+            Clipboard.Copy(code);
         }
     }
 }

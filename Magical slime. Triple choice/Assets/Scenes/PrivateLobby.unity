@@ -210,7 +210,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 15f9caa1111e26d4792c5fa8cb6884ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cfdec80f4fd929d4ba4bb44f300886d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 130463864}
   - component: {fileID: 130463863}
   m_Layer: 0
-  m_Name: Blue Idle
+  m_Name: Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1027,7 +1027,7 @@ GameObject:
   m_Component:
   - component: {fileID: 757815589}
   m_Layer: 5
-  m_Name: FriendSlime
+  m_Name: EnemySlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d112530cf240acb477c8c2667d624f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 506796356}
+  codeText: {fileID: 506796356}
 --- !u!1 &856562628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,7 +1305,7 @@ GameObject:
   - component: {fileID: 1379632996}
   - component: {fileID: 1379632995}
   m_Layer: 0
-  m_Name: Blue Idle
+  m_Name: Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1337,7 +1337,7 @@ Animator:
   m_GameObject: {fileID: 1379632993}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: df81c712a9c698b48ad6ff9ce6ad5228, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1115eed78638d7149bb58e03d787dda1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1389,7 +1389,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7078261816480267791, guid: bfeede70efd14484683f5956b4f1194b, type: 3}
+  m_Sprite: {fileID: -9074539206338946419, guid: c80534141f80d28489b1ef92f8ff7d99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1563,7 +1563,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 15f9caa1111e26d4792c5fa8cb6884ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cfdec80f4fd929d4ba4bb44f300886d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

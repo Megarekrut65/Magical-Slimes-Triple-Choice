@@ -2436,14 +2436,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
   - key: blue-slime
+    idleIcon: {fileID: -7078261816480267791, guid: bfeede70efd14484683f5956b4f1194b, type: 3}
     idleController: {fileID: 9100000, guid: 68555cc7381816a4b8e2742db37c34de, type: 2}
     clickController: {fileID: 9100000, guid: 873ed18d803fe8948be763bf50d1a2e4, type: 2}
+    comeController: {fileID: 9100000, guid: df81c712a9c698b48ad6ff9ce6ad5228, type: 2}
+    fightController: {fileID: 0}
   - key: red-slime
+    idleIcon: {fileID: 4367289792872251007, guid: d4e8a5c5eececab46942986a743fd7d8, type: 3}
     idleController: {fileID: 9100000, guid: dfdb4d2f80da0fd449348e31347bc646, type: 2}
     clickController: {fileID: 9100000, guid: 313c43c3229e7684796a75995c4b5494, type: 2}
+    comeController: {fileID: 9100000, guid: ae8a2066df74afd41bdc5933e925d5ec, type: 2}
+    fightController: {fileID: 0}
   - key: green-slime
+    idleIcon: {fileID: -9074539206338946419, guid: c80534141f80d28489b1ef92f8ff7d99, type: 3}
     idleController: {fileID: 9100000, guid: 89aaebe355d346b40af738d224f2010f, type: 2}
     clickController: {fileID: 9100000, guid: 85bd361a0bf30544b850a9e0d2fd57f5, type: 2}
+    comeController: {fileID: 9100000, guid: 1115eed78638d7149bb58e03d787dda1, type: 2}
+    fightController: {fileID: 0}
 --- !u!4 &1757267549
 Transform:
   m_ObjectHideFlags: 0
@@ -2696,7 +2705,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firebaseLoader: {fileID: 2101188378}
-  slider: {fileID: 0}
 --- !u!114 &2101188378
 MonoBehaviour:
   m_ObjectHideFlags: 0

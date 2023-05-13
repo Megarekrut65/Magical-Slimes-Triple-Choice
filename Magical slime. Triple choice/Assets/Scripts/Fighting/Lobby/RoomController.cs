@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using Firebase.Database;
 using Firebase.Extensions;
+using UnityEngine;
 
 namespace Fighting.Lobby
 {
-    public class RoomController
+    public static class RoomController
     {
         public static void AddGlobalRoom(UserInfo info, int maxHp, Action<bool, string> answer)
         {
@@ -45,7 +46,7 @@ namespace Fighting.Lobby
         private static void AddRoom(string roomType, UserInfo info, int maxHp, Action<bool,string> answer)
         {
             FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
-            
+
             Guid g = Guid.NewGuid();
             FightingSaver.SaveCode(g.ToString());
             
@@ -71,25 +72,28 @@ namespace Fighting.Lobby
             });
         }
 
-        public void ConnectToGlobalRoom(UserInfo info, bool fast, Action<bool, string> answer)
+        public static void ConnectToGlobalRoom(UserInfo info, bool fast, Action<bool, string> answer)
         {
             
         }
 
-        public void ConnectToPrivateRoom(UserInfo info, string code, Action<bool, string> answer)
+        public static void ConnectToPrivateRoom(UserInfo info, string code, Action<bool, string> answer)
         {
             FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
 
             DatabaseReference room = db.RootReference.Child("private-rooms").Child(code);
             room.RunTransaction(data =>
             {
+                Debug.Log("Code: " + code);
+                Debug.Log("Value: " + data.Value);
+                Debug.Log("Count: " + data.ChildrenCount);
                 if (!data.HasChildren || data.HasChild("client"))
                 {
                     answer(false,  data.HasChild("client")?"room-full":"room-not-found");
                     return TransactionResult.Abort();
                 }
 
-                data.Child("client").Value = info;
+                data.Child("client").Value = info.ToDictionary();
                 
                 FightingSaver.SaveCode(code);
                 FightingSaver.SaveMaxHp(Convert.ToInt32(data.Child("maxHp").Value));

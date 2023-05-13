@@ -379,6 +379,30 @@
         {
             "key": "fail-create-room",
             "value": "Виникла помилка під час створення кімнати! Спробуйте ще раз"
+        },
+        {
+            "key": "fast-search",
+            "value": "Швидкий пошук"
+        },
+        {
+            "key": "create-room",
+            "value": "Створити нову кімнату"
+        },
+        {
+            "key": "connect-to-room",
+            "value": "Під'єднатися до існуючої кімнати"
+        },
+        {
+            "key": "enter-room-code",
+            "value": "Введіть код кімнати..."
+        },
+        {
+            "key": "room-full",
+            "value": "Кімната зайнята!"
+        },
+        {
+            "key": "room-not-found",
+            "value": "Кімнату не знайдено!"
         }
     ]
 }

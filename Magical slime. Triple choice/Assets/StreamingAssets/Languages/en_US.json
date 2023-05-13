@@ -379,6 +379,30 @@
         {
             "key": "fail-create-room",
             "value": "Fail to create room! Try again"
+        },
+        {
+            "key": "fast-search",
+            "value": "Fast search"
+        },
+        {
+            "key": "create-room",
+            "value": "Create new room"
+        },
+        {
+            "key": "connect-to-room",
+            "value": "Connect to friend room"
+        },
+        {
+            "key": "enter-room-code",
+            "value": "Enter room code..."
+        },
+        {
+            "key": "room-full",
+            "value": "Room is full!"
+        },
+        {
+            "key": "room-not-found",
+            "value": "Room wasn't found!"
         }
     ]
 }
