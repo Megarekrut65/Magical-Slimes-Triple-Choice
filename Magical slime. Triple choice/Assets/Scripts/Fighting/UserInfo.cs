@@ -44,6 +44,8 @@ namespace Fighting
 
         public static UserInfo FromDictionary(Dictionary<string, object> data)
         {
+            if (data == null) return null;
+            
             return new UserInfo
             {
                 name = data["name"] as string,

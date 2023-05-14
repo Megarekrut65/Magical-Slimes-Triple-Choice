@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Fighting.Game;
 using Firebase.Database;
 using Firebase.Extensions;
@@ -19,6 +20,7 @@ namespace Fighting.Lobby
 
             Dictionary<string, object> data = new Dictionary<string, object>
             {
+                {"creationDate", DateTime.Now.ToString(CultureInfo.InvariantCulture)},
                 {"maxHp", maxHp},
                 {"host", info.ToDictionary()}
             };

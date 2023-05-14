@@ -12,7 +12,7 @@ namespace Fighting.Lobby.PrivateLobby
         [SerializeField] private SpriteRenderer hatImage;
         
         [SerializeField] private Animator animator;
-        private static readonly int Come1 = Animator.StringToHash("Come");
+        private static readonly int ComeTrigger = Animator.StringToHash("Come");
 
         public void Come(UserInfo info)
         {
@@ -27,7 +27,7 @@ namespace Fighting.Lobby.PrivateLobby
                 animator.runtimeAnimatorController = data.comeController;
             }
             
-            animator.SetTrigger(Come1);
+            animator.SetTrigger(ComeTrigger);
         }
     }
 }

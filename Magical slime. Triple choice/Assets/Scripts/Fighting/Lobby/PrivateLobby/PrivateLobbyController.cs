@@ -56,11 +56,12 @@ namespace Fighting.Lobby.PrivateLobby
         private IEnumerator StartCount()
         {
             yield return new WaitForSeconds(1f);
-            countController.Invert(3);
-            for (int i = 0; i < 3; i++)
+            int count = 4;
+            countController.Invert(count+1);
+            for (int i = 0; i < count; i++)
             {
                 countController.ShowCount();
-                yield return new WaitForSeconds(1.5f);
+                yield return new WaitForSeconds(2f);
             }
 
             SceneManager.LoadScene("Fighting", LoadSceneMode.Single);

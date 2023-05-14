@@ -16,6 +16,8 @@ namespace Global.Entity
         public RuntimeAnimatorController clickController;
         
         public RuntimeAnimatorController comeController;
-        public RuntimeAnimatorController fightController;
+        
+        public RuntimeAnimatorController leftFightController;
+        public RuntimeAnimatorController rightFightController;
     }
 }

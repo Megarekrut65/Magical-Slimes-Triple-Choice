@@ -29,13 +29,14 @@ namespace Fighting.Lobby
             {
                 Debug.Log(task.Result.ChildrenCount);
             });
-            
+            int count = 0;
             room.RunTransaction(data =>
                 {
                     if (!data.HasChildren)
                     {
                         data.Value = new Dictionary<string, object>();
-                        _answer(false,  "room-not-found");
+                        _answer(false, count > 0? "room-not-found":"");
+                        count++;
                         return TransactionResult.Success(data);
                     }
                     if (data.HasChild("client"))

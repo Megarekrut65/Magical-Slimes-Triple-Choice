@@ -39,7 +39,7 @@ namespace Fighting.Game
         public static void SaveUserInfo(string key, UserInfo info)
         {
             ItemData<UserInfo> data = new ItemData<UserInfo>{key="info", value = info};
-            LocalStorage.SetValue("enemyInfo", JsonUtility.ToJson(data));
+            LocalStorage.SetValue(key, JsonUtility.ToJson(data));
         }
 
         public static UserInfo LoadUserInfo(string key)
