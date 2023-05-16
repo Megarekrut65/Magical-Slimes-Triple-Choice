@@ -56,7 +56,7 @@ namespace Fighting.Lobby.PrivateLobby
         private IEnumerator StartCount()
         {
             yield return new WaitForSeconds(1f);
-            int count = 4;
+            int count = 3;
             countController.Invert(count+1);
             for (int i = 0; i < count; i++)
             {

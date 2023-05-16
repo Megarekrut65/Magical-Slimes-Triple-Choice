@@ -21,7 +21,7 @@ namespace Main
             Screen.sleepTimeout = 0;//don't make screen dark during game
             
             yield return new WaitForSeconds(3.1f);
-
+            
             while (!LocalizationManager.Instance.Ready || !firebaseLoader.Ready)
             {
                 yield return new WaitForSeconds(0.05f);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Firebase.Auth;
 using Global;
 using JetBrains.Annotations;
@@ -18,6 +19,7 @@ namespace Database
             
             FirebaseUser user = FirebaseAuth.DefaultInstance.CurrentUser;
             _userId = user.UserId;
+            _answer(false, "");
             if (user.UserId == null) return;
           
             UserData.GetUserDataFromDatabase(user.UserId, LoadData);
@@ -25,12 +27,15 @@ namespace Database
         
         private void LoadData(bool result, Dictionary<string, object> data)
         {
+            Debug.Log("Result: " + result);
+            
             if (!result)
             {
                 _answer(false, "");
                 return;
             }
-            DateTime dateTime = Convert.ToDateTime(data["lastSave"] as string);
+            
+            DateTime dateTime = DateTime.Parse(data["lastSave"] as string, CultureInfo.InvariantCulture);
             DateTime savedDateTime = DataSaver.LoadLastSave();
 
             if (savedDateTime > dateTime)

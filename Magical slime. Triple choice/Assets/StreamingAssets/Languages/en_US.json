@@ -229,7 +229,7 @@
             "value": "Login"
         },
         {
-            "key": "some-errors-login",
+            "key": "some-error-login",
             "value": "An unknown error occurred during login, please try again later"
         },
         {
@@ -411,6 +411,42 @@
         {
             "key": "back",
             "value": "Back"
+        },
+        {
+            "key": "some-error-database",
+            "value": "Check your internet connection or try again later"
+        },
+        {
+            "key": "cups",
+            "value": "Cups"
+        },
+        {
+            "key": "current-slime",
+            "value": "Current slime"
+        },
+        {
+            "key": "account",
+            "value": "Account data"
+        },
+        {
+            "key": "device",
+            "value": "Device data"
+        },
+        {
+            "key": "from-account",
+            "value": "Use account data"
+        },
+        {
+            "key": "from-device",
+            "value": "Use device data"
+        },
+        {
+            "key": "merge-slimes",
+            "value": "Merge"
+        },
+        {
+            "key": "data-conflict",
+            "value": "The data on the device and in the account do not match. Choose one of the following solutions: keep only the account data; keep only the device data; keep the number of diamonds and caps from the account data, choose the largest values for the maximum values, merge slime lists, keep all other data from the device"
         }
     ]
 }

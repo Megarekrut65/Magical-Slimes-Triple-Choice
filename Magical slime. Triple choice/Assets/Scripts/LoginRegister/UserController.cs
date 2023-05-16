@@ -25,17 +25,25 @@ namespace LoginRegister
             {
                 DatabaseLoader loader = new DatabaseLoader();
                 loader.LoadData(data);
-                answer(task.IsCompletedSuccessfully, task.Exception?.ToString() ?? "");
+                answer(task.IsCompletedSuccessfully, task.Exception?.Message ?? "");
             });
         }
 
-        public static void AuthorizeUser(string id, Action<bool, string> answer)
+        public static void AuthorizeUser(string id, Action<bool, string> answer, 
+            Action<Dictionary<string, object>> conflict)
         {
             UserData.GetUserDataFromDatabase(id, (ans, data) =>
             {
                 if (!ans || data == null)
                 {
-                    answer(false, "some-error-login");
+                    answer(false, "some-error-database");
+                    return;
+                }
+
+                if (Difference.IsDifference(data))
+                {
+                    answer(false, "");
+                    conflict(data);
                     return;
                 }
                 DatabaseLoader loader = new DatabaseLoader();

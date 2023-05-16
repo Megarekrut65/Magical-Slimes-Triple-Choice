@@ -1,4 +1,6 @@
-﻿using Firebase.Auth;
+﻿using System.Collections.Generic;
+using Database;
+using Firebase.Auth;
 using Global;
 using Global.Localization;
 using UnityEngine;
@@ -15,7 +17,9 @@ namespace LoginRegister
         
         [SerializeField] protected InputField emailField;
         [SerializeField] protected InputField passwordField;
-        
+
+        [SerializeField] private ConflictManager conflictManager;
+
         public void Login()
         {
             loader.Show();
@@ -37,17 +41,23 @@ namespace LoginRegister
                     return;
                 }
                 
-                UserController.AuthorizeUser(auth.CurrentUser.UserId, Answer);
+                UserController.AuthorizeUser(auth.CurrentUser.UserId, Answer, Conflict);
                 return;
             }
             Answer(false, message);
+        }
+
+        private void Conflict(Dictionary<string, object> data)
+        {
+            Debug.Log("Conflict!");
+            DatabaseSaver saver = new DatabaseSaver();
+            conflictManager.Conflict(data, saver.GetAllData());
         }
         protected void Answer(bool success, string message)
         {
             loader.Hide();
             if (success)
             {
-                LocalStorage.SetValue("needSave", "true");
                 SceneManager.LoadScene("Account", LoadSceneMode.Single);
                 return;
             }
@@ -56,6 +66,7 @@ namespace LoginRegister
         protected void Error(string message)
         {
             errorText.text = LocalizationManager.GetWordByKey(message);
+            loader.Hide();
         }
         
     }

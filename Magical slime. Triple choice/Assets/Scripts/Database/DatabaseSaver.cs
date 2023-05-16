@@ -9,6 +9,7 @@ using Global;
 using Global.Hats;
 using IncrementalMode.AutoFarming;
 using IncrementalMode.Shop;
+using UnityEngine;
 
 namespace Database
 {
@@ -21,10 +22,12 @@ namespace Database
 
             DocumentReference docRef = db.Collection("users").Document(id);
 
-            docRef.SetAsync(GetAllData(), SetOptions.MergeAll).ContinueWithOnMainThread(task =>
-            {
-                answer(task.IsCompletedSuccessfully, task.Exception?.ToString() ?? "");
-            });
+            docRef.SetAsync(GetAllData(), SetOptions.MergeAll)
+                .ContinueWithOnMainThread(task =>
+                {
+                    Debug.Log(task.Exception?.Message);
+                    answer(task.IsCompletedSuccessfully, task.Exception?.Message ?? "");
+                });
         }
 
         public Dictionary<string, object> GetAllData()

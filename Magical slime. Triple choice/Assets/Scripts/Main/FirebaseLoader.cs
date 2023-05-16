@@ -25,7 +25,7 @@ namespace Main
             
             FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
                 if (task.Exception != null) {
-                    Debug.LogError(task.Exception);
+                    Debug.LogError(task.Exception.Message);
                     return;
                 }
                 FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
@@ -45,6 +45,8 @@ namespace Main
                 .GetSnapshotAsync()
                 .ContinueWithOnMainThread(task =>
             {
+                Debug.Log(task.Exception?.Message);
+                
                 if (task.IsCompletedSuccessfully)
                 {
                     CurrentVersion = task.Result.GetValue<string>("current");
@@ -71,6 +73,7 @@ namespace Main
         {
             yield return new WaitForSeconds(10f);
             Ready = true;
+            CurrentVersion = Version.Current;
         }
     }
 }

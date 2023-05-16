@@ -2,6 +2,7 @@
 using Firebase;
 using Firebase.Auth;
 using Firebase.Extensions;
+using UnityEngine;
 
 namespace LoginRegister
 {
@@ -10,19 +11,16 @@ namespace LoginRegister
         public static void Login(string email, string password, Action<bool, string> answer)
         {
             FirebaseAuth auth = FirebaseAuth.DefaultInstance;
-            auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task => {
-                if (task.IsCanceled) {
-                    answer(false, "some-errors-login");
-                    return;
-                }
+            auth.SignInWithEmailAndPasswordAsync(email, password)
+                .ContinueWithOnMainThread(task => {
+                    Debug.Log(task.Exception?.Message);
+                    if (task.IsFaulted) {
+                        answer(false, "doesnt-exist");
+                        return;
+                    }
 
-                if (task.IsFaulted) {
-                    answer(false, "doesnt-exist");
-                    return;
-                }
-
-                answer(true, "");
-            });
+                    answer(true, "");
+                });
         }
         public static bool UserSignIn() {
             return FirebaseAuth.DefaultInstance.CurrentUser != null;
@@ -32,14 +30,16 @@ namespace LoginRegister
         }
         public static void ResetPassword(string email, Action<bool, string> answer) {
             var auth = FirebaseAuth.DefaultInstance;
-            auth.SendPasswordResetEmailAsync(email).ContinueWithOnMainThread(task => {
-                if (task.Exception != null) {
-                    answer(false, "invalid-email");
-                    return;
-                }
+            auth.SendPasswordResetEmailAsync(email)
+                .ContinueWithOnMainThread(task => {
+                    Debug.Log(task.Exception?.Message);
+                    if (task.Exception != null) {
+                        answer(false, "invalid-email");
+                        return;
+                    }
 
-                answer(true, "");
-            });
+                    answer(true, "");
+                });
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 using System.Collections;
+using Database;
 using Global;
 using IncrementalMode;
 using LoginRegister;
@@ -25,6 +26,7 @@ namespace Account.UserInfo
 
         private void Start()
         {
+            LocalStorage.GetValue("needSave", "true");
             if (DataSaver.LoadSlimeName() == "")
             {
                 SceneManager.LoadScene("SlimeCreating", LoadSceneMode.Single);
@@ -37,6 +39,11 @@ namespace Account.UserInfo
 
             if (!active) return;
             usernameText.text = DataSaver.LoadUsername();
+            if (DataSaver.LoadUsername() == "")
+            {
+                Out();
+                return;
+            }
             registrationDateText.text = DataSaver.LoadRegistrationDate();
             maxEnergyText.text = new Energy(DataSaver.LoadMaxEnergyForAccount()).ToString();
             maxLevelText.text = DataSaver.LoadMaxLevelForAccount().ToString();
@@ -44,12 +51,19 @@ namespace Account.UserInfo
         
         public void LogOut()
         {
+            LocalStorage.SetValue("needSave", "false");
             loader.Show();
             LoginController.SignOutUser();
             DataSaver.RemoveAccountData();
             StartCoroutine(Open());
         }
 
+        public void Out()
+        {
+            LocalStorage.SetValue("needSave", "false");
+            LoginController.SignOutUser();
+            StartCoroutine(Open());
+        }
         private IEnumerator Open()
         {
             yield return new WaitForSeconds(0.1f);

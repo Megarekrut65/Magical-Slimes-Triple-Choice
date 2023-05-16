@@ -25,10 +25,7 @@ namespace Fighting.Lobby
         {
             FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
             DatabaseReference room = db.RootReference.Child("private-rooms").Child(_code);
-            room.GetValueAsync().ContinueWithOnMainThread(task =>
-            {
-                Debug.Log(task.Result.ChildrenCount);
-            });
+            
             int count = 0;
             room.RunTransaction(data =>
                 {
@@ -55,6 +52,7 @@ namespace Fighting.Lobby
 
         private void SaveRoomData(Task<DataSnapshot> task)
         {
+            Debug.Log(task.Exception?.Message);
             if (task.IsFaulted)
             {
                 _answer(false, "room-error");
