@@ -2,53 +2,78 @@
 using System.Collections.Generic;
 using Fighting.Game;
 using Firebase.Database;
+using Firebase.Extensions;
+using Global.Localization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Fighting.Lobby.PrivateLobby
 {
     public class PrivateLobbyController : MonoBehaviour
     {
+        [SerializeField] private Text error;
+        
         [SerializeField] private CountController countController;
         
         [SerializeField] private EnemyController enemyController;
-
-        private DatabaseReference _client;
+        
+        private DatabaseReference _room;
+        private bool _clientAlive, _firstCheck;
 
         private void Awake()
         {
-            if (FightingSaver.LoadMainType() != "host") return;
-            
             string code = FightingSaver.LoadCode();
             if(code == null) return;
             
             FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
-            _client = db.RootReference.Child("private-rooms").Child(code);
-            _client.ValueChanged += EnemyCome;
+            _room = db.RootReference.Child("private-rooms").Child(code);
+
+            _room.ValueChanged += EnemyCome;
         }
 
         private void OnDestroy()
         {
-            if (FightingSaver.LoadMainType() != "host") return;
-            
-            _client.ValueChanged -= EnemyCome;
+            _room.ValueChanged -= EnemyCome;
         }
 
         private void Start()
         {
             if (FightingSaver.LoadMainType() == "host") return;
-            
+            _clientAlive = true;
+
             enemyController.Come(FightingSaver.LoadUserInfo("enemyInfo"));
             StartCoroutine(StartCount());
         }
         private void EnemyCome(object sender, ValueChangedEventArgs args)
         {
+            if (!args.Snapshot.Exists)
+            {
+                error.text = LocalizationManager.GetWordByKey("host-leave");
+                StartCoroutine(BackToLobby());
+                return;
+            }
+            if(FightingSaver.LoadMainType() != "host") return;
+            
+            if (!args.Snapshot.Child("client").Exists)
+            {
+                if (!_firstCheck)
+                {
+                    _firstCheck = true;
+                    return;
+                }
+                error.text = LocalizationManager.GetWordByKey("client-leave");
+                _clientAlive = false;
+                return;
+            }
             UserInfo enemyInfo = UserInfo.FromDictionary(args.Snapshot.Child("client").Value as Dictionary<string, object>);
             if (enemyInfo == null)
             {
-                //TODO: Error handler
+                error.text = LocalizationManager.GetWordByKey("room-error");
                 return;
             }
+
+            _clientAlive = true;
             enemyController.Come(enemyInfo);
             StartCoroutine(StartCount());
         }
@@ -64,7 +89,30 @@ namespace Fighting.Lobby.PrivateLobby
                 yield return new WaitForSeconds(2f);
             }
 
-            SceneManager.LoadScene("Fighting", LoadSceneMode.Single);
+            if(_clientAlive) SceneManager.LoadScene("Fighting", LoadSceneMode.Single);
+        }
+
+        public void Leave()
+        {
+            if (FightingSaver.LoadMainType() == "client")
+            {
+                _clientAlive = false;
+                _room.Child("client").RemoveValueAsync().ContinueWithOnMainThread(_ =>
+                {
+                    StartCoroutine(BackToLobby());
+                });
+                return;
+            }
+            _room.RemoveValueAsync().ContinueWithOnMainThread(_ =>
+            {
+                StartCoroutine(BackToLobby());
+            });
+        }
+
+        private IEnumerator BackToLobby()
+        {
+            yield return new WaitForSeconds(3f);
+            SceneManager.LoadScene("Lobby", LoadSceneMode.Single);
         }
     }
 }

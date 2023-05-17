@@ -65,7 +65,7 @@ namespace Fighting.Lobby
             Dictionary<string, object> dictionary = task.Result.Child("host").Value as Dictionary<string, object>;
 
             FightingSaver.SaveUserInfo("enemyInfo", UserInfo.FromDictionary(dictionary));
-                
+
             FightingSaver.SaveMainType("client");
 
             _answer(true, "");
