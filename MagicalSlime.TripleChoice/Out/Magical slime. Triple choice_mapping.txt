@@ -39964,7 +39964,6 @@ com.unity3d.player.BuildConfig -> com.unity3d.player.BuildConfig:
     int VERSION_CODE -> VERSION_CODE
     java.lang.String VERSION_NAME -> VERSION_NAME
     void <init>() -> <init>
-    void <clinit>() -> <clinit>
 com.unity3d.player.Camera2Wrapper -> com.unity3d.player.Camera2Wrapper:
     android.content.Context a -> a
     com.unity3d.player.c b -> b
@@ -40721,85 +40720,79 @@ com.unity3d.player.UnityPlayer$1 -> com.unity3d.player.UnityPlayer$1:
     void <init>(com.unity3d.player.UnityPlayer) -> <init>
     void onClick(android.content.DialogInterface,int) -> onClick
 com.unity3d.player.UnityPlayer$10 -> com.unity3d.player.UnityPlayer$10:
-    int a -> a
-    int b -> b
-    com.unity3d.player.UnityPlayer c -> c
-    void <init>(com.unity3d.player.UnityPlayer,int,int) -> <init>
-    void run() -> run
-com.unity3d.player.UnityPlayer$11 -> com.unity3d.player.UnityPlayer$11:
     boolean a -> a
     java.lang.String b -> b
     int c -> c
     com.unity3d.player.UnityPlayer d -> d
     void <init>(com.unity3d.player.UnityPlayer,boolean,java.lang.String,int) -> <init>
     void a() -> a
-com.unity3d.player.UnityPlayer$12 -> com.unity3d.player.UnityPlayer$12:
+com.unity3d.player.UnityPlayer$11 -> com.unity3d.player.UnityPlayer$11:
     int a -> a
     int b -> b
     com.unity3d.player.UnityPlayer c -> c
     void <init>(com.unity3d.player.UnityPlayer,int,int) -> <init>
     void a() -> a
-com.unity3d.player.UnityPlayer$13 -> com.unity3d.player.UnityPlayer$13:
+com.unity3d.player.UnityPlayer$12 -> com.unity3d.player.UnityPlayer$12:
     android.graphics.Rect a -> a
     com.unity3d.player.UnityPlayer b -> b
     void <init>(com.unity3d.player.UnityPlayer,android.graphics.Rect) -> <init>
     void a() -> a
-com.unity3d.player.UnityPlayer$14 -> com.unity3d.player.UnityPlayer$14:
+com.unity3d.player.UnityPlayer$13 -> com.unity3d.player.UnityPlayer$13:
     boolean a -> a
     com.unity3d.player.UnityPlayer b -> b
     void <init>(com.unity3d.player.UnityPlayer,boolean) -> <init>
     void a() -> a
-com.unity3d.player.UnityPlayer$15 -> com.unity3d.player.UnityPlayer$15:
+com.unity3d.player.UnityPlayer$14 -> com.unity3d.player.UnityPlayer$14:
     com.unity3d.player.UnityPlayer a -> a
     void <init>(com.unity3d.player.UnityPlayer) -> <init>
     void a() -> a
+com.unity3d.player.UnityPlayer$15 -> com.unity3d.player.UnityPlayer$15:
+    com.unity3d.player.UnityPlayer a -> a
+    void <init>(com.unity3d.player.UnityPlayer) -> <init>
+    void run() -> run
 com.unity3d.player.UnityPlayer$16 -> com.unity3d.player.UnityPlayer$16:
     com.unity3d.player.UnityPlayer a -> a
     void <init>(com.unity3d.player.UnityPlayer) -> <init>
     void run() -> run
 com.unity3d.player.UnityPlayer$17 -> com.unity3d.player.UnityPlayer$17:
     com.unity3d.player.UnityPlayer a -> a
-    void <init>(com.unity3d.player.UnityPlayer) -> <init>
-    void run() -> run
-com.unity3d.player.UnityPlayer$18 -> com.unity3d.player.UnityPlayer$18:
-    com.unity3d.player.UnityPlayer a -> a
     void <init>(com.unity3d.player.UnityPlayer,android.content.Context,int) -> <init>
     void onOrientationChanged(int) -> onOrientationChanged
-com.unity3d.player.UnityPlayer$19 -> com.unity3d.player.UnityPlayer$19:
+com.unity3d.player.UnityPlayer$18 -> com.unity3d.player.UnityPlayer$18:
     com.unity3d.player.UnityPlayer a -> a
     void <init>(com.unity3d.player.UnityPlayer) -> <init>
     void run() -> run
-com.unity3d.player.UnityPlayer$2 -> com.unity3d.player.UnityPlayer$2:
-    com.unity3d.player.UnityPlayer a -> a
-    void <init>(com.unity3d.player.UnityPlayer) -> <init>
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.unity3d.player.UnityPlayer$20 -> com.unity3d.player.UnityPlayer$20:
+com.unity3d.player.UnityPlayer$19 -> com.unity3d.player.UnityPlayer$19:
     com.unity3d.player.UnityPlayer a -> a
     void <init>(com.unity3d.player.UnityPlayer) -> <init>
     void surfaceCreated(android.view.SurfaceHolder) -> surfaceCreated
     void surfaceChanged(android.view.SurfaceHolder,int,int,int) -> surfaceChanged
     void surfaceDestroyed(android.view.SurfaceHolder) -> surfaceDestroyed
-com.unity3d.player.UnityPlayer$21 -> com.unity3d.player.UnityPlayer$21:
+com.unity3d.player.UnityPlayer$2 -> com.unity3d.player.UnityPlayer$2:
     com.unity3d.player.UnityPlayer a -> a
     void <init>(com.unity3d.player.UnityPlayer) -> <init>
     void run() -> run
-com.unity3d.player.UnityPlayer$22 -> com.unity3d.player.UnityPlayer$22:
+com.unity3d.player.UnityPlayer$20 -> com.unity3d.player.UnityPlayer$20:
+    com.unity3d.player.UnityPlayer a -> a
+    void <init>(com.unity3d.player.UnityPlayer) -> <init>
+    void run() -> run
+com.unity3d.player.UnityPlayer$21 -> com.unity3d.player.UnityPlayer$21:
     int a -> a
     android.view.Surface b -> b
     java.util.concurrent.Semaphore c -> c
     com.unity3d.player.UnityPlayer d -> d
     void <init>(com.unity3d.player.UnityPlayer,int,android.view.Surface,java.util.concurrent.Semaphore) -> <init>
     void run() -> run
-com.unity3d.player.UnityPlayer$23 -> com.unity3d.player.UnityPlayer$23:
+com.unity3d.player.UnityPlayer$22 -> com.unity3d.player.UnityPlayer$22:
     com.unity3d.player.UnityPlayer a -> a
     void <init>(com.unity3d.player.UnityPlayer) -> <init>
     void run() -> run
-com.unity3d.player.UnityPlayer$24 -> com.unity3d.player.UnityPlayer$24:
+com.unity3d.player.UnityPlayer$23 -> com.unity3d.player.UnityPlayer$23:
     java.util.concurrent.Semaphore a -> a
     com.unity3d.player.UnityPlayer b -> b
     void <init>(com.unity3d.player.UnityPlayer,java.util.concurrent.Semaphore) -> <init>
     void run() -> run
-com.unity3d.player.UnityPlayer$25 -> com.unity3d.player.UnityPlayer$25:
+com.unity3d.player.UnityPlayer$24 -> com.unity3d.player.UnityPlayer$24:
     java.util.concurrent.Semaphore a -> a
     com.unity3d.player.UnityPlayer b -> b
     void <init>(com.unity3d.player.UnityPlayer,java.util.concurrent.Semaphore) -> <init>
@@ -40808,15 +40801,11 @@ com.unity3d.player.UnityPlayer$3 -> com.unity3d.player.UnityPlayer$3:
     com.unity3d.player.UnityPlayer a -> a
     void <init>(com.unity3d.player.UnityPlayer) -> <init>
     void run() -> run
+com.unity3d.player.UnityPlayer$3$1 -> com.unity3d.player.UnityPlayer$3$1:
+    com.unity3d.player.UnityPlayer$3 a -> a
+    void <init>(com.unity3d.player.UnityPlayer$3) -> <init>
+    void run() -> run
 com.unity3d.player.UnityPlayer$4 -> com.unity3d.player.UnityPlayer$4:
-    com.unity3d.player.UnityPlayer a -> a
-    void <init>(com.unity3d.player.UnityPlayer) -> <init>
-    void run() -> run
-com.unity3d.player.UnityPlayer$4$1 -> com.unity3d.player.UnityPlayer$4$1:
-    com.unity3d.player.UnityPlayer$4 a -> a
-    void <init>(com.unity3d.player.UnityPlayer$4) -> <init>
-    void run() -> run
-com.unity3d.player.UnityPlayer$5 -> com.unity3d.player.UnityPlayer$5:
     com.unity3d.player.UnityPlayer a -> a
     java.lang.String b -> b
     int c -> c
@@ -40831,28 +40820,34 @@ com.unity3d.player.UnityPlayer$5 -> com.unity3d.player.UnityPlayer$5:
     com.unity3d.player.UnityPlayer l -> l
     void <init>(com.unity3d.player.UnityPlayer,com.unity3d.player.UnityPlayer,java.lang.String,int,boolean,boolean,boolean,boolean,java.lang.String,int,boolean,boolean) -> <init>
     void run() -> run
-com.unity3d.player.UnityPlayer$5$1 -> com.unity3d.player.UnityPlayer$5$1:
-    com.unity3d.player.UnityPlayer$5 a -> a
-    void <init>(com.unity3d.player.UnityPlayer$5) -> <init>
+com.unity3d.player.UnityPlayer$4$1 -> com.unity3d.player.UnityPlayer$4$1:
+    com.unity3d.player.UnityPlayer$4 a -> a
+    void <init>(com.unity3d.player.UnityPlayer$4) -> <init>
     void onCancel(android.content.DialogInterface) -> onCancel
-com.unity3d.player.UnityPlayer$6 -> com.unity3d.player.UnityPlayer$6:
+com.unity3d.player.UnityPlayer$5 -> com.unity3d.player.UnityPlayer$5:
     com.unity3d.player.UnityPlayer a -> a
     void <init>(com.unity3d.player.UnityPlayer) -> <init>
     void run() -> run
-com.unity3d.player.UnityPlayer$7 -> com.unity3d.player.UnityPlayer$7:
+com.unity3d.player.UnityPlayer$6 -> com.unity3d.player.UnityPlayer$6:
     java.lang.String a -> a
     com.unity3d.player.UnityPlayer b -> b
     void <init>(com.unity3d.player.UnityPlayer,java.lang.String) -> <init>
     void run() -> run
-com.unity3d.player.UnityPlayer$8 -> com.unity3d.player.UnityPlayer$8:
+com.unity3d.player.UnityPlayer$7 -> com.unity3d.player.UnityPlayer$7:
     int a -> a
     com.unity3d.player.UnityPlayer b -> b
     void <init>(com.unity3d.player.UnityPlayer,int) -> <init>
     void run() -> run
-com.unity3d.player.UnityPlayer$9 -> com.unity3d.player.UnityPlayer$9:
+com.unity3d.player.UnityPlayer$8 -> com.unity3d.player.UnityPlayer$8:
     boolean a -> a
     com.unity3d.player.UnityPlayer b -> b
     void <init>(com.unity3d.player.UnityPlayer,boolean) -> <init>
+    void run() -> run
+com.unity3d.player.UnityPlayer$9 -> com.unity3d.player.UnityPlayer$9:
+    int a -> a
+    int b -> b
+    com.unity3d.player.UnityPlayer c -> c
+    void <init>(com.unity3d.player.UnityPlayer,int,int) -> <init>
     void run() -> run
 com.unity3d.player.UnityPlayer$a -> com.unity3d.player.UnityPlayer$a:
     com.unity3d.player.UnityPlayer a -> a
