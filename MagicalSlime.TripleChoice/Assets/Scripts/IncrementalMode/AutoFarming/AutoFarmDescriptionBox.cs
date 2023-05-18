@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace IncrementalMode.AutoFarming
 {
+    /// <summary>
+    /// Sets description of auto farm to GUI.
+    /// </summary>
     public class AutoFarmDescriptionBox : DescriptionBox
     {
         [Header("Auto Farm Description Box")]
@@ -18,7 +21,7 @@ namespace IncrementalMode.AutoFarming
                 key = farm.Info.key,
                 price = farm.Price.Amount.ToString(),
                 otherTitleKey = "energy-per",
-                otherText = farm.Amount.ToString(),
+                otherText = farm.Profit.ToString(),
                 icon = farm.Info.icon
 
             });

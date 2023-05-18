@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace LoginRegister
 {
+    /// <summary>
+    /// Merges local user data and database user data.
+    /// </summary>
     public static class Merger
     {
         public static Dictionary<string, object> Merge(Dictionary<string, object> accountData, 

@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace IncrementalMode.Shop
 {
+    /// <summary>
+    /// Activates shield for slime.
+    /// </summary>
     public class ShieldShopItem : TimeShopItem
     {
         [Header("Shield Item")] 

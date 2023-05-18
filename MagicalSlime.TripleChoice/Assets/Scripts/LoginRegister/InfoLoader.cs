@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace LoginRegister
 {
+    /// <summary>
+    /// Sets info to GUI.
+    /// </summary>
     public class InfoLoader : MonoBehaviour
     {
         [SerializeField] private Text slimeNameText;

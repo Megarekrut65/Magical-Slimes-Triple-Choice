@@ -10,6 +10,9 @@ using UnityEngine.UI;
 
 namespace IncrementalMode
 {
+    /// <summary>
+    /// Controls entity health. Damage taking, healing and dying.
+    /// </summary>
     public class Entity : MonoBehaviour
     {
         public delegate void EntityDied();
@@ -30,8 +33,8 @@ namespace IncrementalMode
         public int AdditionalLife { get; set; }
         private bool _immunity = false;
         private bool _died = false;
-        private static readonly int Heal1 = Animator.StringToHash("Heal");
-        private static readonly int Damage = Animator.StringToHash("Damage");
+        private static readonly int HealTrigger = Animator.StringToHash("Heal");
+        private static readonly int DamageTrigger = Animator.StringToHash("Damage");
 
         private void Start()
         {
@@ -51,7 +54,7 @@ namespace IncrementalMode
         public void Heal(int value)
         {
             if(IsDied) return;
-            hpAnimator.SetTrigger(Heal1);
+            hpAnimator.SetTrigger(HealTrigger);
             
             _currentHp += value;
             _currentHp = Math.Min(_currentHp, MaxHp);
@@ -62,7 +65,7 @@ namespace IncrementalMode
         public void TakeDamage(int value)
         {
             if(IsDied || _immunity) return;
-            hpAnimator.SetTrigger(Damage);
+            hpAnimator.SetTrigger(DamageTrigger);
             _currentHp -= value;
             DataSaver.SaveHp(_currentHp);
             
@@ -73,27 +76,7 @@ namespace IncrementalMode
                 StartCoroutine(Die());
             }
         }
-        private void SaveCurrentSlimeResult()
-        {
-            SlimeData slimeData = new SlimeData
-            {
-                energy = new Energy(DataSaver.LoadMaxEnergy()).ToString(),
-                level = DataSaver.LoadLevel(),
-                name = DataSaver.LoadSlimeName(),
-                key = DataSaver.LoadSlimeType()
-            };
-
-            SlimeData[] data = DataSaver.LoadSlimeData() ?? new SlimeData[] { };
-            SlimeData find = Array.Find(data, item =>item.Equals(slimeData));
-
-            if(find != null) return;
-            
-            SlimeData[] newData = new SlimeData[data.Length + 1];
-            data.CopyTo(newData, 0);
-            newData[data.Length] = slimeData;
-            
-            DataSaver.SaveSlimeData(newData);
-        }
+        
         private void ReLife()
         {
             _immunity = true;
@@ -110,7 +93,7 @@ namespace IncrementalMode
             {
                 _hpSlider.value++;
                 _currentHp++;
-                hpAnimator.SetTrigger(Heal1);
+                hpAnimator.SetTrigger(HealTrigger);
                 yield return new WaitForSeconds(0.05f);
             }
 
@@ -126,7 +109,7 @@ namespace IncrementalMode
             }
             else
             {
-                SaveCurrentSlimeResult();
+                SlimeDataSaver.SaveCurrentSlimeResult();
                 slimeAnimator.speed = 1;
                 sliderGameObject.SetActive(false);
                 slimeAnimator.SetBool(IsDie, true);

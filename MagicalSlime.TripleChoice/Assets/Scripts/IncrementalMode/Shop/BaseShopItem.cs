@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace IncrementalMode.Shop
 {
+    /// <summary>
+    /// Controls shop item.
+    /// </summary>
     public abstract class BaseShopItem : MonoBehaviour
     {
         [Header("Base Item")]

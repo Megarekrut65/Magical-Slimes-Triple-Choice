@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace IncrementalMode.Shop
 {
+    /// <summary>
+    /// Shop items that can be active during some time.
+    /// </summary>
     public abstract class TimeShopItem : ActiveShopItem
     {
         [Header("Time item")]

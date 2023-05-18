@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace IncrementalMode.Shop
 {
+    /// <summary>
+    /// Adds new life to slime. And controls life after die.
+    /// </summary>
     public class ReLifeShopItem : ActiveShopItem
     {
         [SerializeField] private Entity entity;

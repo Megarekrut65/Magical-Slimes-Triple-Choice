@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace IncrementalMode.Shop
 {
+    /// <summary>
+    /// Shop item that can be active or non-active
+    /// </summary>
     public abstract class ActiveShopItem : BaseShopItem
     {
         [Header("Active Item")]

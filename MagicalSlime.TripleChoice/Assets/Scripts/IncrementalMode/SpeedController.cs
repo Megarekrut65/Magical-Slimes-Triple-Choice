@@ -3,10 +3,11 @@ using Global;
 using UnityEngine;
 using UnityEngine.UI;
 
-// ReSharper disable SuggestVarOrType_BuiltInTypes
-
 namespace IncrementalMode
 {
+    /// <summary>
+    /// Controls speed changing and displaying it in GUI.
+    /// </summary>
     public class SpeedController : MonoBehaviour
     {
         [SerializeField] private Animator animator;

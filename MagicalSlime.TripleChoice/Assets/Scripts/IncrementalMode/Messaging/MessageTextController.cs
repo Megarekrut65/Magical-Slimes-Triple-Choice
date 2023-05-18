@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace IncrementalMode.Messaging
 {
+    /// <summary>
+    /// Shows static text in scene center.
+    /// </summary>
     public class MessageTextController : MonoBehaviour
     {
         [SerializeField] private Animator animator;

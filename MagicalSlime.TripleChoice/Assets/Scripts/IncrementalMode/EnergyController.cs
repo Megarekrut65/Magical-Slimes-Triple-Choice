@@ -6,6 +6,10 @@ using Random = UnityEngine.Random;
 
 namespace IncrementalMode
 {
+    /// <summary>
+    /// Controls current energy. Adding new energy by clicking or auto farm profit.
+    /// Removing energy after new things buying.
+    /// </summary>
     public class EnergyController : MonoBehaviour
     {
         public delegate void EnergyChanged(Energy energy);

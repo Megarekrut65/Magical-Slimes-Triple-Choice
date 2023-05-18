@@ -2,6 +2,9 @@
 
 namespace IncrementalMode.Shop
 {
+    /// <summary>
+    /// Heals slime.
+    /// </summary>
     public class HealShopItem : BaseShopItem
     {
         [Header("Heal item")]

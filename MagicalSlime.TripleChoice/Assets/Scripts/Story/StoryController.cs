@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 namespace Story
 {
+    /// <summary>
+    /// Controls changing of background and sound of story.
+    /// </summary>
     public class StoryController : MonoBehaviour
     {
         [SerializeField] private SubtitlesController subtitlesController;

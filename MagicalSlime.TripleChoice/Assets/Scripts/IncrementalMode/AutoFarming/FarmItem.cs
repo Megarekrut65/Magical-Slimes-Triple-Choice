@@ -70,7 +70,7 @@ namespace IncrementalMode.AutoFarming
 
         public Energy GetAmount()
         {
-            return _farm == null ? new Energy(0) : _farm.Amount;
+            return _farm == null ? new Energy(0) : _farm.Profit;
         }
     }
 }

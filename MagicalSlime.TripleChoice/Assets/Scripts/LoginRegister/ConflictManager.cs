@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 namespace LoginRegister
 {
+    /// <summary>
+    /// Manages conflicts of user data after logining.
+    /// </summary>
     public class ConflictManager : MonoBehaviour
     {
         [SerializeField] private Text errorText;

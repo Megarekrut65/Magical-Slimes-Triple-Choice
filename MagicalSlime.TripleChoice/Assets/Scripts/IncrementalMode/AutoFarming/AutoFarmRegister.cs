@@ -2,6 +2,9 @@
 
 namespace IncrementalMode.AutoFarming
 {
+    /// <summary>
+    /// Adds key of auto farm to static list. Uses for controls auto farm keys. Like for adding data to database. 
+    /// </summary>
     public static class AutoFarmRegister
     {
         public static readonly List<string> AutoFarmingKeys = new List<string>();

@@ -2,22 +2,27 @@
 
 namespace IncrementalMode.AutoFarming
 {
-    public static class AmountFunction
+    /// <summary>
+    /// Functions of changing of auto farms profit depending on auto farm level. 
+    /// </summary>
+    public static class ProfitFunction
     {
-        public static Energy Eval(int index, ulong startAmount, int level)
+        public static Energy Eval(int index, ulong startProfit, int level)
         {
             double value =  index switch
             {
-                0=> startAmount * (ulong)level + 1,
-                1=> startAmount * (ulong)(level+1) + 1,
-                2=> startAmount * (ulong)(level*2 + 1) + 100,
-                _=>startAmount * (ulong)level
+                0=> startProfit * (ulong)level + 1,
+                1=> startProfit * (ulong)(level+1) + 1,
+                2=> startProfit * (ulong)(level*2 + 1) + 100,
+                _=>startProfit * (ulong)level
             };
 
             return new Energy(Math.Max(0, (ulong)(value * Math.Sign(level))));
         }
     }
-
+    /// <summary>
+    /// Functions of changing of auto farms price depending on auto farm level. 
+    /// </summary>
     public static class PriceFunction
     {
         public static Energy Eval(int index, ulong startPrice, int level)

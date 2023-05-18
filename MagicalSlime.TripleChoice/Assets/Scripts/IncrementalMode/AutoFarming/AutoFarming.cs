@@ -9,6 +9,9 @@ using UnityEngine.Serialization;
 
 namespace IncrementalMode.AutoFarming
 {
+    /// <summary>
+    /// Loads auto farms to GUI. Also counts all profit from auto farms and adds it to player energy.
+    /// </summary>
     public class AutoFarming : MonoBehaviour
     {
         [SerializeField] private AutoFarmDescriptionBox descriptionBox;

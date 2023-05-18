@@ -5,13 +5,15 @@ using Random = UnityEngine.Random;
 
 namespace IncrementalMode.Messaging
 {
+    /// <summary>
+    /// Shows text with moving in scene center during some time.
+    /// </summary>
     public class MessageController:MonoBehaviour
     {
         [SerializeField] private GameObject parent;
         private Transform _parentTransform;
         [SerializeField] private GameObject messageObj;
         private readonly List<GameObject> _messagesPool = new List<GameObject>();
-        private static readonly int Show = Animator.StringToHash("Show");
 
         private void Start()
         {

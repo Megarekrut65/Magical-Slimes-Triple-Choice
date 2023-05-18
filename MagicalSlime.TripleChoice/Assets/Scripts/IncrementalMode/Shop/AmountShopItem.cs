@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace IncrementalMode.Shop
 {
+    /// <summary>
+    /// Changes clicking amount of energy.
+    /// </summary>
     public class AmountShopItem : TimeShopItem
     {
         [Header("Amount item")]

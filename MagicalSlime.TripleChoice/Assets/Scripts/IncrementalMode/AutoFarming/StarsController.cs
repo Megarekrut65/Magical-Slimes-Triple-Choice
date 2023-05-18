@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace IncrementalMode.AutoFarming
 {
+    /// <summary>
+    /// Controls stars showing and color depending on level.
+    /// </summary>
     public class StarsController : MonoBehaviour
     {
         [SerializeField] private Color[] colors;

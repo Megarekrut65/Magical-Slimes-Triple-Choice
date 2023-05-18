@@ -5,6 +5,9 @@ using Random = UnityEngine.Random;
 
 namespace IncrementalMode
 {
+    /// <summary>
+    /// Controls thunder animations and their random calling.
+    /// </summary>
     public class ThunderController : MonoBehaviour
     {
         [SerializeField] private float maxSpeed;

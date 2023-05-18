@@ -7,6 +7,9 @@ using UnityEngine.Serialization;
 
 namespace IncrementalMode
 {
+    /// <summary>
+    /// Controls all clicking events.
+    /// </summary>
     public class Clicking : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         [SerializeField] private Animator animator;
