@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Global
 {
+    /// <summary>
+    /// Store data to local memory of device.
+    /// </summary>
     public static class LocalStorage {
 
         public static void Remove(string key)

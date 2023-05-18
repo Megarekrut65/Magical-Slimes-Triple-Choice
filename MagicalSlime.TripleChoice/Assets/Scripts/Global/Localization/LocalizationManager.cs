@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Global.Localization
 {
+    /// <summary>
+    /// Loads data from file and gets translated words by keys.
+    /// </summary>
     public class LocalizationManager : MonoBehaviour {
         private const string LanguageKey = "Language";
         private const string LanguageFolder = "Languages/";

@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace Global
 {
+    /// <summary>
+    /// Loads local storage boolean value to GUI toggle.
+    /// </summary>
     public class LocalStorageToggle : MonoBehaviour
     {
         [SerializeField] private Toggle toggle;

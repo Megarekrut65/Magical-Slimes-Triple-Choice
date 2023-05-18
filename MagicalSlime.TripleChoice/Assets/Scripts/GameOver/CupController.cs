@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace GameOver
 {
+    /// <summary>
+    /// Sets random cup to GUI
+    /// </summary>
     public class CupController : MonoBehaviour
     {
         [SerializeField] private Sprite[] cups;

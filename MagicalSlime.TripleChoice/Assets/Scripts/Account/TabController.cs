@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace Account
 {
+    /// <summary>
+    /// Controls GUI tabs and buttons
+    /// </summary>
     public class TabController : MonoBehaviour
     {
         [SerializeField] private TabItem[] tabs;

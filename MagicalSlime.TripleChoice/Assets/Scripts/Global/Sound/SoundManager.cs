@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Global.Sound
 {
+    /// <summary>
+    /// Manages sound volume changing and saving.
+    /// </summary>
     public class SoundManager : MonoBehaviour {
         [SerializeField]
         private SoundItem[] sources;

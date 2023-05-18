@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace Global.InfoBox
 {
+    /// <summary>
+    /// Shows info in GUI. Controls closing GUI box.
+    /// </summary>
     public class InfoBox : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         public static InfoBox Instance { get; private set; }

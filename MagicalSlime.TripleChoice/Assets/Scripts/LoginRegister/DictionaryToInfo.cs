@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Numerics;
 using Account.SlimesList;
-using Fighting.Game;
 using Global;
 using Global.Json;
 using UnityEngine;

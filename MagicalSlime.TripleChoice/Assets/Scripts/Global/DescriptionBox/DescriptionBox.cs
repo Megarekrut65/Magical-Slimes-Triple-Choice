@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace Global.DescriptionBox
 {
+    /// <summary>
+    /// Controls GUI box with game item description
+    /// </summary>
     public class DescriptionBox : MonoBehaviour
     {
         [Header("Description Box")]

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Database;
+using DataManagement;
 using Firebase.Auth;
 using Global;
 using Global.Localization;
@@ -50,8 +50,7 @@ namespace LoginRegister
         private void Conflict(Dictionary<string, object> data)
         {
             Debug.Log("Conflict!");
-            DatabaseSaver saver = new DatabaseSaver();
-            conflictManager.Conflict(data, saver.GetAllData());
+            conflictManager.Conflict(data, UserData.GetUserDataFromLocalStorage());
         }
         protected void Answer(bool success, string message)
         {

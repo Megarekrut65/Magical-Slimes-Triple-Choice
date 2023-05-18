@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using Fighting;
-using Fighting.Game;
+using FightingMode;
 using Global;
 
 namespace LoginRegister

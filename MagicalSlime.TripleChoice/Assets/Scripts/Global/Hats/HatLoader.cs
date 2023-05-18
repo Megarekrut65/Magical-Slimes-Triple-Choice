@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Global.Hats
 {
+    /// <summary>
+    /// Loads current hat.
+    /// </summary>
     public class HatLoader : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer currentHat;

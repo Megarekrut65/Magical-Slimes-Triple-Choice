@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace Global.Sound
 {
+    /// <summary>
+    /// Changes music or sound volume from GUI slider.
+    /// </summary>
     public class VolumeChanger : MonoBehaviour {
         [SerializeField]
         private string volumeType;

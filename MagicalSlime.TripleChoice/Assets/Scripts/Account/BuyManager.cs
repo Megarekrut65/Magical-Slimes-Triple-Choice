@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace Account
 {
+    /// <summary>
+    /// Manages hat buying.
+    /// </summary>
     public class BuyManager : MonoBehaviour
     {
         [SerializeField] private GameObject panel;

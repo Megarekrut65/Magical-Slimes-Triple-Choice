@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Global.Sound
 {
+    /// <summary>
+    /// Manage saving same music on different scenes. Also manages volume changing and saving. 
+    /// </summary>
     public class MusicManager : MonoBehaviour {
         [SerializeField]
         private AudioSource audioSource;

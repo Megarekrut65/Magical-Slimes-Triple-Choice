@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Database;
+using DataManagement;
 using Firebase.Extensions;
 using Firebase.Firestore;
 
 namespace LoginRegister
 {
+    /// <summary>
+    /// Controls adding data of new users and getting data of old one.
+    /// </summary>
     public static class UserController
     {
         public static void AddNewUser(string id, string username, Action<bool, string> answer)
         {
-            DatabaseSaver saver = new DatabaseSaver();
             FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
 
             DocumentReference docRef = db.Collection("users").Document(id);
 
-            Dictionary<string, object> data = saver.GetAllData();
+            Dictionary<string, object> data = UserData.GetUserDataFromLocalStorage();
 
             data.Add("username", username);
             data.Add("registrationDate", DateTime.Now.ToString(CultureInfo.InvariantCulture));
@@ -29,6 +31,12 @@ namespace LoginRegister
             });
         }
 
+        /// <summary>
+        /// Gets user data from database and checks conflicts.
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <param name="answer">answer after getting database result</param>
+        /// <param name="conflict">action to remove conflicts of local and database data</param>
         public static void AuthorizeUser(string id, Action<bool, string> answer, 
             Action<Dictionary<string, object>> conflict)
         {

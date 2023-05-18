@@ -12,6 +12,10 @@ using UnityEngine;
 
 namespace Global
 {
+    /// <summary>
+    /// Contains all values that need to be stored locally with their default values.
+    /// Also controls removing some values after some events.
+    /// </summary>
     public static class DataSaver
     {
         public static DateTime LoadLastSave()

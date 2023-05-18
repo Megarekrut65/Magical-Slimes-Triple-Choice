@@ -2,6 +2,9 @@
 
 namespace Global.Hats
 {
+    /// <summary>
+    /// Gets hat data by key
+    /// </summary>
     public class HatsList : MonoBehaviour
     {
         [SerializeField]

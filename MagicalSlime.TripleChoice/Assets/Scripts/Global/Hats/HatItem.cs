@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace Global.Hats
 {
+    /// <summary>
+    /// Loads to GUI hat data and controls selecting and buying of hats.
+    /// </summary>
     public class HatItem:MonoBehaviour
     {
         [SerializeField] private Image icon;

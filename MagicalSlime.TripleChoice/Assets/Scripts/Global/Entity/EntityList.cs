@@ -2,6 +2,9 @@
 
 namespace Global.Entity
 {
+    /// <summary>
+    /// Gets entity data by key.
+    /// </summary>
     public class EntityList:MonoBehaviour
     {
         [SerializeField] private EntityData[] data;

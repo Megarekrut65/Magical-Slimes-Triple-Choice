@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace Global.Entity
 {
+    /// <summary>
+    /// Data for some entity type
+    /// </summary>
     [Serializable]
     public class EntityData
     {

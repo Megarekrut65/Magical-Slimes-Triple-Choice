@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace Global.Localization
 {
+    /// <summary>
+    /// Controls language selecting.
+    /// </summary>
     public class LocalizationButton : MonoBehaviour,
         IPointerDownHandler, IPointerUpHandler {
         [SerializeField]

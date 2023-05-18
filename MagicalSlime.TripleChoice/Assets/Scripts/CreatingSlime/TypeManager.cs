@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace CreatingSlime
 {
+    /// <summary>
+    /// Manages selecting slimes different types
+    /// </summary>
     public class TypeManager : MonoBehaviour
     {
         [SerializeField] private TypeItem[] pins;

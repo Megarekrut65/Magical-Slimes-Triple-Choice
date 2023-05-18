@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace Global.Localization
 {
+    /// <summary>
+    /// Loads translated word by key from Localisation manager.
+    /// </summary>
     public class LocalizationText : MonoBehaviour {
         [SerializeField]
         private string key;
