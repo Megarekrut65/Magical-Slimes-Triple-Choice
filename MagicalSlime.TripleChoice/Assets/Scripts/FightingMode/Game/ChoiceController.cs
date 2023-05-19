@@ -14,22 +14,18 @@ namespace FightingMode.Game
         public ChoiceType Block { get; protected set; }
         public ChoiceType Attack { get; protected set; }
         private int _clicks = 0;
-        
+
+        protected DatabaseReference gameChoice;
         protected DatabaseReference attackRef;
         protected DatabaseReference blockRef;
         
         private void Awake()
         {
             FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
-            DatabaseReference gameChoice = db.RootReference
+            gameChoice = db.RootReference
                 .Child(FightingSaver.LoadRoomType())
                 .Child(FightingSaver.LoadCode())
-                .Child("game")
-                .Child(FightingSaver.LoadMainType());
-
-            attackRef = gameChoice.Child("attack");
-            blockRef = gameChoice.Child("block");
-            
+                .Child("game");
             ChildAwake();
         }
 
@@ -38,15 +34,9 @@ namespace FightingMode.Game
             ChildDestroy();
         }
 
-        protected virtual void ChildAwake()
-        {
-            
-        }
+        protected abstract void ChildAwake();
 
-        protected virtual void ChildDestroy()
-        {
-            
-        }
+        protected abstract void ChildDestroy();
 
         public abstract void StartChoice();
 

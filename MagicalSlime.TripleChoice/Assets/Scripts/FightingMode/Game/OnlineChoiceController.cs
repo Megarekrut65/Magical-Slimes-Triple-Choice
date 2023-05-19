@@ -13,7 +13,7 @@ namespace FightingMode.Game
 
         private bool _attackChoice = false;
         private bool _blockChoice = false;
-        private const float WaitTime = 15f;
+        private const float WaitTime = 60f;
 
         private ChoiceType _defaultChoice;
         
@@ -24,6 +24,9 @@ namespace FightingMode.Game
 
         protected override void ChildAwake()
         {
+            attackRef = gameChoice.Child(FightingSaver.LoadEnemyType()).Child("attack");
+            blockRef = gameChoice.Child(FightingSaver.LoadEnemyType()).Child("block");
+            
             attackRef.ValueChanged += AttackChoiceHandler;
             blockRef.ValueChanged += BlockChoiceHandler;
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using FightingMode.Game.EntityControllers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,8 @@ namespace FightingMode.Game
     public class GameController : MonoBehaviour
     {
 
+        [SerializeField] private ArrowController arrowController;
+        
         [SerializeField] private ChoiceController main;
         [SerializeField] private ChoiceController enemy;
 
@@ -21,13 +24,30 @@ namespace FightingMode.Game
         [SerializeField] private HealthController mainHealthController;
         [SerializeField] private HealthController enemyHealthController;
 
-        [FormerlySerializedAs("countController")] [SerializeField] private Counter counter;
+        [SerializeField] private Counter counter;
         
+        private int _count = 0;
+
+        private string _firstType;
+        private string _mainType;
+        
+        private AttackController.AttackAnimationFinish _mainFinish;
+        private AttackController.AttackAnimationFinish _enemyFinish;
+
         private void Start()
+        {
+            if (_firstType == _mainType)
+            {
+                arrowController.Left();
+                return;
+            }
+            arrowController.Right();
+        }
+
+        private void StartGame()
         {
             StartCoroutine(ShowChoice());
         }
-
         private IEnumerator ShowChoice()
         {
             yield return new WaitForSeconds(0.5f);
@@ -35,39 +55,51 @@ namespace FightingMode.Game
             
             yield return new WaitForSeconds(1.5f);
             main.StartChoice();
+            enemy.StartChoice();
         }
-        private int _count = 0;
+        
         private void Awake()
         {
+            arrowController.EndEvent += StartGame;
             main.Choice += Choice;
             enemy.Choice += Choice;
+            
+            _firstType = FightingSaver.LoadFirst();
+            _mainType = FightingSaver.LoadMainType();
+            if (_firstType == _mainType)
+            {
+                _mainFinish = FinishFirst;
+                _enemyFinish = FinishSecond;
+            }
+            else
+            {
+                _mainFinish = FinishSecond;
+                _enemyFinish = FinishFirst;
+            }            
 
-            mainAttackController.AttackFinish += FinishFirst;
-            enemyAttackController.AttackFinish += FinishSecond;
-
+            mainAttackController.AttackFinish += _mainFinish;
+            enemyAttackController.AttackFinish += _enemyFinish;
         }
 
         private void OnDestroy()
         {
+            arrowController.EndEvent -= StartGame;
+            
             main.Choice -= Choice;
             enemy.Choice -= Choice;
             
-            mainAttackController.AttackFinish -= FinishFirst;
-            enemyAttackController.AttackFinish -= FinishSecond;
+            mainAttackController.AttackFinish -= _mainFinish;
+            enemyAttackController.AttackFinish -= _enemyFinish;
         }
-
         private void Choice()
         {
             _count++;
-            if (_count < 2)
-            {
-                enemy.StartChoice();
-                return;
-            }
+            if (_count < 2) return;
             
             _count = 0;
-            
-            mainAttackController.Attack(main.Attack);
+
+            if(_firstType == _mainType) mainAttackController.Attack(main.Attack);
+            else enemyAttackController.Attack(enemy.Attack);
         }
 
         private void FinishFirst()
@@ -79,7 +111,8 @@ namespace FightingMode.Game
         {
             yield return new WaitForSeconds(1.0f);
             
-            enemyAttackController.Attack(enemy.Attack);
+            if(_firstType == _mainType) enemyAttackController.Attack(enemy.Attack);
+            else mainAttackController.Attack(main.Attack);
         }
         private void FinishSecond()
         {

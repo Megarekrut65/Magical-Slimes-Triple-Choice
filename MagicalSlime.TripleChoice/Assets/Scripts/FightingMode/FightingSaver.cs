@@ -58,11 +58,16 @@ namespace FightingMode
         public static void SaveMainType(string type)
         {
             LocalStorage.SetValue("mainType", type);
+            LocalStorage.SetValue("enemyType", type=="host"?"client":"host");
         }
 
         public static string LoadMainType()
         {
             return LocalStorage.GetValue("mainType", "host");
+        }
+        public static string LoadEnemyType()
+        {
+            return LocalStorage.GetValue("enemyType", "client");
         }
 
         public static void SaveRoomType(string type)
@@ -82,6 +87,15 @@ namespace FightingMode
         public static void SaveDefaultChoice(ChoiceType type)
         {
             LocalStorage.SetValue("defaultChoice", (int)type);
+        }
+
+        public static string LoadFirst()
+        {
+            return LocalStorage.GetValue("first", "host");
+        }
+        public static void SaveFirst(string type)
+        {
+            LocalStorage.SetValue("first", type);
         }
     }
 }
