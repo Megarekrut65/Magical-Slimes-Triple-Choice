@@ -73,6 +73,8 @@ namespace FightingMode.Lobby.PrivateLobby
                 return;
             }
 
+            FightingSaver.SaveUserInfo("enemyInfo", enemyInfo);
+            
             _clientAlive = true;
             enemyController.Come(enemyInfo);
             StartCoroutine(StartCount());

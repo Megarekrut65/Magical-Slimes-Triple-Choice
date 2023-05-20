@@ -1,4 +1,4 @@
-﻿namespace FightingMode.Game
+﻿namespace FightingMode.Game.Choice
 {
     public enum ChoiceType
     {

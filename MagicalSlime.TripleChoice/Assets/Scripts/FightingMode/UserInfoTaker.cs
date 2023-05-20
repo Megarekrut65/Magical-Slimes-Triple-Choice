@@ -6,13 +6,15 @@ namespace FightingMode
     {
         public static UserInfo Take()
         {
-            UserInfo info = new UserInfo();
-            info.name = DataSaver.LoadUsername();
-            info.cups = FightingSaver.LoadCups();
-            info.maxLevel = DataSaver.LoadMaxLevelForAccount();
-            info.slimeName = DataSaver.LoadSlimeName();
-            info.slimeType = DataSaver.LoadSlimeType();
-            info.hat = DataSaver.LoadCurrentHat();
+            UserInfo info = new UserInfo
+            {
+                name = DataSaver.LoadUsername(),
+                cups = FightingSaver.LoadCups(),
+                maxLevel = DataSaver.LoadMaxLevelForAccount(),
+                slimeName = DataSaver.LoadSlimeName(),
+                slimeType = DataSaver.LoadSlimeType(),
+                hat = DataSaver.LoadCurrentHat()
+            };
 
             return info;
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FightingMode.Game.Choice;
 using UnityEngine;
 
 namespace FightingMode.Game.EntityControllers

@@ -27,7 +27,7 @@ namespace FightingMode.Game.EntityControllers
 
         private void Start()
         {
-            _maxHp = 50;//FightingSaver.LoadMaxHp();
+            _maxHp = FightingSaver.LoadMaxHp();
             
             slider.minValue = 0;
             slider.maxValue = _maxHp;
@@ -41,11 +41,14 @@ namespace FightingMode.Game.EntityControllers
 
         private IEnumerator AddHealth()
         {
-            for (int i = 0; i < _maxHp; i++)
+            float part = _maxHp / 20f;
+            for (int i = 0; i < 20; i++)
             {
-                slider.value = i + 1;
+                slider.value = part * i;
                 yield return new WaitForSeconds(0.01f);
             }
+
+            slider.value = _maxHp;
         }
         public void TakeDamage(int damage)
         {

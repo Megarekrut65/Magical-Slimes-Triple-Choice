@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace GameOver
+namespace FightingMode.GameOver
 {
     /// <summary>
     /// Sets random cup to GUI

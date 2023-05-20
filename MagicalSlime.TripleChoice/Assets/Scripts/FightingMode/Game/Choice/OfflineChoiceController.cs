@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FightingMode.Game
+namespace FightingMode.Game.Choice
 {
     /// <summary>
     /// Manages selecting attack and block using clicking on buttons and puts this selecting to database.

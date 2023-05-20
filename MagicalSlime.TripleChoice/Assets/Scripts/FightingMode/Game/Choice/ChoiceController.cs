@@ -1,7 +1,7 @@
 ﻿using Firebase.Database;
 using UnityEngine;
 
-namespace FightingMode.Game
+namespace FightingMode.Game.Choice
 {
     /// <summary>
     /// Controls selecting attack and block in right way. After selecting invokes Choosing event.
@@ -16,8 +16,10 @@ namespace FightingMode.Game
         private int _clicks = 0;
 
         protected DatabaseReference gameChoice;
+        
         protected DatabaseReference attackRef;
         protected DatabaseReference blockRef;
+        
         
         private void Awake()
         {

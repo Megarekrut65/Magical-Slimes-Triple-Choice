@@ -15,8 +15,10 @@ namespace FightingMode.Lobby.Private
         public void CreateRoom()
         {
             Click();
-            
-            RoomController.AddPrivateRoom(UserInfoTaker.Take(), Convert.ToInt32(maxHp.text),Answer);
+            int hp = Convert.ToInt32(maxHp.text);
+            hp = Math.Max(50, hp);
+            hp = Math.Min(hp, 999);
+            RoomController.AddPrivateRoom(UserInfoTaker.Take(), hp, Answer);
         }
 
         public void ConnectToRoom()

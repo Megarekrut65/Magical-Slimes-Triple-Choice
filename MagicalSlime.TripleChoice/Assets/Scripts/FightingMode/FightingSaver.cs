@@ -1,4 +1,5 @@
 ﻿using FightingMode.Game;
+using FightingMode.Game.Choice;
 using Global;
 using Global.Json;
 using UnityEngine;
@@ -96,6 +97,20 @@ namespace FightingMode
         public static void SaveFirst(string type)
         {
             LocalStorage.SetValue("first", type);
+        }
+
+        public static void SaveResult(GameResult result)
+        {
+            ItemData<GameResult> data = new ItemData<GameResult>{key="result", value = result};
+            LocalStorage.SetValue("result", JsonUtility.ToJson(data));
+        }
+
+        public static GameResult LoadResult()
+        {
+            ItemData<GameResult> list = JsonUtility.FromJson<ItemData<GameResult>>(
+                LoadUserInfoJson("result"));
+
+            return list.value;
         }
     }
 }

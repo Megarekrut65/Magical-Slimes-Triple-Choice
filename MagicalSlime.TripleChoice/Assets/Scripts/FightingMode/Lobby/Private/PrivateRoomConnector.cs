@@ -59,6 +59,7 @@ namespace FightingMode.Lobby.Private
             }
             FightingSaver.SaveCode(_code);
             FightingSaver.SaveMaxHp(Convert.ToInt32(task.Result.Child("maxHp").Value));
+            FightingSaver.SaveFirst(task.Result.Child("first").Value as string);
             FightingSaver.SaveUserInfo("mainInfo", _info);
                 
             Dictionary<string, object> dictionary = task.Result.Child("host").Value as Dictionary<string, object>;

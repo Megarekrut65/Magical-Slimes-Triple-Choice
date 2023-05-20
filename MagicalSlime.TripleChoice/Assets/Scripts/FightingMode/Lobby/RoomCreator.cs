@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Firebase.Database;
 using Firebase.Extensions;
+using Random = UnityEngine.Random;
 
 namespace FightingMode.Lobby
 {
@@ -17,11 +18,14 @@ namespace FightingMode.Lobby
             
             DatabaseReference room = db.RootReference.Child(roomType).Child(g.ToString());
 
+            string first = Random.Range(0, 100) >= 50 ? "host" : "client"; 
+            
             Dictionary<string, object> data = new Dictionary<string, object>
             {
                 {"creationDate", DateTime.Now.ToString(CultureInfo.InvariantCulture)},
                 {"maxHp", maxHp},
-                {"host", info.ToDictionary()}
+                {"host", info.ToDictionary()},
+                {"first", first}
             };
 
             room.SetValueAsync(data).ContinueWithOnMainThread(task =>
@@ -34,6 +38,8 @@ namespace FightingMode.Lobby
                 FightingSaver.SaveUserInfo("mainInfo", info);
                 FightingSaver.SaveMainType("host");
                 FightingSaver.SaveRoomType(roomType);
+                FightingSaver.SaveFirst(first);
+                FightingSaver.SaveMaxHp(maxHp);
                 
                 answer(true, "");
             });

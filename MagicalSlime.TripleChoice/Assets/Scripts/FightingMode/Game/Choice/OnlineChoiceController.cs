@@ -3,7 +3,7 @@ using System.Collections;
 using Firebase.Database;
 using UnityEngine;
 
-namespace FightingMode.Game
+namespace FightingMode.Game.Choice
 {
     /// <summary>
     /// Gets enemy selecting from database. If there aren't any selecting then automatically selects default types. 

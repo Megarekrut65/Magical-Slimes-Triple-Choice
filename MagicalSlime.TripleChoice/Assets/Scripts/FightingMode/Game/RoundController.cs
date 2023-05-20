@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using FightingMode.Game.Choice;
 using FightingMode.Game.EntityControllers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,7 @@ namespace FightingMode.Game
     /// <summary>
     /// Controls the sequence of events in the game. Like attacking and blocking, new round or game over.
     /// </summary>
-    public class GameController : MonoBehaviour
+    public class RoundController : MonoBehaviour
     {
 
         [SerializeField] private ArrowController arrowController;
@@ -21,8 +22,7 @@ namespace FightingMode.Game
         [SerializeField] private AttackController mainAttackController;
         [SerializeField] private AttackController enemyAttackController;
 
-        [SerializeField] private HealthController mainHealthController;
-        [SerializeField] private HealthController enemyHealthController;
+        [SerializeField] private DieController dieController;
 
         [SerializeField] private Counter counter;
         
@@ -122,17 +122,13 @@ namespace FightingMode.Game
         {
             yield return new WaitForSeconds(1.5f);
             
-            if (!mainHealthController.IsDied && !enemyHealthController.IsDied)
+            if (!dieController.IsGameOver())
             {
                 StartCoroutine(ShowChoice());
             }
             else
             {
-                if(mainHealthController.IsDied) mainHealthController.Die();
-                if(enemyHealthController.IsDied) enemyHealthController.Die();
-                Debug.Log("GameOver!");
-                yield return new WaitForSeconds(4f);
-                SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+                dieController.GameOver();
             }
         }
     }
