@@ -5,6 +5,7 @@ using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Extensions;
 using Firebase.Firestore;
+using Global;
 using UnityEngine;
 
 namespace Main
@@ -23,7 +24,7 @@ namespace Main
             
             FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
                 if (task.Exception != null) {
-                    Debug.LogError(task.Exception.Message);
+                    CustomLogger.Log(task.Exception.Message);
                     return;
                 }
                 FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
@@ -43,7 +44,7 @@ namespace Main
                 .GetSnapshotAsync()
                 .ContinueWithOnMainThread(task =>
             {
-                Debug.Log(task.Exception?.Message);
+                CustomLogger.Log(task.Exception?.Message);
                 
                 if (task.IsCompletedSuccessfully)
                 {

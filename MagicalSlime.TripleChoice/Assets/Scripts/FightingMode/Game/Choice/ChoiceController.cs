@@ -14,20 +14,10 @@ namespace FightingMode.Game.Choice
         public ChoiceType Block { get; protected set; }
         public ChoiceType Attack { get; protected set; }
         private int _clicks = 0;
-
-        protected DatabaseReference gameChoice;
-        
-        protected DatabaseReference attackRef;
-        protected DatabaseReference blockRef;
         
         
         private void Awake()
         {
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
-            gameChoice = db.RootReference
-                .Child(FightingSaver.LoadRoomType())
-                .Child(FightingSaver.LoadCode())
-                .Child("game");
             ChildAwake();
         }
 

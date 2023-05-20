@@ -2,6 +2,7 @@
 using Firebase;
 using Firebase.Auth;
 using Firebase.Extensions;
+using Global;
 using UnityEngine;
 
 namespace LoginRegister
@@ -13,7 +14,7 @@ namespace LoginRegister
             FirebaseAuth auth = FirebaseAuth.DefaultInstance;
             auth.SignInWithEmailAndPasswordAsync(email, password)
                 .ContinueWithOnMainThread(task => {
-                    Debug.Log(task.Exception?.Message);
+                    CustomLogger.Log(task.Exception?.Message);
                     if (task.IsFaulted) {
                         answer(false, "doesnt-exist");
                         return;
@@ -32,7 +33,7 @@ namespace LoginRegister
             var auth = FirebaseAuth.DefaultInstance;
             auth.SendPasswordResetEmailAsync(email)
                 .ContinueWithOnMainThread(task => {
-                    Debug.Log(task.Exception?.Message);
+                    CustomLogger.Log(task.Exception?.Message);
                     if (task.Exception != null) {
                         answer(false, "invalid-email");
                         return;

@@ -1,6 +1,7 @@
 ﻿using System;
 using Firebase.Auth;
 using Firebase.Extensions;
+using Global;
 using UnityEngine;
 
 namespace LoginRegister
@@ -12,7 +13,7 @@ namespace LoginRegister
             FirebaseAuth auth = FirebaseAuth.DefaultInstance;
             auth.CreateUserWithEmailAndPasswordAsync(email, password)
                 .ContinueWithOnMainThread(task => {
-                    Debug.Log(task.Exception?.Message);
+                    CustomLogger.Log(task.Exception?.Message);
                     
                     if (task.IsCanceled) {
                         answer(false, "some-error-register");
@@ -27,7 +28,7 @@ namespace LoginRegister
                     FirebaseUser newUser = task.Result.User;
                     newUser.UpdateUserProfileAsync(new UserProfile {DisplayName = username})
                         .ContinueWithOnMainThread(t => {
-                            Debug.Log(t.Exception?.Message);
+                            CustomLogger.Log(t.Exception?.Message);
                             
                             if (t.Exception != null) {
                                 answer(false, "some-error-register");

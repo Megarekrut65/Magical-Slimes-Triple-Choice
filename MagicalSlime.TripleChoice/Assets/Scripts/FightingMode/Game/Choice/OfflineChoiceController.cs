@@ -12,10 +12,11 @@ namespace FightingMode.Game.Choice
         private static readonly int BlockTrigger = Animator.StringToHash("Block");
         private static readonly int EndTrigger = Animator.StringToHash("End");
 
+        private OfflineChoiceDatabaseController _databaseController;
+
         protected override void ChildAwake()
         {
-            attackRef = gameChoice.Child(FightingSaver.LoadMainType()).Child("attack");
-            blockRef = gameChoice.Child(FightingSaver.LoadMainType()).Child("block");
+            _databaseController = new OfflineChoiceDatabaseController(FightingSaver.LoadMainType());
         }
 
         protected override void ChildDestroy()
@@ -32,7 +33,7 @@ namespace FightingMode.Game.Choice
             base.SelectAttack(type);
             animator.SetTrigger(BlockTrigger);
 
-            attackRef.SetValueAsync(type);
+            _databaseController.SendAttack(type);
         }
 
         public override void SelectBlock(int type)
@@ -40,7 +41,7 @@ namespace FightingMode.Game.Choice
             base.SelectBlock(type);
             animator.SetTrigger(EndTrigger);
 
-            blockRef.SetValueAsync(type);
+            _databaseController.SendBlock(type);
         }
     }
 }

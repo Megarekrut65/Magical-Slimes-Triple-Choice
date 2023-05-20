@@ -26,7 +26,7 @@ namespace DataManagement
             docRef.SetAsync(UserData.GetUserDataFromLocalStorage(), SetOptions.MergeAll)
                 .ContinueWithOnMainThread(task =>
                 {
-                    Debug.Log(task.Exception?.Message);
+                    CustomLogger.Log(task.Exception?.Message);
                     answer(task.IsCompletedSuccessfully, task.Exception?.Message ?? "");
                 });
         }

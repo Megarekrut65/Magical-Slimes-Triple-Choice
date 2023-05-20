@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using FightingMode.Game.EntityControllers;
+using Global;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -42,9 +43,9 @@ namespace FightingMode.Game
                 saver.SaveDraw(mainType, roomType);
             }
             
-            Debug.Log(JsonUtility.ToJson(FightingSaver.LoadUserInfo("winner")));
-            Debug.Log(JsonUtility.ToJson(FightingSaver.LoadUserInfo("loser")));
-            Debug.Log("GameOver!");
+            CustomLogger.Log(JsonUtility.ToJson(FightingSaver.LoadUserInfo("winner")));
+            CustomLogger.Log(JsonUtility.ToJson(FightingSaver.LoadUserInfo("loser")));
+            CustomLogger.Log("GameOver!");
             StartCoroutine(WaitForLoad());
         }
 

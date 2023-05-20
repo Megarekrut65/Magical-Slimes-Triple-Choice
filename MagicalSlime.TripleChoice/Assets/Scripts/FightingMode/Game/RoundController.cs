@@ -3,8 +3,6 @@ using System.Collections;
 using FightingMode.Game.Choice;
 using FightingMode.Game.EntityControllers;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace FightingMode.Game
 {
@@ -13,8 +11,6 @@ namespace FightingMode.Game
     /// </summary>
     public class RoundController : MonoBehaviour
     {
-
-        [SerializeField] private ArrowController arrowController;
         
         [SerializeField] private ChoiceController main;
         [SerializeField] private ChoiceController enemy;
@@ -23,6 +19,8 @@ namespace FightingMode.Game
         [SerializeField] private AttackController enemyAttackController;
 
         [SerializeField] private DieController dieController;
+
+        [SerializeField] private AnswerController answerController;
 
         [SerializeField] private Counter counter;
         
@@ -33,19 +31,19 @@ namespace FightingMode.Game
         
         private AttackController.AttackAnimationFinish _mainFinish;
         private AttackController.AttackAnimationFinish _enemyFinish;
+        
+        private int _ready;
 
-        private void Start()
+        public void StartGame()
         {
-            if (_firstType == _mainType)
-            {
-                arrowController.Left();
-                return;
-            }
-            arrowController.Right();
+            StartCoroutine(ShowChoice());
         }
 
-        private void StartGame()
+        public void NextRound()
         {
+            _ready++;
+            if (_ready != 2) return;
+            _ready = 0;
             StartCoroutine(ShowChoice());
         }
         private IEnumerator ShowChoice()
@@ -60,7 +58,8 @@ namespace FightingMode.Game
         
         private void Awake()
         {
-            arrowController.EndEvent += StartGame;
+            answerController.AnswerEvent += NextRound;
+            
             main.Choice += Choice;
             enemy.Choice += Choice;
             
@@ -83,7 +82,7 @@ namespace FightingMode.Game
 
         private void OnDestroy()
         {
-            arrowController.EndEvent -= StartGame;
+            answerController.AnswerEvent -= NextRound;
             
             main.Choice -= Choice;
             enemy.Choice -= Choice;
@@ -124,7 +123,8 @@ namespace FightingMode.Game
             
             if (!dieController.IsGameOver())
             {
-                StartCoroutine(ShowChoice());
+                NextRound();
+                answerController.SendAnswer();
             }
             else
             {

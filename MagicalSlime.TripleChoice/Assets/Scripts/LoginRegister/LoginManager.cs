@@ -49,7 +49,7 @@ namespace LoginRegister
 
         private void Conflict(Dictionary<string, object> data)
         {
-            Debug.Log("Conflict!");
+            CustomLogger.Log("Conflict!");
             conflictManager.Conflict(data, UserData.GetUserDataFromLocalStorage());
         }
         protected void Answer(bool success, string message)

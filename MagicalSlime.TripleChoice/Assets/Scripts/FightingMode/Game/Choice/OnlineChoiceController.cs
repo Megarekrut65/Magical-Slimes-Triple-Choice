@@ -16,6 +16,8 @@ namespace FightingMode.Game.Choice
         private const float WaitTime = 60f;
 
         private ChoiceType _defaultChoice;
+
+        private OnlineChoiceDatabaseController _databaseController;
         
         private void Start()
         {
@@ -24,17 +26,15 @@ namespace FightingMode.Game.Choice
 
         protected override void ChildAwake()
         {
-            attackRef = gameChoice.Child(FightingSaver.LoadEnemyType()).Child("attack");
-            blockRef = gameChoice.Child(FightingSaver.LoadEnemyType()).Child("block");
-            
-            attackRef.ValueChanged += AttackChoiceHandler;
-            blockRef.ValueChanged += BlockChoiceHandler;
+            _databaseController = new OnlineChoiceDatabaseController(FightingSaver.LoadEnemyType());
+            _databaseController.Attack += AttackChoice;
+            _databaseController.Block += BlockChoice;
         }
 
         protected override void ChildDestroy()
         {
-            attackRef.ValueChanged -= AttackChoiceHandler;
-            blockRef.ValueChanged -= BlockChoiceHandler;
+            _databaseController.Attack -= AttackChoice;
+            _databaseController.Block -= BlockChoice;
         }
 
         public override void StartChoice()
@@ -42,21 +42,6 @@ namespace FightingMode.Game.Choice
             _attackChoice = false;
             _blockChoice = false;
             StartCoroutine(AutoChoiceAttack());
-        }
-
-        private void AttackChoiceHandler(object sender, ValueChangedEventArgs args)
-        {
-            if(!args.Snapshot.Exists) return;
-            int choice = Convert.ToInt32(args.Snapshot.Value);
-            if(ChoiceTypeCorrect.IsCorrect(choice)) 
-                AttackChoice((ChoiceType)choice);
-        }
-        private void BlockChoiceHandler(object sender, ValueChangedEventArgs args)
-        {
-            if(!args.Snapshot.Exists) return;
-            int choice = Convert.ToInt32(args.Snapshot.Value);
-            if(ChoiceTypeCorrect.IsCorrect(choice)) 
-                BlockChoice((ChoiceType)choice);
         }
 
         private void AttackChoice(ChoiceType type)
@@ -75,12 +60,16 @@ namespace FightingMode.Game.Choice
 
         private IEnumerator AutoChoiceAttack()
         {
-            yield return new WaitForSeconds(WaitTime);
+            yield return new WaitForSeconds(WaitTime/2);
+            _databaseController.InvokeNext();
+            yield return new WaitForSeconds(WaitTime/2);
             if (!_attackChoice) AttackChoice(_defaultChoice);
         }
         private IEnumerator AutoChoiceBlock()
         {
-            yield return new WaitForSeconds(WaitTime);
+            yield return new WaitForSeconds(WaitTime/2);
+            _databaseController.InvokeNext();
+            yield return new WaitForSeconds(WaitTime/2);
             if (!_blockChoice) BlockChoice(_defaultChoice);
         }
     }

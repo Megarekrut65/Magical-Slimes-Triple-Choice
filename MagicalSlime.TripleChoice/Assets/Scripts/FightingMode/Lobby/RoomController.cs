@@ -20,7 +20,8 @@ namespace FightingMode.Lobby
 
         public static void ConnectToGlobalRoom(UserInfo info, bool fast, Action<bool, string> answer)
         {
-            
+            GlobalRoomConnector connector = new GlobalRoomConnector(info, answer, fast);
+            connector.Connect();
         }
 
         public static void ConnectToPrivateRoom(UserInfo info, string code, Action<bool, string> answer)

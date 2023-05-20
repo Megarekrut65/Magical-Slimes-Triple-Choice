@@ -21,18 +21,17 @@ namespace DataManagement
         {
             FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
             DocumentReference docRef = db.Collection("users").Document(id);
-            Debug.Log(id);
+
             docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
             {
-                Debug.Log(task.Exception?.Message);
+                CustomLogger.Log(task.Exception?.Message);
                 if (task.IsFaulted)
                 {
                     answer(false, null);
                     return;
                 }
                 DocumentSnapshot snapshot = task.Result;
-                Debug.Log(task.Result);
-                Debug.Log(JsonUtility.ToJson(task.Result));
+
                 if (snapshot.Exists)
                 {
                     answer(true, snapshot.ToDictionary());

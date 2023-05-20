@@ -36,7 +36,7 @@ namespace DataManagement
                 
                 FirebaseUser user = FirebaseAuth.DefaultInstance?.CurrentUser;
                 if(user == null) continue;
-                saver.SaveUserData(user.UserId, (_,_)=>Debug.Log("Saved..."));
+                saver.SaveUserData(user.UserId, (_,_)=>CustomLogger.Log("Saved..."));
             }
         }
     }

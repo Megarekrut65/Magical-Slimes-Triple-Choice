@@ -4,7 +4,6 @@ using System.Globalization;
 using Firebase.Auth;
 using Global;
 using JetBrains.Annotations;
-using UnityEngine;
 
 namespace DataManagement
 {
@@ -31,7 +30,7 @@ namespace DataManagement
         
         private void LoadData(bool result, Dictionary<string, object> data)
         {
-            Debug.Log("Result: " + result);
+            CustomLogger.Log("Result: " + result);
             
             if (!result)
             {
@@ -50,12 +49,12 @@ namespace DataManagement
                     return;
                 }
 
-                Debug.Log("Save");
+                CustomLogger.Log("Save");
                 DatabaseSaver saver = new DatabaseSaver();
                 saver.SaveUserData(_userId, _answer);
                 return;
             }
-            Debug.Log("Load");
+            CustomLogger.Log("Load");
             DatabaseLoader loader = new DatabaseLoader();
             loader.LoadData(data);
             _answer(true, "");

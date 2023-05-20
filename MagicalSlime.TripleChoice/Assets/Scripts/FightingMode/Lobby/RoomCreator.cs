@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Firebase.Database;
 using Firebase.Extensions;
+using Global;
 using Random = UnityEngine.Random;
 
 namespace FightingMode.Lobby
@@ -32,6 +33,8 @@ namespace FightingMode.Lobby
             {
                 if (task.IsFaulted)
                 {
+                    CustomLogger.Log(task.Exception?.Message);
+                    
                     answer(false, "fail-create-room");
                     return;
                 }

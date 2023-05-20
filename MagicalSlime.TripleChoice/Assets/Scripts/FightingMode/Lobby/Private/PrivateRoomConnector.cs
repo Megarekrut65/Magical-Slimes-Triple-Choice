@@ -7,20 +7,17 @@ using UnityEngine;
 
 namespace FightingMode.Lobby.Private
 {
-    public class PrivateRoomConnector
+    public class PrivateRoomConnector: RoomConnector
     {
-        private readonly UserInfo _info;
         private readonly string _code;
-        private Action<bool, string> _answer;
 
-        public PrivateRoomConnector(UserInfo info, string code, Action<bool, string> answer)
+        public PrivateRoomConnector(UserInfo info, string code, Action<bool, string> answer): 
+            base(info, answer, "private-rooms")
         {
-            _info = info;
             _code = code;
-            _answer = answer;
         }
         
-        public void Connect()
+        public override void Connect()
         {
             FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
             DatabaseReference room = db.RootReference.Child("private-rooms").Child(_code);
@@ -31,45 +28,29 @@ namespace FightingMode.Lobby.Private
                     if (!data.HasChildren)
                     {
                         data.Value = new Dictionary<string, object>();
-                        _answer(false, count > 0? "room-not-found":"");
+                        answer(false, count > 0? "room-not-found":"");
                         count++;
                         return TransactionResult.Success(data);
                     }
                     if (data.HasChild("client"))
                     {
-                        _answer(false,  "room-full");
-                        _answer = (_, _) => { };
+                        answer(false,  "room-full");
+                        answer = (_, _) => { };
                         return TransactionResult.Abort();
                     }
 
-                    data.Child("client").Value = _info.ToDictionary();
+                    data.Child("client").Value = info.ToDictionary();
 
                     return TransactionResult.Success(data);
                 })
                 .ContinueWithOnMainThread(SaveRoomData);
         }
 
-        private void SaveRoomData(Task<DataSnapshot> task)
+        protected override void SaveRoomData(Task<DataSnapshot> task)
         {
-            Debug.Log(task.Exception?.Message);
-            if (task.IsFaulted)
-            {
-                _answer(false, "room-error");
-                return;
-            }
             FightingSaver.SaveCode(_code);
             FightingSaver.SaveMaxHp(Convert.ToInt32(task.Result.Child("maxHp").Value));
-            FightingSaver.SaveFirst(task.Result.Child("first").Value as string);
-            FightingSaver.SaveUserInfo("mainInfo", _info);
-                
-            Dictionary<string, object> dictionary = task.Result.Child("host").Value as Dictionary<string, object>;
-
-            FightingSaver.SaveUserInfo("enemyInfo", UserInfo.FromDictionary(dictionary));
-
-            FightingSaver.SaveMainType("client");
-            FightingSaver.SaveRoomType("private-rooms");
-
-            _answer(true, "");
+            base.SaveRoomData(task);
         }
     }
 }
