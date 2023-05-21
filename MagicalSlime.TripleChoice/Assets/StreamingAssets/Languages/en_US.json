@@ -447,6 +447,10 @@
         {
             "key": "data-conflict",
             "value": "The data on the device and in the account do not match. Choose one of the following solutions: keep only the account data; keep only the device data; keep the number of diamonds and caps from the account data, choose the largest values for the maximum values, merge slime lists, keep all other data from the device"
+        },
+        {
+            "key": "rating",
+            "value": "RATING"
         }
     ]
 }

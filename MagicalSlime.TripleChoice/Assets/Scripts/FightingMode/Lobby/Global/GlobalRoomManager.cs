@@ -39,5 +39,10 @@ namespace FightingMode.Lobby.Global
             }
             Error(message);
         }
+
+        public void Back()
+        {
+            RoomController.Back(()=>SceneManager.LoadScene("IncrementalMode"));
+        }
     }
 }

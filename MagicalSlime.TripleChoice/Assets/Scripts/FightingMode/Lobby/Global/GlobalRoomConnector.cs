@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Firebase.Database;
 using Firebase.Extensions;
+using Global;
 using UnityEngine;
 
 namespace FightingMode.Lobby.Global
@@ -25,11 +26,13 @@ namespace FightingMode.Lobby.Global
             FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
             DatabaseReference free = db.RootReference.Child("global-free");
 
+            int count = 0;
             free.RunTransaction(data =>
             {
                 if (!data.HasChildren)
                 {
-                    answer(false, "room-not-found");
+                    answer(false, count > 0? "room-not-found":"");
+                    count++;
                     return TransactionResult.Success(data);
                 }
 
@@ -44,22 +47,37 @@ namespace FightingMode.Lobby.Global
                     }
                 }
 
-
                 return TransactionResult.Success(data);
             }).ContinueWithOnMainThread(MakeRoomNotFree);
         }
 
         private void MakeRoomNotFree(Task<DataSnapshot> task)
         {
-            if(_code == "") return;
+            if (_code == "")
+            {
+                Debug.Log("Room not found!");
+                answer(false, "room-not-found");
+                return;
+            }
+            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
             
             if (task.IsCompletedSuccessfully)
             {
-                FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
                 DatabaseReference room = db.RootReference.Child("global-free").Child(_code);
                 room.RemoveValueAsync();
             }
-            base.SaveRoomData(task);
+            DatabaseReference globalRoom = db.RootReference.Child("global-rooms").Child(_code);
+            globalRoom.Child("client").SetValueAsync(info.ToDictionary()).ContinueWithOnMainThread(t =>
+            {
+                if (t.IsFaulted)
+                {
+                    CustomLogger.Log(t.Exception?.Message);
+                    answer(false, "some-error-database");
+                    return;
+                }
+
+                globalRoom.GetValueAsync().ContinueWithOnMainThread(base.SaveRoomData);
+            });
         }
     }
 }

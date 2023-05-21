@@ -30,8 +30,6 @@ namespace DataManagement
         
         private void LoadData(bool result, Dictionary<string, object> data)
         {
-            CustomLogger.Log("Result: " + result);
-            
             if (!result)
             {
                 _answer(false, "");
