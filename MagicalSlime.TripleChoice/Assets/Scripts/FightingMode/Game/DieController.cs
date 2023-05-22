@@ -34,8 +34,8 @@ namespace FightingMode.Game
         public void GameOver()
         {
             string mainType = FightingSaver.LoadMainType();
-            LoseEvent(mainHealthController, mainType);
-            LoseEvent(enemyHealthController, FightingSaver.LoadEnemyType());
+            LoseEvent(mainHealthController, FightingSaver.LoadEnemyType());
+            LoseEvent(enemyHealthController, mainType);
 
             GameOverSaver saver = new GameOverSaver(FightingSaver.LoadUserInfo("mainInfo"), 
                 FightingSaver.LoadUserInfo("enemyInfo"));
