@@ -8,12 +8,4 @@
         None = -1
         
     }
-
-    public static class ChoiceTypeCorrect
-    {
-        public static bool IsCorrect(int choice)
-        {
-            return choice is >= (int)ChoiceType.Top and <= (int)ChoiceType.Bottom;
-        }
-    }
 }

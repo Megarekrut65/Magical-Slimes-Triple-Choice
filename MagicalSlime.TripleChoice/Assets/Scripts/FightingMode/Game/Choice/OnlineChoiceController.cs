@@ -20,7 +20,7 @@ namespace FightingMode.Game.Choice
 
         private ChoiceType _defaultChoice;
 
-        private OnlineChoiceDatabaseController _databaseController;
+        private ChoiceDatabaseReceiver _databaseReceiver;
         
         private void Start()
         {
@@ -29,15 +29,15 @@ namespace FightingMode.Game.Choice
 
         protected override void ChildAwake()
         {
-            _databaseController = new OnlineChoiceDatabaseController(FightingSaver.LoadEnemyType());
-            _databaseController.Attack += AttackChoice;
-            _databaseController.Block += BlockChoice;
+            _databaseReceiver = new ChoiceDatabaseReceiver(FightingSaver.LoadEnemyType());
+            _databaseReceiver.Attack += AttackChoice;
+            _databaseReceiver.Block += BlockChoice;
         }
 
         protected override void ChildDestroy()
         {
-            _databaseController.Attack -= AttackChoice;
-            _databaseController.Block -= BlockChoice;
+            _databaseReceiver.Attack -= AttackChoice;
+            _databaseReceiver.Block -= BlockChoice;
         }
 
         public override void StartChoice()
@@ -69,14 +69,14 @@ namespace FightingMode.Game.Choice
         private IEnumerator AutoChoiceAttack()
         {
             yield return new WaitForSeconds(WaitTime/2);
-            if (!_attackChoice) _databaseController.InvokeNext();
+            if (!_attackChoice) _databaseReceiver.InvokeNext();
             yield return new WaitForSeconds(WaitTime/2);
             if (!_attackChoice) AttackChoice(_defaultChoice);
         }
         private IEnumerator AutoChoiceBlock()
         {
             yield return new WaitForSeconds(WaitTime/2);
-            if (!_blockChoice) _databaseController.InvokeNext();
+            if (!_blockChoice) _databaseReceiver.InvokeNext();
             yield return new WaitForSeconds(WaitTime/2);
             if (!_blockChoice) BlockChoice(_defaultChoice);
         }

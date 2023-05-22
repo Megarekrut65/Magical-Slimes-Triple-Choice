@@ -3,11 +3,14 @@ using UnityEngine;
 
 namespace FightingMode.Game.Choice
 {
-    public class OfflineChoiceDatabaseController: ChoiceDatabaseController
+    /// <summary>
+    /// Sends player choice to database.
+    /// </summary>
+    public class ChoiceDatabaseSender: ChoiceDatabaseController
     {
         private readonly ChoiceData _data;
         
-        public OfflineChoiceDatabaseController(string type) : base(type)
+        public ChoiceDatabaseSender(string type) : base(type)
         {
             _data = new ChoiceData();
         }

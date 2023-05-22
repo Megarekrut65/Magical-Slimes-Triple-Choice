@@ -4,14 +4,17 @@ using UnityEngine;
 
 namespace FightingMode.Game.Choice
 {
-    public class OnlineChoiceDatabaseController: ChoiceDatabaseController
+    /// <summary>
+    /// Receives enemy choice from database.
+    /// </summary>
+    public class ChoiceDatabaseReceiver: ChoiceDatabaseController
     {
         public delegate void Answer(ChoiceType type);
 
         public event Answer Attack;
         public event Answer Block;
         
-        public OnlineChoiceDatabaseController(string type) : base(type)
+        public ChoiceDatabaseReceiver(string type) : base(type)
         {
             choice.ValueChanged += ChoiceHandler;
         }

@@ -6,6 +6,10 @@ using Random = UnityEngine.Random;
 
 namespace FightingMode.Game
 {
+    /// <summary>
+    /// Adds player answer of round is end to database and gets same answer from enemy.
+    /// Only if answer is received game will be continue. But if there won't answer then it will gets automatically.
+    /// </summary>
     public class AnswerController : MonoBehaviour
     {
         public delegate void Answer();
@@ -48,6 +52,9 @@ namespace FightingMode.Game
             AnswerEvent?.Invoke();
         }
 
+        /// <summary>
+        /// Send answer of round is end to database.
+        /// </summary>
         public void SendAnswer()
         {
             if (!_isAnswer)
@@ -59,6 +66,10 @@ namespace FightingMode.Game
             _mainAnswer.SetValueAsync(_count++);
         }
 
+        /// <summary>
+        /// If answer won't received from enemy than it will got automatically. 
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator AutoAnswer()
         {
             yield return new WaitForSeconds(60f);
