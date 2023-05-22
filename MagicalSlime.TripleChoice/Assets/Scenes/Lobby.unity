@@ -730,6 +730,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 1
 --- !u!114 &203005072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1259,6 +1260,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &245920559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1610,6 +1612,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!1 &338135601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,6 +2797,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &696835189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3544,6 +3548,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &976082302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4032,6 +4037,7 @@ MonoBehaviour:
   upEvent:
     m_PersistentCalls:
       m_Calls: []
+  onlyOneClick: 0
 --- !u!114 &1057176476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4629,6 +4635,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &1150360001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5258,7 +5265,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.25500003}
-  m_AnchoredPosition: {x: 0, y: 5.0001144}
+  m_AnchoredPosition: {x: 0, y: 5.000122}
   m_SizeDelta: {x: -40, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338509610
@@ -5530,6 +5537,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 1
   m_AspectRatio: 1.0019091
+--- !u!1 &1519335408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1519335410}
+  - component: {fileID: 1519335409}
+  m_Layer: 0
+  m_Name: LeaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1519335409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519335408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9b39d8d24b4f1e9a6a61ce7eab436b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1519335410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519335408}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1772487, y: 1.4079759, z: 82.53412}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1520925801
 GameObject:
   m_ObjectHideFlags: 0
@@ -5603,6 +5654,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &1520925804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5884,6 +5936,7 @@ MonoBehaviour:
   upEvent:
     m_PersistentCalls:
       m_Calls: []
+  onlyOneClick: 0
 --- !u!114 &1633004307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5973,7 +6026,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -79.859985, y: 0}
+  m_AnchoredPosition: {x: -79.859955, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1673217539
@@ -6452,6 +6505,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!1 &1751427564
 GameObject:
   m_ObjectHideFlags: 0
@@ -6989,6 +7043,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &1840811713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7489,6 +7544,7 @@ MonoBehaviour:
   upEvent:
     m_PersistentCalls:
       m_Calls: []
+  onlyOneClick: 0
 --- !u!114 &2120137447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8066,6 +8122,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &8844150778948248743
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ namespace DataManagement
         {
             _answer = answer;
             
-            FirebaseUser user = FirebaseAuth.DefaultInstance.CurrentUser;
+            FirebaseUser user = FirebaseManager.Auth.CurrentUser;
             _userId = user.UserId;
             _answer(false, "");
             if (user.UserId == null) return;

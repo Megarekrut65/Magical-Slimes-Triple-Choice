@@ -1,4 +1,5 @@
-﻿using FightingMode.Game;
+﻿using System;
+using FightingMode.Game;
 using FightingMode.Game.Choice;
 using Global;
 using Global.Json;
@@ -8,6 +9,15 @@ namespace FightingMode
 {
     public static class FightingSaver
     {
+        public static void SaveGameOver(bool value)
+        {
+            LocalStorage.SetValue("gameOver", value.ToString());
+        }
+
+        public static bool LoadGameOver()
+        {
+            return Convert.ToBoolean(LocalStorage.GetValue("gameOver", "true"));
+        }
         public static int LoadMaxHp()
         {
             return LocalStorage.GetValue("maxHp", 100);

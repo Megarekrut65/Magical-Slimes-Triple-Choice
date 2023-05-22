@@ -34,7 +34,7 @@ namespace DataManagement
                 yield return new WaitForSeconds(30f);
                 if(LocalStorage.GetValue("needSave", "false") == "false") continue;
                 
-                FirebaseUser user = FirebaseAuth.DefaultInstance?.CurrentUser;
+                FirebaseUser user = FirebaseManager.Auth?.CurrentUser;
                 if(user == null) continue;
                 saver.SaveUserData(user.UserId, (_,_)=>CustomLogger.Log("Saved..."));
             }

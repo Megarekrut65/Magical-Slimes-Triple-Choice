@@ -1,4 +1,5 @@
-﻿using Firebase.Auth;
+﻿using DataManagement;
+using Firebase.Auth;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,7 +36,7 @@ namespace LoginRegister
         {
             if (success)
             {
-                FirebaseAuth auth = FirebaseAuth.DefaultInstance;
+                FirebaseAuth auth = FirebaseManager.Auth;
                 if (auth.CurrentUser == null)
                 {
                     Answer(false, "some-error-register");

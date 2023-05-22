@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using DataManagement;
 using Firebase.Database;
 using Firebase.Extensions;
 using Global;
@@ -22,8 +23,8 @@ namespace FightingMode.Lobby.Global
         public override void Connect()
         {
             _code = "";
-            
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
+
+            FirebaseDatabase db = FirebaseManager.Db;
             DatabaseReference free = db.RootReference.Child("global-free");
 
             int count = 0;
@@ -59,7 +60,8 @@ namespace FightingMode.Lobby.Global
                 answer(false, "room-not-found");
                 return;
             }
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
+
+            FirebaseDatabase db = FirebaseManager.Db;
             
             if (task.IsCompletedSuccessfully)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using DataManagement;
 using Firebase;
 using Firebase.Auth;
 using Firebase.Extensions;
@@ -11,7 +12,7 @@ namespace LoginRegister
     {
         public static void Login(string email, string password, Action<bool, string> answer)
         {
-            FirebaseAuth auth = FirebaseAuth.DefaultInstance;
+            FirebaseAuth auth = FirebaseManager.Auth;
             auth.SignInWithEmailAndPasswordAsync(email, password)
                 .ContinueWithOnMainThread(task => {
                     CustomLogger.Log(task.Exception?.Message);
@@ -24,13 +25,13 @@ namespace LoginRegister
                 });
         }
         public static bool UserSignIn() {
-            return FirebaseAuth.DefaultInstance.CurrentUser != null;
+            return FirebaseManager.Auth.CurrentUser != null;
         }
         public static void SignOutUser() {
-            FirebaseAuth.DefaultInstance.SignOut();
+            FirebaseManager.Auth.SignOut();
         }
         public static void ResetPassword(string email, Action<bool, string> answer) {
-            var auth = FirebaseAuth.DefaultInstance;
+            FirebaseAuth auth = FirebaseManager.Auth;
             auth.SendPasswordResetEmailAsync(email)
                 .ContinueWithOnMainThread(task => {
                     CustomLogger.Log(task.Exception?.Message);

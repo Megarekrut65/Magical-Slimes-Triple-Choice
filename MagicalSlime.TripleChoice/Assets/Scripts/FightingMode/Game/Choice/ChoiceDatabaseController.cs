@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataManagement;
 using Firebase.Database;
 
 namespace FightingMode.Game.Choice
@@ -13,7 +14,7 @@ namespace FightingMode.Game.Choice
 
         public ChoiceDatabaseController(string type)
         {
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
+            FirebaseDatabase db = FirebaseManager.Db;
             DatabaseReference game = db.RootReference
                 .Child(FightingSaver.LoadRoomType())
                 .Child(FightingSaver.LoadCode())

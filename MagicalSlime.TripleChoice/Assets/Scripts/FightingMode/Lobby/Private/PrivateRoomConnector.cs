@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DataManagement;
 using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
@@ -19,7 +20,7 @@ namespace FightingMode.Lobby.Private
         
         public override void Connect()
         {
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
+            FirebaseDatabase db = FirebaseManager.Db;
             DatabaseReference room = db.RootReference.Child("private-rooms").Child(_code);
             
             int count = 0;

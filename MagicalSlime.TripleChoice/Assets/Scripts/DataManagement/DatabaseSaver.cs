@@ -19,7 +19,7 @@ namespace DataManagement
     {
         public void SaveUserData(string id, Action<bool, string> answer)
         {
-            FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+            FirebaseFirestore db = FirebaseManager.Fs;
 
             DocumentReference docRef = db.Collection("users").Document(id);
 

@@ -19,7 +19,7 @@ namespace DataManagement
     {
         public static void GetUserDataFromDatabase(string id, Action<bool, Dictionary<string, object>> answer)
         {
-            FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+            FirebaseFirestore db = FirebaseManager.Fs;
             DocumentReference docRef = db.Collection("users").Document(id);
 
             docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>

@@ -14,6 +14,9 @@ namespace FightingMode.Game.Choice
 
         private ChoiceDatabaseSender _databaseSender;
 
+        private bool _attackClicked = true;
+        private bool _blockClicked = true;
+
         protected override void ChildAwake()
         {
             _databaseSender = new ChoiceDatabaseSender(FightingSaver.LoadMainType());
@@ -26,10 +29,15 @@ namespace FightingMode.Game.Choice
 
         public override void StartChoice()
         {
+            _attackClicked = false;
+            _blockClicked = false;
             animator.SetTrigger(AttackTrigger);
         }
         public override void SelectAttack(int type)
         {
+            if(_attackClicked) return;
+            _attackClicked = true;
+            
             base.SelectAttack(type);
             animator.SetTrigger(BlockTrigger);
 
@@ -38,6 +46,9 @@ namespace FightingMode.Game.Choice
 
         public override void SelectBlock(int type)
         {
+            if(_blockClicked) return;
+            _blockClicked = true;
+            
             base.SelectBlock(type);
             animator.SetTrigger(EndTrigger);
 

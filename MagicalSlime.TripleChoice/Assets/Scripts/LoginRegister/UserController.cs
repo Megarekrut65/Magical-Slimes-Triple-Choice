@@ -15,7 +15,7 @@ namespace LoginRegister
     {
         public static void AddNewUser(string id, string username, Action<bool, string> answer)
         {
-            FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+            FirebaseFirestore db = FirebaseManager.Fs;
 
             DocumentReference docRef = db.Collection("users").Document(id);
 

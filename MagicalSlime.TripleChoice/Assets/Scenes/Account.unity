@@ -1163,6 +1163,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &291618881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1451,6 +1452,7 @@ MonoBehaviour:
   upEvent:
     m_PersistentCalls:
       m_Calls: []
+  onlyOneClick: 1
 --- !u!114 &332482428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3408,6 +3410,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &994300752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4037,6 +4040,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &1077452943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4165,6 +4169,7 @@ MonoBehaviour:
   upEvent:
     m_PersistentCalls:
       m_Calls: []
+  onlyOneClick: 0
 --- !u!114 &1082627554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4793,6 +4798,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &1326270283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4904,6 +4910,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &1326799295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6125,6 +6132,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!114 &1716540431
 MonoBehaviour:
   m_ObjectHideFlags: 0

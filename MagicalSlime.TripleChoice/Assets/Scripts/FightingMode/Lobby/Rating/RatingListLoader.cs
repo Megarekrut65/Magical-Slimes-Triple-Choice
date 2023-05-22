@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using DataManagement;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using Global;
@@ -22,7 +23,7 @@ namespace FightingMode.Lobby.Rating
         private CollectionReference _colRef;
         private void Start()
         {
-            FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+            FirebaseFirestore db = FirebaseManager.Fs;
             _colRef = db.Collection("users");
             OrderByCups();
 

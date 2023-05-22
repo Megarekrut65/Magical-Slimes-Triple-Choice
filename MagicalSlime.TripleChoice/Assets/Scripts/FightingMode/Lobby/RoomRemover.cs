@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using DataManagement;
 using Firebase.Database;
 using Firebase.Extensions;
 using Global;
@@ -11,7 +12,7 @@ namespace FightingMode.Lobby
     {
         public static void RemoveOld(string type)
         {
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
+            FirebaseDatabase db = FirebaseManager.Db;
             DatabaseReference rooms = db.RootReference.Child("global-rooms");
             List<string> codes = new List<string>();
             rooms.GetValueAsync().ContinueWithOnMainThread(task =>

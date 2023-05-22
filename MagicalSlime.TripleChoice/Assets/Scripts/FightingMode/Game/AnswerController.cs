@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using DataManagement;
 using Firebase.Database;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -26,7 +27,7 @@ namespace FightingMode.Game
 
         private void Awake()
         {
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
+            FirebaseDatabase db = FirebaseManager.Db;
             DatabaseReference answer = db.RootReference
                 .Child(FightingSaver.LoadRoomType())
                 .Child(FightingSaver.LoadCode())

@@ -42,7 +42,7 @@ namespace LoginRegister
             DatabaseLoader loader = new DatabaseLoader();
             loader.LoadData(data);
             DatabaseSaver saver = new DatabaseSaver();
-            FirebaseUser user = FirebaseAuth.DefaultInstance.CurrentUser;
+            FirebaseUser user = FirebaseManager.Auth.CurrentUser;
 
             saver.SaveUserData(user.UserId, (success, message) =>
             {

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Threading.Tasks;
+using DataManagement;
 using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
@@ -21,8 +22,8 @@ namespace FightingMode.Game
         private void Awake()
         {
             string code = FightingSaver.LoadCode();
-            
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
+
+            FirebaseDatabase db = FirebaseManager.Db;
             _room = db.RootReference.Child(FightingSaver.LoadRoomType()).Child(code);
             _room.ValueChanged += RoomHandler;
         }
@@ -50,8 +51,7 @@ namespace FightingMode.Game
         public void Leave()
         {
             _leaved = true;
-            _room.RemoveValueAsync()
-                .ContinueWithOnMainThread(LeaveTask);
+            _room.RemoveValueAsync().ContinueWithOnMainThread(LeaveTask);
 
             StartCoroutine(AutoLeave());
         }

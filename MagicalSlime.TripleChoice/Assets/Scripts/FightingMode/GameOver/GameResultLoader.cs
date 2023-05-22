@@ -23,7 +23,7 @@ namespace FightingMode.GameOver
             
             DataSaver.SaveDiamonds(DataSaver.LoadDiamonds() + result.deltaDiamonds);
             FightingSaver.SaveCups(FightingSaver.LoadCups() + result.deltaCups);
-
+            FightingSaver.SaveGameOver(true);
         }
 
         private void SetValue(Text text, int value)

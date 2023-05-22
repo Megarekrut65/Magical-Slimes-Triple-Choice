@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataManagement;
 using FightingMode.Game.Choice;
 using Firebase.Database;
 using Firebase.Extensions;
@@ -12,7 +13,7 @@ namespace FightingMode.Lobby
     {
         protected void CreateRoom(string roomType, UserInfo info, int maxHp, Action<bool,string> answer)
         {
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
+            FirebaseDatabase db = FirebaseManager.Db;
 
             Guid g = Guid.NewGuid();
             FightingSaver.SaveCode(g.ToString());

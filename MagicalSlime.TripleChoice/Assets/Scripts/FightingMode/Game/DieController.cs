@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using DataManagement;
 using FightingMode.Game.EntityControllers;
 using Firebase.Database;
 using Firebase.Extensions;
@@ -51,8 +52,8 @@ namespace FightingMode.Game
             }
             
             CustomLogger.Log("GameOver!");
-            
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
+
+            FirebaseDatabase db = FirebaseManager.Db;
             DatabaseReference room = db.RootReference
                 .Child(FightingSaver.LoadRoomType())
                 .Child(FightingSaver.LoadCode());

@@ -27,10 +27,11 @@ namespace Main
                     CustomLogger.Log(task.Exception.Message);
                     return;
                 }
-                FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+
+                FirebaseFirestore db = FirebaseManager.Fs;
                 db.Settings.PersistenceEnabled = false;
-                
-                FirebaseDatabase fb = FirebaseDatabase.DefaultInstance;
+
+                FirebaseDatabase fb = FirebaseManager.Db;
                 fb.SetPersistenceEnabled(false);
                 
                 LoadVersion(db);
@@ -60,7 +61,7 @@ namespace Main
         }
         private void LoadUser()
         {
-            FirebaseUser user = FirebaseAuth.DefaultInstance.CurrentUser;
+            FirebaseUser user = FirebaseManager.Auth.CurrentUser;
             if (user != null)
             {
                 DataSync dataSync = new DataSync();

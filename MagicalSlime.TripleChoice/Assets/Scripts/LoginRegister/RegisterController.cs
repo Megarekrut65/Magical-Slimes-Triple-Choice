@@ -1,4 +1,5 @@
 ﻿using System;
+using DataManagement;
 using Firebase.Auth;
 using Firebase.Extensions;
 using Global;
@@ -10,7 +11,7 @@ namespace LoginRegister
     {
         public static void Register(string username, string email, string password, Action<bool, string> answer)
         {
-            FirebaseAuth auth = FirebaseAuth.DefaultInstance;
+            FirebaseAuth auth = FirebaseManager.Auth;
             auth.CreateUserWithEmailAndPasswordAsync(email, password)
                 .ContinueWithOnMainThread(task => {
                     CustomLogger.Log(task.Exception?.Message);

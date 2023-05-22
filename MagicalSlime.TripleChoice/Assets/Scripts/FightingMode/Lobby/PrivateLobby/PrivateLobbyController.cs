@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DataManagement;
 using FightingMode.Game;
 using Firebase.Database;
 using Firebase.Extensions;
@@ -25,8 +26,8 @@ namespace FightingMode.Lobby.PrivateLobby
         private void Awake()
         {
             string code = FightingSaver.LoadCode();
-            
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
+
+            FirebaseDatabase db = FirebaseManager.Db;
             _room = db.RootReference.Child("private-rooms").Child(code);
 
             _room.ValueChanged += EnemyCome;

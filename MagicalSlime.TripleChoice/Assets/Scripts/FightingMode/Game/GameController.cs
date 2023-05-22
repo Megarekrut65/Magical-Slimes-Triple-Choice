@@ -25,6 +25,7 @@ namespace FightingMode.Game
             }
             arrowController.Right();
             
+            FightingSaver.SaveGameOver(false);
         }
 
         private void Awake()

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using DataManagement;
 using Firebase.Database;
 using Firebase.Extensions;
 using Global;
@@ -25,7 +26,7 @@ namespace FightingMode.Lobby.Global
         {
             _info = info;
             _answer = answer;
-            _db = FirebaseDatabase.DefaultInstance;
+            _db = FirebaseManager.Db;
         }
 
         public void Create(int maxHp)
