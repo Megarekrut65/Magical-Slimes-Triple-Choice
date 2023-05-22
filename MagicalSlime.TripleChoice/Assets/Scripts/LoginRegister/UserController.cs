@@ -4,6 +4,7 @@ using System.Globalization;
 using DataManagement;
 using Firebase.Extensions;
 using Firebase.Firestore;
+using Global;
 
 namespace LoginRegister
 {
@@ -21,7 +22,7 @@ namespace LoginRegister
             Dictionary<string, object> data = UserData.GetUserDataFromLocalStorage();
 
             data.Add("username", username);
-            data.Add("registrationDate", DateTime.Now.ToString(CultureInfo.InvariantCulture));
+            data.Add("registrationDate", DateTimeUtc.NowInvariant);
 
             docRef.SetAsync(data).ContinueWithOnMainThread(task =>
             {

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using Firebase.Database;
 using Firebase.Extensions;
@@ -50,7 +50,7 @@ namespace FightingMode.Lobby.Global
                 return TransactionResult.Success(data);
             }).ContinueWithOnMainThread(MakeRoomNotFree);
         }
-
+        
         private void MakeRoomNotFree(Task<DataSnapshot> task)
         {
             if (_code == "")
@@ -69,6 +69,34 @@ namespace FightingMode.Lobby.Global
             
             FightingSaver.SaveCode(_code);
             DatabaseReference globalRoom = db.RootReference.Child("global-rooms").Child(_code);
+            AddDataToRoom(globalRoom);
+            globalRoom.Child("hostAlive").GetValueAsync().ContinueWithOnMainThread(t =>
+            {
+                if (t.IsFaulted)
+                {
+                    CustomLogger.Log(t.Exception?.Message);
+                    globalRoom.RemoveValueAsync();
+                    answer(false, "host-not-alive");
+                    return;
+                }
+
+                DateTime dateTime = Convert.ToDateTime(t.Result.Value as string, CultureInfo.InvariantCulture);
+                DateTime now = DateTimeUtc.Now;
+
+                if (dateTime - now > TimeSpan.FromSeconds(3) || dateTime - now < TimeSpan.FromSeconds(-3))
+                {
+                    CustomLogger.Log("Host not alive");
+                    globalRoom.RemoveValueAsync();
+                    answer(false, "host-not-alive");
+                    return;
+                }
+
+                AddDataToRoom(globalRoom);
+            });
+        }
+
+        private void AddDataToRoom(DatabaseReference globalRoom)
+        {
             globalRoom.Child("client").SetValueAsync(info.ToDictionary()).ContinueWithOnMainThread(t =>
             {
                 if (t.IsFaulted)

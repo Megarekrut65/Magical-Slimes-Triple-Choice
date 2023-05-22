@@ -24,7 +24,7 @@ namespace FightingMode.Lobby
         protected virtual void SaveRoomData(Task<DataSnapshot> task)
         {
             CustomLogger.Log(task.Exception?.Message);
-            if (task.IsFaulted)
+            if (task.IsFaulted || !task.Result.HasChildren)
             {
                 answer(false, "room-error");
                 return;

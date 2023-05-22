@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Account.SlimesList;
+using Global;
 using Global.Json;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace LoginRegister
             Dictionary<string, object> data = deviceData;
             data["username"] = accountData["username"];
             data["registrationDate"] = accountData["registrationDate"];
-            data["lastSave"] = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+            data["lastSave"] = DateTimeUtc.NowInvariant;
             
             data["diamonds"] = accountData["diamonds"];
             data["hats"] = accountData["hats"];

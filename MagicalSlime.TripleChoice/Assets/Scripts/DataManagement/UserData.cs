@@ -44,7 +44,7 @@ namespace DataManagement
         {
             Dictionary<string, object> data = GetAccountData();
             data["currentSlime"] = GetCurrentSlimeData();
-            data["lastSave"] = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+            data["lastSave"] = DateTimeUtc.NowInvariant;
 
             return data;
         }

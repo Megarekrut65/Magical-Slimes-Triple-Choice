@@ -1,8 +1,12 @@
-﻿using Global;
+﻿using Firebase.Database;
+using Global;
 using UnityEngine;
 
 namespace FightingMode.Game
 {
+    /// <summary>
+    /// Show first player and starts game.
+    /// </summary>
     public class GameController : MonoBehaviour
     {
         [SerializeField] private RoundController roundController;
@@ -20,6 +24,7 @@ namespace FightingMode.Game
                 return;
             }
             arrowController.Right();
+            
         }
 
         private void Awake()

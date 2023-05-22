@@ -31,13 +31,19 @@ namespace FightingMode.Lobby.Global
                 return;
             }
 
-            if (message == "room-not-found")
+            switch (message)
             {
-                Click();
-                CreateRoom();
-                return;
+                case "room-not-found":
+                    CreateRoom();
+                    return;
+                case "host-not-alive":
+                case "try-again":
+                    ConnectToRoom();
+                    return;
+                default:
+                    Error(message);
+                    break;
             }
-            Error(message);
         }
 
         public void Back()

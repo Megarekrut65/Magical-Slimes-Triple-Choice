@@ -26,7 +26,7 @@ namespace Global
 
         public static void LastSave()
         {
-            LocalStorage.SetValue("lastSave", DateTime.Now.ToString(CultureInfo.InvariantCulture));
+            LocalStorage.SetValue("lastSave", DateTimeUtc.NowInvariant);
         }
         public static void SaveRegistrationDate(string date){
             LocalStorage.SetValue("registrationDate", date);

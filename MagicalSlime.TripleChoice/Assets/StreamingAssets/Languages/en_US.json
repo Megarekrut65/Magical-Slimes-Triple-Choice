@@ -463,6 +463,10 @@
         {
             "key": "leave-question",
             "value": "Are you sure you want to leave? You'll lose and won't be able to come back!"
+        },
+        {
+            "key": "search-going",
+            "value": "The search is ongoing. If you exit the app, the search may stop"
         }
     ]
 }

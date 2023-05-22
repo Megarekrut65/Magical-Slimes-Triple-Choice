@@ -8,6 +8,10 @@ using UnityEngine.SceneManagement;
 
 namespace FightingMode.Game
 {
+    /// <summary>
+    /// Saves winner and loser data after any slime is died.
+    /// Also open game over scene.
+    /// </summary>
     public class DieController : MonoBehaviour
     {
         [SerializeField] private HealthController mainHealthController;
@@ -29,13 +33,14 @@ namespace FightingMode.Game
         }
         public void GameOver()
         {
-            LoseEvent(mainHealthController, "mainInfo");
-            LoseEvent(enemyHealthController, "enemyInfo");
+            string mainType = FightingSaver.LoadMainType();
+            LoseEvent(mainHealthController, mainType);
+            LoseEvent(enemyHealthController, FightingSaver.LoadEnemyType());
 
             GameOverSaver saver = new GameOverSaver(FightingSaver.LoadUserInfo("mainInfo"), 
                 FightingSaver.LoadUserInfo("enemyInfo"));
 
-            string mainType = FightingSaver.LoadMainType(), roomType = FightingSaver.LoadRoomType();
+            string roomType = FightingSaver.LoadRoomType();
             if (_losersCount == 1)
             {
                 saver.Save(_lastWinner, mainType, roomType);

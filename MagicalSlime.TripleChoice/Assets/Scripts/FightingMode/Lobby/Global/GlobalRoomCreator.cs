@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
+using System.Threading;
 using Firebase.Database;
 using Firebase.Extensions;
+using Global;
+using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace FightingMode.Lobby.Global
 {
@@ -16,10 +18,14 @@ namespace FightingMode.Lobby.Global
         private readonly UserInfo _info;
         private readonly Action<bool, string> _answer;
         
+        private readonly FirebaseDatabase _db;
+        [CanBeNull] private IEnumerator _keepAlive;
+        
         public GlobalRoomCreator(UserInfo info, Action<bool, string> answer)
         {
             _info = info;
             _answer = answer;
+            _db = FirebaseDatabase.DefaultInstance;
         }
 
         public void Create(int maxHp)
@@ -36,16 +42,15 @@ namespace FightingMode.Lobby.Global
             }
 
             _code = FightingSaver.LoadCode();
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
-            DatabaseReference room = db.RootReference.Child("global-free").Child(_code);
+            DatabaseReference room = _db.RootReference.Child("global-free").Child(_code);
+
             Dictionary<string, object> data = new Dictionary<string, object>
             {
                 {"cups", _info.cups},
                 {"maxLevel", _info.maxLevel},
                 {"isFree", true},
-                {"creationDate", DateTime.Now.ToString(CultureInfo.InvariantCulture)}
+                {"creationDate", DateTimeUtc.NowInvariant}
             };
-
             room.SetValueAsync(data).ContinueWithOnMainThread(task =>
             {
                 if (task.IsFaulted)
@@ -55,19 +60,39 @@ namespace FightingMode.Lobby.Global
                 }
                 IsCreated = true;
                 AddHandlingConnection();
+                _keepAlive = KeepAlive();
+                CoroutineStarter.StartOne(_keepAlive);
             });
+            room.ValueChanged += RoomRemoved;
+        }
+
+        private IEnumerator KeepAlive()
+        {
+            DatabaseReference globalRoom = _db.RootReference.Child("global-rooms").Child(_code).Child("hostAlive");
+            while (Thread.CurrentThread.IsAlive)
+            {
+                yield return new WaitForSeconds(1f);
+                globalRoom.SetValueAsync(DateTimeUtc.NowInvariant);
+            }
         }
 
         private void AddHandlingConnection()
         {
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
-            DatabaseReference room = db.RootReference.Child("global-rooms").Child(_code);
+            DatabaseReference room = _db.RootReference.Child("global-rooms").Child(_code);
             room.Child("client").ValueChanged += EnemyConnectHandler;
         }
 
+        private void RoomRemoved(object sender, ValueChangedEventArgs args)
+        {
+            if (args.Snapshot.Exists && args.Snapshot.ChildrenCount >= 2) return;
+            CoroutineStarter.StopOne(_keepAlive);
+            _answer(false, "try-again");
+        }
         private void EnemyConnectHandler(object sender, ValueChangedEventArgs args)
         {
             if(!args.Snapshot.Exists) return;
+            CoroutineStarter.StopOne(_keepAlive);
+            
             UserInfo enemy = UserInfo.FromDictionary(args.Snapshot.Value as Dictionary<string, object>);
             
             FightingSaver.SaveUserInfo("enemyInfo", enemy);
@@ -77,11 +102,11 @@ namespace FightingMode.Lobby.Global
 
         public void RemoveRoom(Action answer)
         {
-            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
-            DatabaseReference roomFree = db.RootReference.Child("global-free").Child(_code);
+            CoroutineStarter.StopOne(_keepAlive);
+            DatabaseReference roomFree = _db.RootReference.Child("global-free").Child(_code);
             roomFree.RemoveValueAsync().ContinueWithOnMainThread(_ =>
             {
-                DatabaseReference roomGlobal = db.RootReference.Child("global-rooms").Child(_code);
+                DatabaseReference roomGlobal = _db.RootReference.Child("global-rooms").Child(_code);
                 roomGlobal.RemoveValueAsync().ContinueWithOnMainThread(_ =>
                 {
                     answer();
