@@ -7,7 +7,7 @@ namespace FightingMode.Lobby
     {
         private void Start()
         {
-            LocalStorage.SetValue("needSave", "false");
+            LocalStorage.SetValue("needSave", "true");
         }
     }
 }

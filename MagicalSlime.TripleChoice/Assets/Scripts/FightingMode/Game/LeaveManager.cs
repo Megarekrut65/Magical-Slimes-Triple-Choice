@@ -1,4 +1,6 @@
-﻿using Firebase.Database;
+﻿using System.Collections;
+using System.Threading.Tasks;
+using Firebase.Database;
 using Firebase.Extensions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,7 +13,10 @@ namespace FightingMode.Game
     /// </summary>
     public class LeaveManager : MonoBehaviour
     {
+        [SerializeField] private DieController dieController;
+        
         private DatabaseReference _room;
+        private bool _leaved;
         
         private void Awake()
         {
@@ -27,18 +32,43 @@ namespace FightingMode.Game
             _room.ValueChanged -= RoomHandler;
         }
 
+        private void SetResult(string winnerType)
+        {
+            GameOverSaver saver = new GameOverSaver(FightingSaver.LoadUserInfo("mainInfo"), 
+                FightingSaver.LoadUserInfo("enemyInfo"));
+
+            string roomType = FightingSaver.LoadRoomType(), mainType= FightingSaver.LoadMainType();
+            saver.Save(winnerType, mainType, roomType);
+        }
         private void RoomHandler(object sender, ValueChangedEventArgs args)
         {
+            if (dieController.IsGameOver() || _leaved || args.Snapshot.Exists) return;
+            SetResult(FightingSaver.LoadMainType());
             
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
         }
         public void Leave()
         {
-            _room.Child(FightingSaver.LoadMainType())
-                .RemoveValueAsync()
-                .ContinueWithOnMainThread(_ =>
-                {
-                    SceneManager.LoadScene("GameOver");
-                });
+            _leaved = true;
+            _room.RemoveValueAsync()
+                .ContinueWithOnMainThread(LeaveTask);
+
+            StartCoroutine(AutoLeave());
+        }
+
+        private void LeaveTask(Task _)
+        {
+            StopCoroutine(AutoLeave());
+            SetResult(FightingSaver.LoadEnemyType());
+
+            SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+        }
+
+        private IEnumerator AutoLeave()
+        {
+            yield return new WaitForSeconds(5f);
+
+            LeaveTask(null);
         }
     }
 }

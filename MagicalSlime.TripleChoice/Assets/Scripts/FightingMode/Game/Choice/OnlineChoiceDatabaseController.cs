@@ -21,7 +21,7 @@ namespace FightingMode.Game.Choice
             choices.Clear();
             foreach (DataSnapshot data in args.Snapshot.Children)
             {
-                choices.Add(JsonUtility.FromJson<ChoiceData>(data.Value as string));
+                choices.Add(JsonUtility.FromJson<ChoiceData>(data.GetRawJsonValue()));
             }
             
             InvokeNext();
@@ -29,12 +29,13 @@ namespace FightingMode.Game.Choice
 
         public void InvokeNext()
         {
-            if (count < choices.Count)
-            {
-                ChoiceData data = choices[count++];
-                Attack?.Invoke((ChoiceType)data.attack);
-                Block?.Invoke((ChoiceType)data.block);
-            }
+            if (count >= choices.Count) return;
+            ChoiceData data = choices[count];
+
+            if(data == null) return;
+            count++;
+            Attack?.Invoke((ChoiceType)data.attack);
+            Block?.Invoke((ChoiceType)data.block);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Firebase.Database;
 using Firebase.Extensions;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace FightingMode.Lobby.Global
@@ -66,7 +67,7 @@ namespace FightingMode.Lobby.Global
 
         private void EnemyConnectHandler(object sender, ValueChangedEventArgs args)
         {
-            if(!args.Snapshot.Exists || !args.Snapshot.HasChild("client")) return;
+            if(!args.Snapshot.Exists) return;
             UserInfo enemy = UserInfo.FromDictionary(args.Snapshot.Value as Dictionary<string, object>);
             
             FightingSaver.SaveUserInfo("enemyInfo", enemy);

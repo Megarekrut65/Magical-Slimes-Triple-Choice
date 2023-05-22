@@ -66,6 +66,8 @@ namespace FightingMode.Lobby.Global
                 DatabaseReference room = db.RootReference.Child("global-free").Child(_code);
                 room.RemoveValueAsync();
             }
+            
+            FightingSaver.SaveCode(_code);
             DatabaseReference globalRoom = db.RootReference.Child("global-rooms").Child(_code);
             globalRoom.Child("client").SetValueAsync(info.ToDictionary()).ContinueWithOnMainThread(t =>
             {

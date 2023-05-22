@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using FightingMode.Game.EntityControllers;
+using Firebase.Database;
+using Firebase.Extensions;
 using Global;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -43,10 +45,17 @@ namespace FightingMode.Game
                 saver.SaveDraw(mainType, roomType);
             }
             
-            CustomLogger.Log(JsonUtility.ToJson(FightingSaver.LoadUserInfo("winner")));
-            CustomLogger.Log(JsonUtility.ToJson(FightingSaver.LoadUserInfo("loser")));
             CustomLogger.Log("GameOver!");
-            StartCoroutine(WaitForLoad());
+            
+            FirebaseDatabase db = FirebaseDatabase.DefaultInstance;
+            DatabaseReference room = db.RootReference
+                .Child(FightingSaver.LoadRoomType())
+                .Child(FightingSaver.LoadCode());
+            
+            room.RemoveValueAsync().ContinueWithOnMainThread(_ =>
+            {
+                StartCoroutine(WaitForLoad());
+            });
         }
 
         private IEnumerator WaitForLoad()

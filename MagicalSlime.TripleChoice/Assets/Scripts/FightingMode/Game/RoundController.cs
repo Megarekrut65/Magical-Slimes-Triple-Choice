@@ -31,19 +31,34 @@ namespace FightingMode.Game
         
         private AttackController.AttackAnimationFinish _mainFinish;
         private AttackController.AttackAnimationFinish _enemyFinish;
-        
-        private int _ready;
+
+        private bool _enemyReady;
+        private bool _mainReady;
 
         public void StartGame()
         {
             StartCoroutine(ShowChoice());
         }
 
-        public void NextRound()
+        public void NextRoundEnemy()
         {
-            _ready++;
-            if (_ready != 2) return;
-            _ready = 0;
+            if (!_mainReady)
+            {
+                _enemyReady = true;
+                return;
+            }
+            _mainReady = false;
+            StartCoroutine(ShowChoice());
+        }
+
+        private void NextRoundMain()
+        {
+            if (!_enemyReady)
+            {
+                _mainReady = true;
+                return;
+            }
+            _enemyReady = false;
             StartCoroutine(ShowChoice());
         }
         private IEnumerator ShowChoice()
@@ -58,7 +73,7 @@ namespace FightingMode.Game
         
         private void Awake()
         {
-            answerController.AnswerEvent += NextRound;
+            answerController.AnswerEvent += NextRoundEnemy;
             
             main.Choice += Choice;
             enemy.Choice += Choice;
@@ -82,7 +97,7 @@ namespace FightingMode.Game
 
         private void OnDestroy()
         {
-            answerController.AnswerEvent -= NextRound;
+            answerController.AnswerEvent -= NextRoundEnemy;
             
             main.Choice -= Choice;
             enemy.Choice -= Choice;
@@ -123,7 +138,7 @@ namespace FightingMode.Game
             
             if (!dieController.IsGameOver())
             {
-                NextRound();
+                NextRoundMain();
                 answerController.SendAnswer();
             }
             else

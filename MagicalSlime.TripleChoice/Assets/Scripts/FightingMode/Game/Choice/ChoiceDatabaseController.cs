@@ -7,7 +7,7 @@ namespace FightingMode.Game.Choice
     public class ChoiceDatabaseController
     {
         protected readonly DatabaseReference choice;
-        protected List<ChoiceData> choices;
+        protected readonly List<ChoiceData> choices;
 
         protected int count = 0;
 
@@ -20,6 +20,7 @@ namespace FightingMode.Game.Choice
                 .Child("game");
             
             choice = game.Child(type).Child("choice");
+            choices = new List<ChoiceData>();
         }
         
     }

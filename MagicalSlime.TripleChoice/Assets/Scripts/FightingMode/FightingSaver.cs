@@ -20,7 +20,7 @@ namespace FightingMode
 
         public static int LoadCups()
         {
-            return LocalStorage.GetValue("cups", 0);
+            return LocalStorage.GetValue("cups", 200);
         }
 
         public static void SaveCups(int cups)
@@ -81,13 +81,13 @@ namespace FightingMode
             return LocalStorage.GetValue("roomType", "private-rooms");
         }
 
-        public static ChoiceType LoadDefaultChoice()
+        public static ChoiceType LoadDefaultChoice(string key)
         {
-            return (ChoiceType)LocalStorage.GetValue("defaultChoice", 0);
+            return (ChoiceType)LocalStorage.GetValue(key+"DefaultChoice", 0);
         }
-        public static void SaveDefaultChoice(ChoiceType type)
+        public static void SaveDefaultChoice(string key, ChoiceType type)
         {
-            LocalStorage.SetValue("defaultChoice", (int)type);
+            LocalStorage.SetValue(key+"DefaultChoice", (int)type);
         }
 
         public static string LoadFirst()

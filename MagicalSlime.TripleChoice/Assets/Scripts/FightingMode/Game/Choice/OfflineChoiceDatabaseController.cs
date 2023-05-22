@@ -5,10 +5,11 @@ namespace FightingMode.Game.Choice
 {
     public class OfflineChoiceDatabaseController: ChoiceDatabaseController
     {
-        private ChoiceData _data;
+        private readonly ChoiceData _data;
         
         public OfflineChoiceDatabaseController(string type) : base(type)
         {
+            _data = new ChoiceData();
         }
 
         public void SendAttack(int type)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FightingMode.Game.Choice;
 using Firebase.Database;
 using Global;
 using UnityEngine;
@@ -38,6 +39,11 @@ namespace FightingMode.Lobby
 
             FightingSaver.SaveMainType("client");
             FightingSaver.SaveRoomType(_roomType);
+            
+            FightingSaver.SaveDefaultChoice("host", 
+                (ChoiceType)Convert.ToInt32(task.Result.Child("defaultChoiceHost").Value));
+            FightingSaver.SaveDefaultChoice("client", 
+                (ChoiceType)Convert.ToInt32(task.Result.Child("defaultChoiceClient").Value));
 
             answer(true, "");
         }

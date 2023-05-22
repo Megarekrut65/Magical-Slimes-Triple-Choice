@@ -16,6 +16,8 @@ namespace FightingMode.Game
         private DatabaseReference _mainAnswer;
 
         private bool _isAnswer = false;
+        private IEnumerator _answerEnumerator;
+        
         private int _count;
 
         private void Awake()
@@ -42,13 +44,17 @@ namespace FightingMode.Game
         {
             if (!args.Snapshot.Exists) return;
             _isAnswer = true;
-            StopCoroutine(AutoAnswer());
+            if(_answerEnumerator != null) StopCoroutine(_answerEnumerator);
             AnswerEvent?.Invoke();
         }
 
         public void SendAnswer()
         {
-            if(!_isAnswer) StartCoroutine(AutoAnswer());
+            if (!_isAnswer)
+            {
+                _answerEnumerator = AutoAnswer();
+                StartCoroutine(_answerEnumerator);
+            }
             _isAnswer = false;
             _mainAnswer.SetValueAsync(_count++);
         }

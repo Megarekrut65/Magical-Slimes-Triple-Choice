@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using FightingMode.Game.Choice;
 using Firebase.Database;
 using Firebase.Extensions;
 using Global;
@@ -19,14 +20,18 @@ namespace FightingMode.Lobby
             
             DatabaseReference room = db.RootReference.Child(roomType).Child(g.ToString());
 
-            string first = Random.Range(0, 100) >= 50 ? "host" : "client"; 
+            string first = Random.Range(0, 100) >= 50 ? "host" : "client";
+            int defaultChoiceHost = Random.Range(0, 3);
+            int defaultChoiceClient = Random.Range(0, 3);
             
             Dictionary<string, object> data = new Dictionary<string, object>
             {
                 {"creationDate", DateTime.Now.ToString(CultureInfo.InvariantCulture)},
                 {"maxHp", maxHp},
                 {"host", info.ToDictionary()},
-                {"first", first}
+                {"first", first},
+                {"defaultChoiceHost", defaultChoiceHost},
+                {"defaultChoiceClient", defaultChoiceClient}
             };
 
             room.SetValueAsync(data).ContinueWithOnMainThread(task =>
@@ -43,6 +48,9 @@ namespace FightingMode.Lobby
                 FightingSaver.SaveRoomType(roomType);
                 FightingSaver.SaveFirst(first);
                 FightingSaver.SaveMaxHp(maxHp);
+                
+                FightingSaver.SaveDefaultChoice("host", (ChoiceType)defaultChoiceHost);
+                FightingSaver.SaveDefaultChoice("client", (ChoiceType)defaultChoiceClient);
                 
                 answer(true, "");
             });

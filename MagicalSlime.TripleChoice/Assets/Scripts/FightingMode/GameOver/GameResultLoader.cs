@@ -1,5 +1,6 @@
 ﻿using System;
 using FightingMode.Game;
+using Global;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,9 @@ namespace FightingMode.GameOver
 
             SetValue(cupsText, result.deltaCups);
             SetValue(diamondsText, result.deltaDiamonds);
+            
+            DataSaver.SaveDiamonds(DataSaver.LoadDiamonds() + result.deltaDiamonds);
+            FightingSaver.SaveCups(FightingSaver.LoadCups() + result.deltaCups);
 
         }
 

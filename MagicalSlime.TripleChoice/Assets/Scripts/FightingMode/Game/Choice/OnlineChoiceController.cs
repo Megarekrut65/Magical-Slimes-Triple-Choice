@@ -13,6 +13,9 @@ namespace FightingMode.Game.Choice
 
         private bool _attackChoice = false;
         private bool _blockChoice = false;
+        private IEnumerator _attackEnumerator;
+        private IEnumerator _blockEnumerator;
+        
         private const float WaitTime = 60f;
 
         private ChoiceType _defaultChoice;
@@ -21,7 +24,7 @@ namespace FightingMode.Game.Choice
         
         private void Start()
         {
-            _defaultChoice = FightingSaver.LoadDefaultChoice();
+            _defaultChoice = FightingSaver.LoadDefaultChoice(FightingSaver.LoadEnemyType());
         }
 
         protected override void ChildAwake()
@@ -41,34 +44,39 @@ namespace FightingMode.Game.Choice
         {
             _attackChoice = false;
             _blockChoice = false;
-            StartCoroutine(AutoChoiceAttack());
+            
+            _attackEnumerator = AutoChoiceAttack();
+            StartCoroutine(_attackEnumerator);
         }
 
         private void AttackChoice(ChoiceType type)
         {
             _attackChoice = true;
             SelectAttack((int)type);
-            StopCoroutine(AutoChoiceAttack());
-            if (!_blockChoice) StartCoroutine(AutoChoiceBlock());
+            if(_attackEnumerator != null) StopCoroutine(_attackEnumerator);
+
+            if (_blockChoice) return;
+            _blockEnumerator = AutoChoiceBlock();
+            StartCoroutine(_blockEnumerator);
         }
         private void BlockChoice(ChoiceType type)
         {
             _blockChoice = true;
             SelectBlock((int)type);
-            StopCoroutine(AutoChoiceBlock());
+            if(_blockEnumerator != null) StopCoroutine(_blockEnumerator);
         }
 
         private IEnumerator AutoChoiceAttack()
         {
             yield return new WaitForSeconds(WaitTime/2);
-            _databaseController.InvokeNext();
+            if (!_attackChoice) _databaseController.InvokeNext();
             yield return new WaitForSeconds(WaitTime/2);
             if (!_attackChoice) AttackChoice(_defaultChoice);
         }
         private IEnumerator AutoChoiceBlock()
         {
             yield return new WaitForSeconds(WaitTime/2);
-            _databaseController.InvokeNext();
+            if (!_blockChoice) _databaseController.InvokeNext();
             yield return new WaitForSeconds(WaitTime/2);
             if (!_blockChoice) BlockChoice(_defaultChoice);
         }

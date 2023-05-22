@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Global;
+using UnityEngine;
 
 namespace FightingMode.Game
 {
@@ -9,6 +10,8 @@ namespace FightingMode.Game
         
         private void Start()
         {
+            LocalStorage.SetValue("needSave", "false");
+            
             string firstType = FightingSaver.LoadFirst();
             string mainType = FightingSaver.LoadMainType();
             if (firstType == mainType)
