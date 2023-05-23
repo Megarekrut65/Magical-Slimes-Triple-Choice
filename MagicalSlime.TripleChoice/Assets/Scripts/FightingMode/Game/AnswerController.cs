@@ -20,6 +20,8 @@ namespace FightingMode.Game
         private DatabaseReference _enemyAnswer;
         private DatabaseReference _mainAnswer;
 
+        private const float AnswerTime = 15f;
+        private float _answerTime = AnswerTime;
         private bool _isAnswer = false;
         private IEnumerator _answerEnumerator;
         
@@ -50,6 +52,7 @@ namespace FightingMode.Game
             if (!args.Snapshot.Exists) return;
             _isAnswer = true;
             if(_answerEnumerator != null) StopCoroutine(_answerEnumerator);
+            _answerTime = AnswerTime;
             AnswerEvent?.Invoke();
         }
 
@@ -73,8 +76,12 @@ namespace FightingMode.Game
         /// <returns></returns>
         private IEnumerator AutoAnswer()
         {
-            yield return new WaitForSeconds(60f);
-            if(!_isAnswer) AnswerEvent?.Invoke();
+            yield return new WaitForSeconds(_answerTime);
+            if (!_isAnswer)
+            {
+                _answerTime /= 2;
+                AnswerEvent?.Invoke();
+            }
         }
     }
 }

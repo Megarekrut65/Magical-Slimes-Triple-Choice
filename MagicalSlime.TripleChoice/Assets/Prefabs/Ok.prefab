@@ -144,6 +144,7 @@ MonoBehaviour:
   upEvent:
     m_PersistentCalls:
       m_Calls: []
+  onlyOneClick: 0
 --- !u!1 &3948956292975115043
 GameObject:
   m_ObjectHideFlags: 0

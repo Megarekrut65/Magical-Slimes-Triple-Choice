@@ -20,7 +20,8 @@ namespace Global.Button
 
         [SerializeField] 
         private bool onlyOneClick = false;
-        private bool _isClicked = false;
+        private bool _isClickedDown = false;
+        private bool _isClickedUp = false;
         
         private ButtonEffect _buttonEffect;
 
@@ -29,12 +30,15 @@ namespace Global.Button
         }
         public void OnPointerDown(PointerEventData eventData)
         {
-            if(onlyOneClick && _isClicked) return;
-            _isClicked = true;
+            if(onlyOneClick && _isClickedDown) return;
+            _isClickedDown = true;
             
             _buttonEffect?.Down();
         }
         public void OnPointerUp(PointerEventData eventData) {
+            if(onlyOneClick && _isClickedUp) return;
+            _isClickedUp = true;
+            
             _buttonEffect?.Up();
         }
     }

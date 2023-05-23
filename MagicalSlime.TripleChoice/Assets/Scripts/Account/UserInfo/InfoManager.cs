@@ -1,5 +1,7 @@
 ﻿
 using System.Collections;
+using DataManagement;
+using FightingMode;
 using Global;
 using IncrementalMode;
 using LoginRegister;
@@ -52,9 +54,14 @@ namespace Account.UserInfo
         {
             LocalStorage.SetValue("needSave", "false");
             loader.Show();
-            LoginController.SignOutUser();
-            DataSaver.RemoveAccountData();
-            StartCoroutine(Open());
+            DataSync sync = new DataSync();
+            sync.SyncAllData((_, _) =>
+            {
+                LoginController.SignOutUser();
+                DataSaver.RemoveAccountData();
+                FightingSaver.SaveCups(0);
+                StartCoroutine(Open());
+            });
         }
 
         public void Out()

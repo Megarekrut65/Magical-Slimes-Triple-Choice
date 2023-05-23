@@ -153,6 +153,7 @@ namespace Global
             LocalStorage.Remove("lastSave");
             LocalStorage.Remove("slimeType");
             LocalStorage.Remove("level");
+            LocalStorage.Remove("slimeData");
 
             Hat[] hats = HatsList.Hats;
             foreach (Hat hat in hats)

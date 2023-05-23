@@ -483,6 +483,22 @@
         {
             "key": "resurrect-question",
             "value": "You can resurrect your slime for a certain amount of diamonds!"
+        },
+        {
+            "key": "enemy-leave",
+            "value": "Enemy leave room"
+        },
+        {
+            "key": "max-health",
+            "value": "Max slimes health:"
+        },
+        {
+            "key": "convert",
+            "value": "Convert"
+        },
+        {
+            "key": "close",
+            "value": "Close"
         }
     ]
 }

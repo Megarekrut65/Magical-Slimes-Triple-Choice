@@ -5,7 +5,7 @@ namespace Main
 {
     public static class Version
     {
-        public const string Current = "2.2";
+        public const string Current = "2.3";
 
         public static double ToNumber(string value)
         {

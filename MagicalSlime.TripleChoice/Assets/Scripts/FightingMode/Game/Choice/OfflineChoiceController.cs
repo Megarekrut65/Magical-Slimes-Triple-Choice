@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace FightingMode.Game.Choice
 {
@@ -12,10 +13,21 @@ namespace FightingMode.Game.Choice
         private static readonly int BlockTrigger = Animator.StringToHash("Block");
         private static readonly int EndTrigger = Animator.StringToHash("End");
 
+        [SerializeField] private ChoiceTimer attackTimer;
+        [SerializeField] private ChoiceTimer blockTimer;
+        [SerializeField] private float waitTime;
+
+        private ChoiceType _defaultChoice;
+        
         private ChoiceDatabaseSender _databaseSender;
 
         private bool _attackClicked = true;
         private bool _blockClicked = true;
+
+        private void Start()
+        {
+            _defaultChoice = FightingSaver.LoadDefaultChoice(FightingSaver.LoadMainType());
+        }
 
         protected override void ChildAwake()
         {
@@ -31,21 +43,30 @@ namespace FightingMode.Game.Choice
         {
             _attackClicked = false;
             _blockClicked = false;
+            
+            attackTimer.StartTimer(waitTime, ()=>SelectAttack((int)_defaultChoice));
             animator.SetTrigger(AttackTrigger);
         }
         public override void SelectAttack(int type)
         {
+            attackTimer.StopTimer();
+            
             if(_attackClicked) return;
             _attackClicked = true;
 
             base.SelectAttack(type);
+            
+            blockTimer.StartTimer(waitTime, ()=>SelectBlock((int)_defaultChoice));
             animator.SetTrigger(BlockTrigger);
+            
 
             _databaseSender.SendAttack(type);
         }
 
         public override void SelectBlock(int type)
         {
+            blockTimer.StopTimer();
+            
             if(_blockClicked) return;
             _blockClicked = true;
 

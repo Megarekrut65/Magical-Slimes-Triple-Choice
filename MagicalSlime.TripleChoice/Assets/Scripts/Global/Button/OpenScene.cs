@@ -12,10 +12,17 @@ namespace Global.Button
         [SerializeField]
         private string sceneName;
 
+        [SerializeField] 
+        private bool openPrev = false;
+
         public void OnPointerUp(PointerEventData eventData) {
         }
-        public void OnPointerDown(PointerEventData eventData) {
-            SceneManager.LoadScene(this.sceneName, LoadSceneMode.Single);
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            string prev = LocalStorage.GetValue("prevScene", "main");
+            LocalStorage.SetValue("prevScene", SceneManager.GetActiveScene().name);
+            
+            SceneManager.LoadScene(openPrev ? prev : sceneName, LoadSceneMode.Single);
         }
     }
 }

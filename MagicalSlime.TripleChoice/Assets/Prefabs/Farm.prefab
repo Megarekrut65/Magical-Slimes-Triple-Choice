@@ -201,6 +201,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!1 &541067960729350587
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,6 +708,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onlyOneClick: 0
 --- !u!1 &7659415915953071860
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ namespace FightingMode.Lobby.PrivateLobby
         
         [SerializeField] private Animator animator;
         private static readonly int ComeTrigger = Animator.StringToHash("Come");
+        private static readonly int LeaveTrigger = Animator.StringToHash("Leave");
 
         public void Come(UserInfo info)
         {
@@ -28,6 +29,12 @@ namespace FightingMode.Lobby.PrivateLobby
             }
             
             animator.SetTrigger(ComeTrigger);
+        }
+
+        public void Leave()
+        {
+            animator.SetTrigger(LeaveTrigger);
+            usernameText.text = "";
         }
     }
 }

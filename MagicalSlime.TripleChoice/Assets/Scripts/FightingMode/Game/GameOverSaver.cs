@@ -30,6 +30,8 @@ namespace FightingMode.Game
                 loser = _main;
             }
             if(roomType == "global-rooms") SetNewParams(mainType,winnerType, winner, loser);
+            else FightingSaver.SaveResult(new GameResult(0,0));
+            
             SaveWinner(winner);
             SaveLoser(loser);
         }
@@ -37,6 +39,8 @@ namespace FightingMode.Game
         public void SaveDraw(string mainType, string roomType)
         {
             if(roomType == "global-rooms") SetNewParams(mainType, mainType, _main, _enemy);
+            else FightingSaver.SaveResult(new GameResult(0,0));
+            
             SaveWinner(_main);
             SaveLoser(_enemy);
         }
@@ -55,8 +59,8 @@ namespace FightingMode.Game
             
             CupsCounter diamondsCounter = new CupsCounter(winnerDiamonds, loserDiamonds);
 
-            int newWinnerDiamonds = Math.Max(0, diamondsCounter.NewWinnerCups);
-            int newLoserDiamonds =  Math.Max(0, diamondsCounter.NewLoserCups);
+            int newWinnerDiamonds = Math.Max(0, diamondsCounter.NewWinnerCups)/2;
+            int newLoserDiamonds =  Math.Max(0, diamondsCounter.NewLoserCups)/8;
 
             GameResult result = mainType == winnerType 
                 ? new GameResult(winner.cups - winnerCups, newWinnerDiamonds) 

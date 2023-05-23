@@ -1,4 +1,5 @@
 ﻿using System;
+using DataManagement;
 using FightingMode.Game;
 using Global;
 using UnityEngine;
@@ -24,11 +25,13 @@ namespace FightingMode.GameOver
             DataSaver.SaveDiamonds(DataSaver.LoadDiamonds() + result.deltaDiamonds);
             FightingSaver.SaveCups(FightingSaver.LoadCups() + result.deltaCups);
             FightingSaver.SaveGameOver(true);
+            DataSync sync = new DataSync();
+            sync.SyncAllData((_,_)=>{});
         }
 
         private void SetValue(Text text, int value)
         {
-            text.text = value.ToString();
+            text.text = (value > 0?"+":"") + value;
             text.color = value < 0 ? minusColor : addColor;
         }
     }

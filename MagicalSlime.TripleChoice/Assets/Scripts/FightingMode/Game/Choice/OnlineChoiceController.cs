@@ -16,7 +16,8 @@ namespace FightingMode.Game.Choice
         private IEnumerator _attackEnumerator;
         private IEnumerator _blockEnumerator;
         
-        private const float WaitTime = 60f;
+        private const float WaitTime = 45f;
+        private float _waitTime = WaitTime;
 
         private ChoiceType _defaultChoice;
 
@@ -31,13 +32,20 @@ namespace FightingMode.Game.Choice
         {
             _databaseReceiver = new ChoiceDatabaseReceiver(FightingSaver.LoadEnemyType());
             _databaseReceiver.Attack += AttackChoice;
+            _databaseReceiver.Attack += AnswerCome;
             _databaseReceiver.Block += BlockChoice;
         }
 
         protected override void ChildDestroy()
         {
             _databaseReceiver.Attack -= AttackChoice;
+            _databaseReceiver.Attack -= AnswerCome;
             _databaseReceiver.Block -= BlockChoice;
+        }
+
+        private void AnswerCome(ChoiceType _)
+        {
+            _waitTime = WaitTime;
         }
 
         public override void StartChoice()
@@ -77,17 +85,25 @@ namespace FightingMode.Game.Choice
 
         private IEnumerator AutoChoiceAttack()
         {
-            yield return new WaitForSeconds(WaitTime/2);
+            yield return new WaitForSeconds(_waitTime/2);
             if (!_attackChoice) _databaseReceiver.InvokeNext();
-            yield return new WaitForSeconds(WaitTime/2);
-            if (!_attackChoice) AttackChoice(_defaultChoice);
+            yield return new WaitForSeconds(_waitTime/2);
+            if (!_attackChoice)
+            {
+                _waitTime /= 2;
+                AttackChoice(_defaultChoice);
+            }
         }
         private IEnumerator AutoChoiceBlock()
         {
-            yield return new WaitForSeconds(WaitTime/2);
+            yield return new WaitForSeconds(_waitTime/2);
             if (!_blockChoice) _databaseReceiver.InvokeNext();
-            yield return new WaitForSeconds(WaitTime/2);
-            if (!_blockChoice) BlockChoice(_defaultChoice);
+            yield return new WaitForSeconds(_waitTime/2);
+            if (!_blockChoice)
+            {
+                _waitTime /= 2;
+                BlockChoice(_defaultChoice);
+            }
         }
     }
 }

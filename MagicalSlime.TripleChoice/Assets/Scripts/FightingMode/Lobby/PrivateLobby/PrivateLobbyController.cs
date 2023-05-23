@@ -16,7 +16,7 @@ namespace FightingMode.Lobby.PrivateLobby
     {
         [SerializeField] private Text error;
         
-        [FormerlySerializedAs("countController")] [SerializeField] private Counter counter;
+        [SerializeField] private Counter counter;
         
         [SerializeField] private EnemyController enemyController;
         
@@ -48,9 +48,10 @@ namespace FightingMode.Lobby.PrivateLobby
         }
         private void EnemyCome(object sender, ValueChangedEventArgs args)
         {
+            error.text = "";
             if (!args.Snapshot.Exists)
             {
-                error.text = LocalizationManager.GetWordByKey("host-leave");
+                error.text = LocalizationManager.GetWordByKey("enemy-leave");
                 StartCoroutine(BackToLobby());
                 return;
             }
@@ -63,8 +64,9 @@ namespace FightingMode.Lobby.PrivateLobby
                     _firstCheck = true;
                     return;
                 }
-                error.text = LocalizationManager.GetWordByKey("client-leave");
+                error.text = LocalizationManager.GetWordByKey("enemy-leave");
                 _clientAlive = false;
+                enemyController.Leave();
                 return;
             }
             UserInfo enemyInfo = UserInfo.FromDictionary(args.Snapshot.Child("client").Value as Dictionary<string, object>);
@@ -97,6 +99,7 @@ namespace FightingMode.Lobby.PrivateLobby
 
         public void Leave()
         {
+            _room.ValueChanged -= EnemyCome;
             if (FightingSaver.LoadMainType() == "client")
             {
                 _clientAlive = false;
@@ -108,13 +111,13 @@ namespace FightingMode.Lobby.PrivateLobby
             }
             _room.RemoveValueAsync().ContinueWithOnMainThread(_ =>
             {
-                StartCoroutine(BackToLobby());
+                StartCoroutine(BackToLobby(0.01f));
             });
         }
 
-        private IEnumerator BackToLobby()
+        private IEnumerator BackToLobby(float time = 1f)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(time);
             SceneManager.LoadScene("Lobby", LoadSceneMode.Single);
         }
     }
