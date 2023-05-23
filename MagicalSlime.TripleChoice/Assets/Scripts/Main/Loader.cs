@@ -32,7 +32,9 @@ namespace Main
 
         private void Load()
         {
-            if (firebaseLoader.CurrentVersion != Version.Current)
+            Debug.Log(Version.ToNumber(firebaseLoader.MinRequiredVersion));
+            Debug.Log(Version.ToNumber(Version.Current));
+            if (Version.ToNumber(firebaseLoader.MinRequiredVersion) > Version.ToNumber(Version.Current))
             {
                 SceneManager.LoadScene("Update", LoadSceneMode.Single);
                 return;

@@ -16,7 +16,7 @@ namespace Main
     public class FirebaseLoader : MonoBehaviour
     {
         public bool Ready { get; private set; } = false;
-        public string CurrentVersion { get; private set; } = "";
+        public string MinRequiredVersion { get; private set; } = "";
 
         private void Start()
         {
@@ -49,13 +49,13 @@ namespace Main
                 
                 if (task.IsCompletedSuccessfully)
                 {
-                    CurrentVersion = task.Result.GetValue<string>("current");
+                    MinRequiredVersion = task.Result.GetValue<string>("required");
 
                     LoadUser();
                     return;
                 }
 
-                CurrentVersion = Version.Current;
+                MinRequiredVersion = Version.Current;
                 LoadUser();
             });
         }
@@ -73,7 +73,7 @@ namespace Main
         {
             yield return new WaitForSeconds(10f);
             Ready = true;
-            CurrentVersion = Version.Current;
+            MinRequiredVersion = Version.Current;
         }
     }
 }
