@@ -2526,21 +2526,21 @@ MonoBehaviour:
   - key: blue-slime
     idleIcon: {fileID: -7078261816480267791, guid: bfeede70efd14484683f5956b4f1194b, type: 3}
     idleController: {fileID: 9100000, guid: 68555cc7381816a4b8e2742db37c34de, type: 2}
-    clickController: {fileID: 9100000, guid: 873ed18d803fe8948be763bf50d1a2e4, type: 2}
+    clickController: {fileID: 9100000, guid: 47c1849967856ba438dae2247a4c1cc1, type: 2}
     comeController: {fileID: 9100000, guid: df81c712a9c698b48ad6ff9ce6ad5228, type: 2}
     leftFightController: {fileID: 9100000, guid: 4e0143d355f234d49bd0f7715cb0c4df, type: 2}
     rightFightController: {fileID: 9100000, guid: 2b08e95f404cc8049a4080716ba880cb, type: 2}
   - key: red-slime
     idleIcon: {fileID: 4367289792872251007, guid: d4e8a5c5eececab46942986a743fd7d8, type: 3}
     idleController: {fileID: 9100000, guid: dfdb4d2f80da0fd449348e31347bc646, type: 2}
-    clickController: {fileID: 9100000, guid: 313c43c3229e7684796a75995c4b5494, type: 2}
+    clickController: {fileID: 9100000, guid: 37de6e3696299464d95face3c96eb818, type: 2}
     comeController: {fileID: 9100000, guid: ae8a2066df74afd41bdc5933e925d5ec, type: 2}
     leftFightController: {fileID: 9100000, guid: 44b6bd1509bb33343a992723a2dbcc19, type: 2}
     rightFightController: {fileID: 9100000, guid: a37f5b1eeb42d94419e8c96b948f93f1, type: 2}
   - key: green-slime
     idleIcon: {fileID: -9074539206338946419, guid: c80534141f80d28489b1ef92f8ff7d99, type: 3}
     idleController: {fileID: 9100000, guid: 89aaebe355d346b40af738d224f2010f, type: 2}
-    clickController: {fileID: 9100000, guid: 85bd361a0bf30544b850a9e0d2fd57f5, type: 2}
+    clickController: {fileID: 9100000, guid: 768f414854e0064449b96a498a96d677, type: 2}
     comeController: {fileID: 9100000, guid: 1115eed78638d7149bb58e03d787dda1, type: 2}
     leftFightController: {fileID: 9100000, guid: fbce96eb963569a4e8461d9325eb0ab2, type: 2}
     rightFightController: {fileID: 9100000, guid: 389b4c8f881e9764a96c4fae3d00fa7f, type: 2}
