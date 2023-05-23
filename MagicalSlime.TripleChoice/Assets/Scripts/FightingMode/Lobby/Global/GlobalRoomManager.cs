@@ -11,6 +11,7 @@ namespace FightingMode.Lobby.Global
         
         public void CreateRoom()
         {
+            if(isClicked) return;
             Click();
             
             RoomController.AddGlobalRoom(UserInfoTaker.Take(), 100, Answer);
@@ -18,6 +19,7 @@ namespace FightingMode.Lobby.Global
 
         public void ConnectToRoom()
         {
+            if(isClicked) return;
             Click();
             
             RoomController.ConnectToGlobalRoom(UserInfoTaker.Take(), toggle.isOn, Answer);
@@ -34,11 +36,17 @@ namespace FightingMode.Lobby.Global
             switch (message)
             {
                 case "room-not-found":
+                {
+                    isClicked = false;
                     CreateRoom();
+                }
                     return;
                 case "host-not-alive":
                 case "try-again":
+                {
+                    isClicked = false;
                     ConnectToRoom();
+                }
                     return;
                 default:
                     Error(message);

@@ -20,8 +20,13 @@ namespace LoginRegister
 
         [SerializeField] private ConflictManager conflictManager;
 
+        protected bool _isClicked;
+
         public void Login()
         {
+            if(_isClicked) return;
+            _isClicked = true;
+            
             loader.Show();
             Error("");
             string email = emailField.text;
@@ -54,6 +59,7 @@ namespace LoginRegister
         }
         protected void Answer(bool success, string message)
         {
+            _isClicked = false;
             loader.Hide();
             if (success)
             {

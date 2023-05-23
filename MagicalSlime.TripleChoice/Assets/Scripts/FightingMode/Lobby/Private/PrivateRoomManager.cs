@@ -14,6 +14,8 @@ namespace FightingMode.Lobby.Private
         
         public void CreateRoom()
         {
+            if(isClicked) return;
+            
             Click();
             int hp = Convert.ToInt32(maxHp.text);
             hp = Math.Max(50, hp);
@@ -23,6 +25,7 @@ namespace FightingMode.Lobby.Private
 
         public void ConnectToRoom()
         {
+            if(isClicked) return;
             Click();
             
             RoomController.ConnectToPrivateRoom(UserInfoTaker.Take(), codeInput.text, Answer);

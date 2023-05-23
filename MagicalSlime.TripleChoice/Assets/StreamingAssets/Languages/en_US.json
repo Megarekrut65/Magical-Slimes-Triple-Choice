@@ -499,6 +499,10 @@
         {
             "key": "close",
             "value": "Close"
+        },
+        {
+            "key": "input-length",
+            "value": "Username must be longest!"
         }
     ]
 }

@@ -12,6 +12,9 @@ namespace LoginRegister
 
         public void Register()
         {
+            if(_isClicked) return;
+            _isClicked = true;
+            
             Error("");
             string username = usernameField.text;
             string email = emailField.text;

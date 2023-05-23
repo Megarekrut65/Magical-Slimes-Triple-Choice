@@ -15,8 +15,13 @@ namespace CreatingSlime
         [SerializeField] private InputField nameInput;
         [SerializeField] private Text errorMessage;
 
+        private bool _isClicked;
+
         public void Submit()
         {
+            if(_isClicked) return;
+            _isClicked = true;
+            
             string slimeName = nameInput.text;
             if (slimeName.Length > 3)
             {
@@ -29,6 +34,7 @@ namespace CreatingSlime
                 return;
             }
 
+            _isClicked = false;
             errorMessage.text = LocalizationManager.GetWordByKey("name-length");
         }
     }

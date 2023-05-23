@@ -24,6 +24,8 @@ namespace LoginRegister
 
         private Dictionary<string, object> _accountData;
         private Dictionary<string, object> _deviceData;
+
+        private bool _isClicked;
         
         public void Conflict(Dictionary<string, object> accountData, Dictionary<string, object> deviceData)
         {
@@ -53,20 +55,30 @@ namespace LoginRegister
                 }
 
                 errorText.text = LocalizationManager.GetWordByKey(message);
+                _isClicked = false;
             });
         }
         public void ChooseDevice()
         {
+            if(_isClicked) return;
+            _isClicked = true;
+            
             Load(_deviceData);
         }
 
         public void ChooseAccount()
         {
+            if(_isClicked) return;
+            _isClicked = true;
+            
             Load(_accountData);
         }
 
         public void Merge()
         {
+            if(_isClicked) return;
+            _isClicked = true;
+            
             Load(Merger.Merge(_accountData, _deviceData));
         }
     }
