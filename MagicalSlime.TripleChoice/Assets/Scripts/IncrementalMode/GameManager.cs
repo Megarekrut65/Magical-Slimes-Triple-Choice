@@ -13,7 +13,7 @@ namespace IncrementalMode
 {
     public class GameManager : MonoBehaviour
     {
-
+        [SerializeField] private ResurrectManager resurrectManager;
         [SerializeField] private Text slimeText;
         private void Start()
         {
@@ -51,7 +51,7 @@ namespace IncrementalMode
         private IEnumerator AfterDie()
         {
             yield return new WaitForSeconds(3f);
-            Action end = ()=>SceneManager.LoadScene("SlimeCreating", LoadSceneMode.Single);
+            Action end = resurrectManager.EntityDie;
             
             InfoBox.Instance.ShowInfo(LocalizationManager.GetWordByKey("game-over"), 
                 LocalizationManager.GetWordByKey("slime-die"),end, end);

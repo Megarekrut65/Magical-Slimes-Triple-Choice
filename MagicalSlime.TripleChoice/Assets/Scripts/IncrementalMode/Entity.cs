@@ -22,10 +22,9 @@ namespace IncrementalMode
         
         [SerializeField] private Animator slimeAnimator;
         [SerializeField] private Animator hpAnimator;
-        [SerializeField] private GameObject sliderGameObject;
+        [SerializeField] private Slider hpSlider;
 
         public const int MaxHp = 100;
-        private Slider _hpSlider;
         private int _currentHp;
         private static readonly int IsDie = Animator.StringToHash("IsDie");
         public bool IsDied => _currentHp <= 0;
@@ -46,9 +45,8 @@ namespace IncrementalMode
                 StartCoroutine(Die());
             }
             
-            _hpSlider = sliderGameObject.GetComponent<Slider>();
-            _hpSlider.maxValue = MaxHp;
-            _hpSlider.value = _currentHp;
+            hpSlider.maxValue = MaxHp;
+            hpSlider.value = _currentHp;
         }
 
         public void Heal(int value)
@@ -60,7 +58,7 @@ namespace IncrementalMode
             _currentHp = Math.Min(_currentHp, MaxHp);
             
             DataSaver.SaveHp(_currentHp);
-            _hpSlider.value = _currentHp;
+            hpSlider.value = _currentHp;
         }
         public void TakeDamage(int value)
         {
@@ -69,7 +67,7 @@ namespace IncrementalMode
             _currentHp -= value;
             DataSaver.SaveHp(_currentHp);
             
-            _hpSlider.value = _currentHp;
+            hpSlider.value = _currentHp;
             if (IsDied && !_died)
             {
                 _died = true;
@@ -88,10 +86,10 @@ namespace IncrementalMode
 
         private IEnumerator NewLife()
         {
-            float delta = _hpSlider.maxValue - _hpSlider.value;
+            float delta = hpSlider.maxValue - hpSlider.value;
             for (float i = 0f; i < delta; i++)
             {
-                _hpSlider.value++;
+                hpSlider.value++;
                 _currentHp++;
                 hpAnimator.SetTrigger(HealTrigger);
                 yield return new WaitForSeconds(0.05f);
@@ -109,12 +107,18 @@ namespace IncrementalMode
             }
             else
             {
-                SlimeDataSaver.SaveCurrentSlimeResult();
                 slimeAnimator.speed = 1;
-                sliderGameObject.SetActive(false);
                 slimeAnimator.SetBool(IsDie, true);
                 OnEntityDied?.Invoke();
             }
+        }
+
+        public void Resurrect()
+        {
+            DataSaver.SaveShop("life", 2);
+            ReLife();
+            _died = false;
+            slimeAnimator.SetBool(IsDie, false);
         }
 
         private void DieSound()

@@ -471,6 +471,18 @@
         {
             "key": "round",
             "value": "Round"
+        },
+        {
+            "key": "leave",
+            "value": "Leave"
+        },
+        {
+            "key": "resurrect",
+            "value": "Resurrect"
+        },
+        {
+            "key": "resurrect-question",
+            "value": "You can resurrect your slime for a certain amount of diamonds!"
         }
     ]
 }

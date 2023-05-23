@@ -46,6 +46,7 @@ namespace IncrementalMode.Shop
         }
         private void Die()
         {
+            _life = DataSaver.LoadShop("life", 1);
             _life--;
             NewLife();
         }
