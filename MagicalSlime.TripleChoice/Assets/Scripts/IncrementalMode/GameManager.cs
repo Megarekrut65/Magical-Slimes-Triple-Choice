@@ -11,6 +11,9 @@ using UnityEngine.UI;
 
 namespace IncrementalMode
 {
+    /// <summary>
+    /// Controls game starting and game overing.
+    /// </summary>
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private ResurrectManager resurrectManager;

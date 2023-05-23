@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace IncrementalMode
 {
+    /// <summary>
+    /// Controls entity resurrecting after death.
+    /// </summary>
     public class ResurrectManager : MonoBehaviour
     {
         [SerializeField] private Entity entity;

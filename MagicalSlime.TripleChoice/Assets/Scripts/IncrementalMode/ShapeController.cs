@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 
 namespace IncrementalMode
 {
+    /// <summary>
+    /// Controls shapes that hurts entity.
+    /// </summary>
     public class ShapeController : MonoBehaviour
     {
         public delegate void Spawning();

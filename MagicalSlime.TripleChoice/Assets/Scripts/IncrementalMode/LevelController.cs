@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace IncrementalMode
 {
+    /// <summary>
+    /// Controls entity levels. Level upping and experience adding.  
+    /// </summary>
     public class LevelController : MonoBehaviour
     {
         [SerializeField] private Animation levelUpAnim;

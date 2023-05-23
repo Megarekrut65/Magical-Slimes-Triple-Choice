@@ -7,6 +7,7 @@ namespace IncrementalMode
 {
     /// <summary>
     /// Controls speed changing and displaying it in GUI.
+    /// Speed of clicking amount.
     /// </summary>
     public class SpeedController : MonoBehaviour
     {
