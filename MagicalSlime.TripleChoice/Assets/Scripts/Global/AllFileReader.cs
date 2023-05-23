@@ -7,7 +7,7 @@ namespace Global
     public static class AllFileReader {
         public static string Read(string path) {
             string res;
-            if (Application.platform == RuntimePlatform.Android) {
+            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer) {
                 UnityWebRequest www = UnityWebRequest.Get(path);
                 www.SendWebRequest();
                 while (!www.isDone) {

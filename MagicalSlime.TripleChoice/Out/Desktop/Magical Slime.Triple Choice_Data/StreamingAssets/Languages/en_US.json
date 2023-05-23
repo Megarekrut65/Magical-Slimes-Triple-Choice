@@ -1,0 +1,504 @@
+{
+    "items": [
+        {
+            "key": "create-own-slime",
+            "value": "Create own slime"
+        },
+        {
+            "key": "enter-slime-name",
+            "value": "Enter slime name"
+        },
+        {
+            "key": "settings",
+            "value": "Settings"
+        },
+        {
+            "key": "game-over",
+            "value": "Game Over"
+        },
+        {
+            "key": "slime-die",
+            "value": "Your slime died. Create new one"
+        },
+        {
+            "key": "simple-lightning",
+            "value": "Simple lightning"
+        },
+        {
+            "key": "simple-lightning-description",
+            "value": "Simple but effective lightning magic that allows you to get a small amount of energy."
+        },
+        {
+            "key": "lightning-storm",
+            "value": "Lightning Storm"
+        },
+        {
+            "key": "lightning-storm-description",
+            "value": "Medium-level magic that summons a large number of electrical discharges. This energy is enough to charge a simple laptop."
+        },
+        {
+            "key": "lightning-shield",
+            "value": "Lightning Shield"
+        },
+        {
+            "key": "lightning-shield-description",
+            "value": "The best defence is an offence. This magic gathers the raging lightning in one place and receives energy from it. Not a nuclear power plant, but not bad either."
+        },
+        {
+            "key": "lightning-power",
+            "value": "Lightning Power"
+        },
+        {
+            "key": "lightning-power-description",
+            "value": "Having understood the essence of this world, a magician can easily catch lightning with his bare hands and draw energy from the heavens. What sacrifices are made to charge a Tesla..."
+        },
+        {
+            "key": "lightning-rod",
+            "value": "Lightning Rod"
+        },
+        {
+            "key": "lightning-rod-description",
+            "value": "A powerful artefact that increases the total power of the mage by 100 times. No! 1000 times."
+        },
+        {
+            "key": "lightning-core",
+            "value": "Lightning Core"
+        },
+        {
+            "key": "lightning-core-description",
+            "value": "The pinnacle of lightning magic. As powerful as 500 nuclear power plants, it costs as much as 5000. Allows you to get energy directly from the air."
+        },
+        {
+            "key": "energy-per",
+            "value": "Energy per second"
+        },
+        {
+            "key": "price",
+            "value": "Price"
+        },
+        {
+            "key": "name-length",
+            "value": "Name length must be greater than 3"
+        },
+        {
+            "key": "shop-heal",
+            "value": "Heal"
+        },
+        {
+            "key": "shop-heal-description",
+            "value": "Restores a small amount of health to the slime."
+        },
+        {
+            "key": "shop-heal-other",
+            "value": "Amount of health"
+        },
+        {
+            "key": "shop-amount",
+            "value": "Increase amount"
+        },
+        {
+            "key": "shop-amount-description",
+            "value": "Increases the amount of energy received through clicks for some time."
+        },
+        {
+            "key": "shop-amount-other",
+            "value": "Increases by the following number of times"
+        },
+        {
+            "key": "shop-shield",
+            "value": "Shield"
+        },
+        {
+            "key": "shop-shield-description",
+            "value": "Activates a shield that blocks damage from spikes for some time."
+        },
+        {
+            "key": "shop-shield-other",
+            "value": "Current block time"
+        },
+        {
+            "key": "shop-re-life",
+            "value": "Re Life"
+        },
+        {
+            "key": "shop-re-life-description",
+            "value": "Resurrects slime after death."
+        },
+        {
+            "key": "shop-re-life-other",
+            "value": "Current re life count"
+        },
+        {
+            "key": "slime",
+            "value": "Slime"
+        },
+        {
+            "key": "level",
+            "value": "Level"
+        },
+        {
+            "key": "energy",
+            "value": "Energy"
+        },
+        {
+            "key": "name",
+            "value": "Name"
+        },
+        {
+            "key": "your-slimes",
+            "value": "Your Slimes"
+        },
+        {
+            "key": "story-frame1",
+            "value": "Once upon a time, in a world filled with orcs and magic"
+        },
+        {
+            "key": "story-frame2",
+            "value": "There was a famous magician named Merlin. He was the most skilled wizard in all the land and could conjure up anything he set his mind to"
+        },
+        {
+            "key": "story-frame3",
+            "value": "One day, the orcs decided to launch a series of rocket attacks on the nearby city, causing widespread chaos and a total blackout"
+        },
+        {
+            "key": "story-frame4",
+            "value": "People were left in the dark, without electricity or any way to power their homes and businesses. The local authorities were at a loss as to what to do until Merlin stepped in"
+        },
+        {
+            "key": "story-frame5",
+            "value": "Merlin, being the brilliant wizard that he was, decided to use his magic to create a new source of electricity"
+        },
+        {
+            "key": "story-frame6",
+            "value": "He began by researching the properties of slime and discovered that it contained magical properties that could generate a powerful charge"
+        },
+        {
+            "key": "story-frame7",
+            "value": "Without wasting any time, Merlin set to work, gathering magic slime from the most unlikely of sources - giant snails that roamed the nearby swamps"
+        },
+        {
+            "key": "story-frame8",
+            "value": "The snails' slime was said to contain an extra dose of magical properties and could generate a powerful electric charge"
+        },
+        {
+            "key": "story-frame9",
+            "value": "Merlin collected the slime and began to experiment. He used his magic to transform the slime into a conductive gel and used it to power the entire city"
+        },
+        {
+            "key": "story-frame10",
+            "value": "The result was a bright and steady glow that lit up the streets, homes, and businesses"
+        },
+        {
+            "key": "story-frame11",
+            "value": "People were amazed, and Merlin became an instant hero. He even went on to patent his invention and started selling jars of magic slime to people who wanted to generate their own electricity"
+        },
+        {
+            "key": "story-frame12",
+            "value": "Soon, the orcs stopped attacking, and the electricity grid was restored"
+        },
+        {
+            "key": "story-frame13",
+            "value": "However, people didn't want to give up the magic slime. It had become a trendy thing to have, and people were using it to power everything from their smartphones to their cars"
+        },
+        {
+            "key": "story-frame14",
+            "value": "Merlin, being the savvy businessman that he was, decided to start his own line of magic slime products, including shampoo, soap, and toothpaste"
+        },
+        {
+            "key": "story-frame15",
+            "value": "He even launched his own fashion line, which featured clothing made entirely out of slime. And so, Merlin became not just a famous magician but also a successful entrepreneur"
+        },
+        {
+            "key": "story-frame16",
+            "value": "All thanks to his invention of magic slime, the city was lit up, people's lives were transformed, and the world was a brighter place"
+        },
+        {
+            "key": "story-frame17",
+            "value": "The end! Let's make own electricity!"
+        },
+        {
+            "key": "skip",
+            "value": "Skip"
+        },
+        {
+            "key": "story-generated",
+            "value": "Story, text, music, images and voice were generated by AI"
+        },
+        {
+            "key": "login",
+            "value": "Login"
+        },
+        {
+            "key": "some-error-login",
+            "value": "An unknown error occurred during login, please try again later"
+        },
+        {
+            "key": "doesnt-exist",
+            "value": "The user with the entered parameters does not exist"
+        },
+        {
+            "key": "invalid-email",
+            "value": "Incorrect email address entered"
+        },
+        {
+            "key": "register",
+            "value": "Registration"
+        },
+        {
+            "key": "some-error-register",
+            "value": "An unknown error occurred during registration, please try again later"
+        },
+        {
+            "key": "already-exists",
+            "value": "The user with the entered data already exists"
+        },
+        {
+            "key": "enter-username",
+            "value": "Enter username"
+        },
+        {
+            "key": "enter-email",
+            "value": "Enter email"
+        },
+        {
+            "key": "enter-password",
+            "value": "Enter password"
+        },
+        {
+            "key": "repeat-password",
+            "value": "Repeat password"
+        },
+        {
+            "key": "log-in-first",
+            "value": "To get information about your account, first log in"
+        },
+        {
+            "key": "username",
+            "value": "Username"
+        },
+        {
+            "key": "max-energy",
+            "value": "Max. energy"
+        },
+        {
+            "key": "max-level",
+            "value": "Max. level"
+        },
+        {
+            "key": "slimes-count",
+            "value": "Slimes count"
+        },
+        {
+            "key": "registration-date",
+            "value": "Registration-date"
+        },
+        {
+            "key": "log-out",
+            "value": "Log out"
+        },
+        {
+            "key": "go",
+            "value": "Go"
+        },
+        {
+            "key": "skip-next",
+            "value": "Skip the backstory next time"
+        },
+        {
+            "key": "sound-volume",
+            "value": "Sound volume"
+        },
+        {
+            "key": "music-volume",
+            "value": "Music volume"
+        },
+        {
+            "key": "language",
+            "value": "Language"
+        },
+        {
+            "key": "buy",
+            "value": "Buy"
+        },
+        {
+            "key": "update",
+            "value": "You are downloading an outdated version, please update the game"
+        },
+        {
+            "key": "global-mode",
+            "value": "Global Mode"
+        },
+        {
+            "key": "global-describe",
+            "value": "Play with all players and get cups and diamonds"
+        },
+        {
+            "key": "private-mode",
+            "value": "Private Mode"
+        },
+        {
+            "key": "private-describe",
+            "value": "Play with your friends and have fun"
+        },
+        {
+            "key": "login-required",
+            "value": "Login required"
+        },
+        {
+            "key": "result",
+            "value": "Result"
+        },
+        {
+            "key": "winner",
+            "value": "Winner!"
+        },
+        {
+            "key": "loser",
+            "value": "Loser!"
+        },
+        {
+            "key": "choose-attack",
+            "value": "Choose attack side"
+        },
+        {
+            "key": "choose-block",
+            "value": "Choose block side"
+        },
+        {
+            "key": "play",
+            "value": "Play"
+        },
+        {
+            "key": "code-description",
+            "value": "Send this code to friend to connect to you. \nCode was copied to your clipboard"
+        },
+        {
+            "key": "code-not-found",
+            "value": "Code not found! Try again"
+        },
+        {
+            "key": "fail-create-room",
+            "value": "Fail to create room! Try again"
+        },
+        {
+            "key": "fast-search",
+            "value": "Fast search"
+        },
+        {
+            "key": "create-room",
+            "value": "Create new room"
+        },
+        {
+            "key": "connect-to-room",
+            "value": "Connect to friend room"
+        },
+        {
+            "key": "enter-room-code",
+            "value": "Enter room code..."
+        },
+        {
+            "key": "room-full",
+            "value": "Room is full!"
+        },
+        {
+            "key": "room-not-found",
+            "value": "Room wasn't found!"
+        },
+        {
+            "key": "room-error",
+            "value": "There was an error. Please try again later!"
+        },
+        {
+            "key": "back",
+            "value": "Back"
+        },
+        {
+            "key": "some-error-database",
+            "value": "Check your internet connection or try again later"
+        },
+        {
+            "key": "cups",
+            "value": "Cups"
+        },
+        {
+            "key": "current-slime",
+            "value": "Current slime"
+        },
+        {
+            "key": "account",
+            "value": "Account data"
+        },
+        {
+            "key": "device",
+            "value": "Device data"
+        },
+        {
+            "key": "from-account",
+            "value": "Use account data"
+        },
+        {
+            "key": "from-device",
+            "value": "Use device data"
+        },
+        {
+            "key": "merge-slimes",
+            "value": "Merge"
+        },
+        {
+            "key": "data-conflict",
+            "value": "The data on the device and in the account do not match. Choose one of the following solutions: keep only the account data; keep only the device data; keep the number of diamonds and caps from the account data, choose the largest values for the maximum values, merge slime lists, keep all other data from the device"
+        },
+        {
+            "key": "rating",
+            "value": "RATING"
+        },
+        {
+            "key": "yes",
+            "value": "YES"
+        },
+        {
+            "key": "no",
+            "value": "NO"
+        },
+        {
+            "key": "leave-question",
+            "value": "Are you sure you want to leave? You'll lose and won't be able to come back!"
+        },
+        {
+            "key": "search-going",
+            "value": "The search is ongoing. If you exit the app, the search may stop"
+        },
+        {
+            "key": "round",
+            "value": "Round"
+        },
+        {
+            "key": "leave",
+            "value": "Leave"
+        },
+        {
+            "key": "resurrect",
+            "value": "Resurrect"
+        },
+        {
+            "key": "resurrect-question",
+            "value": "You can resurrect your slime for a certain amount of diamonds!"
+        },
+        {
+            "key": "enemy-leave",
+            "value": "Enemy leave room"
+        },
+        {
+            "key": "max-health",
+            "value": "Max slimes health:"
+        },
+        {
+            "key": "convert",
+            "value": "Convert"
+        },
+        {
+            "key": "close",
+            "value": "Close"
+        }
+    ]
+}
