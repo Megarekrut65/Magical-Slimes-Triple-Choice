@@ -37,7 +37,7 @@ namespace FightingMode.Game.Choice
         {
             if(_attackClicked) return;
             _attackClicked = true;
-            
+
             base.SelectAttack(type);
             animator.SetTrigger(BlockTrigger);
 
@@ -48,7 +48,7 @@ namespace FightingMode.Game.Choice
         {
             if(_blockClicked) return;
             _blockClicked = true;
-            
+
             base.SelectBlock(type);
             animator.SetTrigger(EndTrigger);
 

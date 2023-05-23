@@ -21,7 +21,7 @@ namespace FightingMode.Game.Choice
         private ChoiceType _defaultChoice;
 
         private ChoiceDatabaseReceiver _databaseReceiver;
-        
+
         private void Start()
         {
             _defaultChoice = FightingSaver.LoadDefaultChoice(FightingSaver.LoadEnemyType());
@@ -42,16 +42,22 @@ namespace FightingMode.Game.Choice
 
         public override void StartChoice()
         {
+            _databaseReceiver.NextRound();
             _attackChoice = false;
             _blockChoice = false;
             
             _attackEnumerator = AutoChoiceAttack();
             StartCoroutine(_attackEnumerator);
+            
+            _databaseReceiver.InvokeNext();
         }
 
         private void AttackChoice(ChoiceType type)
         {
+            if(_attackChoice) return;
+            
             _attackChoice = true;
+            
             SelectAttack((int)type);
             if(_attackEnumerator != null) StopCoroutine(_attackEnumerator);
 
@@ -61,7 +67,10 @@ namespace FightingMode.Game.Choice
         }
         private void BlockChoice(ChoiceType type)
         {
+            if(_blockChoice) return;
+            
             _blockChoice = true;
+
             SelectBlock((int)type);
             if(_blockEnumerator != null) StopCoroutine(_blockEnumerator);
         }

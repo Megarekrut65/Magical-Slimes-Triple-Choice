@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Firebase.Database;
 using UnityEngine;
 
@@ -17,28 +18,34 @@ namespace FightingMode.Game.Choice
         public ChoiceDatabaseReceiver(string type) : base(type)
         {
             choice.ValueChanged += ChoiceHandler;
+            count = -1;
         }
         private void ChoiceHandler(object sender, ValueChangedEventArgs args)
         {
             if(!args.Snapshot.Exists) return;
             choices.Clear();
+            choices.AddRange(new ChoiceData[args.Snapshot.ChildrenCount]);
             foreach (DataSnapshot data in args.Snapshot.Children)
             {
-                choices.Add(JsonUtility.FromJson<ChoiceData>(data.GetRawJsonValue()));
+                choices[Convert.ToInt32(data.Key)] = JsonUtility.FromJson<ChoiceData>(data.GetRawJsonValue());
             }
-            
+
             InvokeNext();
         }
 
         public void InvokeNext()
         {
-            if (count >= choices.Count) return;
+            if (count < 0 || count >= choices.Count) return;
             ChoiceData data = choices[count];
 
             if(data == null) return;
-            count++;
             Attack?.Invoke((ChoiceType)data.attack);
             Block?.Invoke((ChoiceType)data.block);
+        }
+
+        public void NextRound()
+        {
+            count++;
         }
     }
 }

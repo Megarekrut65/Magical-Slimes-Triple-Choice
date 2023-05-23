@@ -64,6 +64,12 @@ namespace Main
             FirebaseUser user = FirebaseManager.Auth.CurrentUser;
             if (user != null)
             {
+                if (DataSaver.LoadUsername() == "")
+                {
+                    FirebaseManager.Auth.SignOut();
+                    Ready = true;
+                    return;
+                }
                 DataSync dataSync = new DataSync();
                 dataSync.SyncAllData((_,_)=>Ready = true);
             }
