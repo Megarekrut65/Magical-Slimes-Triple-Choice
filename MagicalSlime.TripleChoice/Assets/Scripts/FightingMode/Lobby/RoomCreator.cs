@@ -5,6 +5,7 @@ using FightingMode.Game.Choice;
 using Firebase.Database;
 using Firebase.Extensions;
 using Global;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace FightingMode.Lobby
@@ -17,12 +18,12 @@ namespace FightingMode.Lobby
 
             Guid g = Guid.NewGuid();
             FightingSaver.SaveCode(g.ToString());
-            
             DatabaseReference room = db.RootReference.Child(roomType).Child(g.ToString());
 
             string first = Random.Range(0, 100) >= 50 ? "host" : "client";
             int defaultChoiceHost = Random.Range(0, 3);
             int defaultChoiceClient = Random.Range(0, 3);
+            while (defaultChoiceClient == defaultChoiceHost) defaultChoiceClient = Random.Range(0, 3);
 
             Dictionary<string, object> data = new Dictionary<string, object>
             {

@@ -5,6 +5,7 @@ using DataManagement;
 using Firebase.Database;
 using Firebase.Extensions;
 using Global;
+using UnityEngine;
 
 namespace FightingMode.Lobby
 {

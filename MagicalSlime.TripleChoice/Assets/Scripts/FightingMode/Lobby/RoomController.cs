@@ -21,6 +21,7 @@ namespace FightingMode.Lobby
             if (_creator is { IsCreated: true })
             {
                 _creator.RemoveRoom(answer);
+                _creator = null;
             }
 
             answer();

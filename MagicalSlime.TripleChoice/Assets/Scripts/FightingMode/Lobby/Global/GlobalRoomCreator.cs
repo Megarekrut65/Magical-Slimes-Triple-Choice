@@ -108,6 +108,8 @@ namespace FightingMode.Lobby.Global
             roomFree.RemoveValueAsync().ContinueWithOnMainThread(_ =>
             {
                 DatabaseReference roomGlobal = _db.RootReference.Child("global-rooms").Child(_code);
+                roomGlobal.Child("client").ValueChanged -= EnemyConnectHandler;
+                
                 roomGlobal.RemoveValueAsync().ContinueWithOnMainThread(_ =>
                 {
                     answer();

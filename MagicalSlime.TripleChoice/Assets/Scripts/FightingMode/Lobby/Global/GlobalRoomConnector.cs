@@ -12,8 +12,11 @@ namespace FightingMode.Lobby.Global
     public class GlobalRoomConnector: RoomConnector
     {
         private string _code;
-        private bool _fast;
-        
+        private readonly bool _fast;
+
+        private const float MinDistance = 100f;
+        private const float LevelPart = 0.5f;
+
         public GlobalRoomConnector(UserInfo info, Action<bool, string> answer, bool fast) : 
             base(info, answer, "global-rooms")
         {
@@ -23,11 +26,13 @@ namespace FightingMode.Lobby.Global
         public override void Connect()
         {
             _code = "";
+            Point main = new Point(info.cups, info.maxLevel);
 
             FirebaseDatabase db = FirebaseManager.Db;
             DatabaseReference free = db.RootReference.Child("global-free");
 
             int count = 0;
+
             free.RunTransaction(data =>
             {
                 if (!data.HasChildren)
@@ -37,18 +42,14 @@ namespace FightingMode.Lobby.Global
                     return TransactionResult.Success(data);
                 }
 
-                foreach (MutableData snapshot in data.Children)
-                {
-                    bool isFree = Convert.ToBoolean(snapshot.Child("isFree").Value);
-                    if (isFree)
-                    {
-                        _code = snapshot.Key;
-                        snapshot.Child("isFree").Value = false;
-                        break;
-                    }
-                }
+                RoomSearcher searcher = new RoomSearcher(MinDistance, main, _fast, LevelPart);
+                _code = searcher.Search(data);
+                if (_code == "") return TransactionResult.Abort();
+                
+                data.Child(_code).Child("isFree").Value = false;
 
                 return TransactionResult.Success(data);
+
             }).ContinueWithOnMainThread(MakeRoomNotFree);
         }
         
@@ -56,7 +57,6 @@ namespace FightingMode.Lobby.Global
         {
             if (_code == "")
             {
-                Debug.Log("Room not found!");
                 answer(false, "room-not-found");
                 return;
             }
@@ -71,30 +71,32 @@ namespace FightingMode.Lobby.Global
             
             FightingSaver.SaveCode(_code);
             DatabaseReference globalRoom = db.RootReference.Child("global-rooms").Child(_code);
-            AddDataToRoom(globalRoom);
-            globalRoom.Child("hostAlive").GetValueAsync().ContinueWithOnMainThread(t =>
+            globalRoom.Child("hostAlive").GetValueAsync()
+                .ContinueWithOnMainThread(t =>CheckHostIsAlive(globalRoom, t));
+        }
+
+        private void CheckHostIsAlive(DatabaseReference globalRoom, Task<DataSnapshot> t)
+        {
+            if (t.IsFaulted)
             {
-                if (t.IsFaulted)
-                {
-                    CustomLogger.Log(t.Exception?.Message);
-                    globalRoom.RemoveValueAsync();
-                    answer(false, "host-not-alive");
-                    return;
-                }
+                CustomLogger.Log(t.Exception?.Message);
+                globalRoom.RemoveValueAsync();
+                answer(false, "host-not-alive");
+                return;
+            }
 
-                DateTime dateTime = Convert.ToDateTime(t.Result.Value as string, CultureInfo.InvariantCulture);
-                DateTime now = DateTimeUtc.Now;
+            DateTime dateTime = Convert.ToDateTime(t.Result.Value as string, CultureInfo.InvariantCulture);
+            DateTime now = DateTimeUtc.Now;
 
-                if (dateTime - now > TimeSpan.FromSeconds(3) || dateTime - now < TimeSpan.FromSeconds(-3))
-                {
-                    CustomLogger.Log("Host not alive");
-                    globalRoom.RemoveValueAsync();
-                    answer(false, "host-not-alive");
-                    return;
-                }
+            if (dateTime - now > TimeSpan.FromSeconds(3) || dateTime - now < TimeSpan.FromSeconds(-3))
+            {
+                CustomLogger.Log("Host not alive");
+                globalRoom.RemoveValueAsync();
+                answer(false, "host-not-alive");
+                return;
+            }
 
-                AddDataToRoom(globalRoom);
-            });
+            AddDataToRoom(globalRoom);
         }
 
         private void AddDataToRoom(DatabaseReference globalRoom)
