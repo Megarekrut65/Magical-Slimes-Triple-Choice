@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace CreatingSlime
 {
     /// <summary>
-    /// Saves new lsime data from GUI from to local storage
+    /// Saves new slime data from GUI from to local storage
     /// </summary>
     public class CreateSlime: MonoBehaviour
     {
