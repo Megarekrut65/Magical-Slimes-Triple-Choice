@@ -12,8 +12,9 @@
 /Assets/ExternalDependencyManager/
 /Assets/Plugins/
 /Assets/Firebase/
-/Magical slime. Triple choice_BurstDebugInformation_DoNotShip/
-/Magical slime. Triple choice-Beta_BurstDebugInformation_DoNotShip/
+/MagicalSlime.TripleChoice choice_BurstDebugInformation_DoNotShip/
+/MagicalSlime.TripleChoice choice-Beta_BurstDebugInformation_DoNotShip/
+/MagicalSlime.TripleChoice/Out/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
