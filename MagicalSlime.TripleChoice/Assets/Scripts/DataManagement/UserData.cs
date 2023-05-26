@@ -19,6 +19,11 @@ namespace DataManagement
     {
         public static void GetUserDataFromDatabase(string id, Action<bool, Dictionary<string, object>> answer)
         {
+            if (id == "")
+            {
+                answer(false, null);
+                return;
+            }
             FirebaseFirestore db = FirebaseManager.Fs;
             DocumentReference docRef = db.Collection("users").Document(id);
 
