@@ -49,7 +49,7 @@ namespace LoginRegister
                     return;
                 }
 
-                if (Difference.IsDifference(data))
+                if (!LocalStorageInfo.Get().IsEmpty() && Difference.IsDifference(data))
                 {
                     answer(false, "");
                     conflict(data);

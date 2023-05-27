@@ -64,10 +64,6 @@ namespace IncrementalMode
             return false;
         }
 
-        //TODO:Remove. Only for debugging
-        public void AddMoney()
-        {
-            Click(10000f, 1000000);
-        }
+
     }
 }

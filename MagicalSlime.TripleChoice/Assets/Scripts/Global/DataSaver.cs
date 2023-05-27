@@ -150,6 +150,7 @@ namespace Global
             LocalStorage.Remove("maxLevelAccount");
             LocalStorage.Remove("maxEnergyAccount");
             LocalStorage.Remove("diamonds");
+            LocalStorage.Remove("cups");
             LocalStorage.Remove("lastSave");
             LocalStorage.Remove("slimeType");
             LocalStorage.Remove("level");
@@ -213,7 +214,7 @@ namespace Global
         /// <returns>Saved or new amount of diamonds</returns>
         public static int LoadDiamonds()
         {
-            return LocalStorage.GetValue("diamonds", 250);//TODO:make 25 diamonds
+            return LocalStorage.GetValue("diamonds", 25);
         }
 
         public static SlimeData[] LoadSlimeData()

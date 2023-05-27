@@ -36,5 +36,10 @@ namespace LoginRegister
         {
             return HashCode.Combine(slimeName, maxLevel, maxEnergy, cups, diamonds, energy, level);
         }
+
+        public bool IsEmpty()
+        {
+            return slimeName == "" && maxLevel == 0 && maxEnergy == "0" && energy == "0" && level == 0;
+        }
     }
 }
