@@ -503,6 +503,10 @@
         {
             "key": "input-length",
             "value": "Username must be longest!"
+        },
+        {
+            "key": "dont-match",
+            "value": "Passwords don't match!"
         }
     ]
 }

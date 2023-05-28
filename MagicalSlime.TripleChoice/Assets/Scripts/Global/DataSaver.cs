@@ -20,8 +20,8 @@ namespace Global
     {
         public static DateTime LoadLastSave()
         {
-            return Convert.ToDateTime(LocalStorage.GetValue("lastSave", 
-            DateTime.MinValue.ToString(CultureInfo.InvariantCulture)));
+            return DateTime.Parse(LocalStorage.GetValue("lastSave", 
+            DateTime.MinValue.ToString(CultureInfo.InvariantCulture)), CultureInfo.InvariantCulture);
         }
 
         public static void LastSave()

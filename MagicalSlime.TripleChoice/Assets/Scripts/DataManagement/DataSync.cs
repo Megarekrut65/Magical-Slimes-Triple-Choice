@@ -4,6 +4,7 @@ using System.Globalization;
 using Firebase.Auth;
 using Global;
 using JetBrains.Annotations;
+using UnityEngine;
 
 namespace DataManagement
 {
@@ -22,10 +23,14 @@ namespace DataManagement
             
             FirebaseUser user = FirebaseManager.Auth.CurrentUser;
             _userId = user.UserId;
-            _answer(false, "");
-            if (user.UserId == null) return;
+
+            if (_userId == null)
+            {
+                _answer(false, "");
+                return;
+            }
           
-            UserData.GetUserDataFromDatabase(user.UserId, LoadData);
+            UserData.GetUserDataFromDatabase(_userId, LoadData);
         }
         
         private void LoadData(bool result, Dictionary<string, object> data)
@@ -35,18 +40,12 @@ namespace DataManagement
                 _answer(false, "");
                 return;
             }
-            
+
             DateTime dateTime = DateTime.Parse(data["lastSave"] as string, CultureInfo.InvariantCulture);
             DateTime savedDateTime = DataSaver.LoadLastSave();
-
+            
             if (savedDateTime > dateTime)
             {
-                if (_userId == null)
-                {
-                    _answer(false, "");
-                    return;
-                }
-
                 CustomLogger.Log("Save");
                 DatabaseSaver saver = new DatabaseSaver();
                 saver.SaveUserData(_userId, _answer);

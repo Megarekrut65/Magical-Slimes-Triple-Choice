@@ -32,11 +32,12 @@ namespace DataManagement
                 CustomLogger.Log(task.Exception?.Message);
                 if (task.IsFaulted)
                 {
+                    CustomLogger.Log(task.Exception);
                     answer(false, null);
                     return;
                 }
                 DocumentSnapshot snapshot = task.Result;
-
+                
                 if (snapshot.Exists)
                 {
                     answer(true, snapshot.ToDictionary());
